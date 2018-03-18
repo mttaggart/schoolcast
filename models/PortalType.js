@@ -1,6 +1,9 @@
 const PortalType = (sequelize, DataTypes) => {
     return sequelize.define("PortalType", {
-        name: DataTypes.STRING
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     });
 }
 

@@ -1,6 +1,9 @@
 const TransitionType = (sequelize, DataTypes) => {
     return sequelize.define("TransitionType", {
-        name: DataTypes.STRING
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     });
 }
 
