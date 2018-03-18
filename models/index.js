@@ -1,58 +1,36 @@
-const Sequelize = require("sequelize");
-const path = require("path");
-const dataPath = path.normalize(__dirname + "/../data/schoolcast.db");
-const sequelize = new Sequelize("sqlite:" + dataPath);
-const bcrypt = require("bcrypt");
+'use strict';
 
-sequelize.authenticate()
-.then(() => {
-  console.log("Connection to database established");
-});
+var fs        = require('fs');
+var path      = require('path');
+var Sequelize = require('sequelize');
+var basename  = path.basename(__filename);
+var env       = process.env.NODE_ENV || 'development';
+var config    = require(__dirname + '/../config/config.json')[env];
+var db        = {};
 
-const TransistionType = sequelize.import("./TransitionType");
-const PortalType = sequelize.import("./PortalType");
-const Feed = sequelize.import("./Feed");
-const Item = sequelize.import("./Item");
-const Display = sequelize.import("./Display");
-const Portal = sequelize.import("./Portal");
-const User  = sequelize.import("./User");
+if (config.use_env_variable) {
+  var sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
-// Define relationships
-Item.belongsTo(Feed);
-Display.hasMany(Portal);
-Feed.hasMany(Portal);
-
-/*
-HOOKS
-*/
-
-// User
-User.beforeCreate((user, options) => {
-  return encryptPassword(user.password)
-  .then(success => {
-      user.password = success;
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
-  .catch( err => {
-      if (err) console.log(err);
-  })
-});
-
-function encryptPassword(password) {
-  return new Promise((resolve, reject) => {
-      bcrypt.hash(password, 10, (err, hash) => {
-          if (err) return reject(err);
-          return resolve(hash);
-      });
+  .forEach(file => {
+    var model = sequelize['import'](path.join(__dirname, file));
+    db[model.name] = model;
   });
-}
 
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
-module.exports = {
-    TransistionType,
-    PortalType,
-    Feed,
-    Item,
-    Display,
-    Portal,
-    User
-}
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;
