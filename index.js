@@ -1,9 +1,8 @@
 const express = require("express");
 const path = require("path");
-const Sequelize = require("sequelize");
 const models = require("./models");
 const app = express();
-const router = express.router();
+const router = express.Router();
 
 app.set("port", (process.env.PORT || 3002));
 
