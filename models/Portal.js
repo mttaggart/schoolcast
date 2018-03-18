@@ -1,13 +1,13 @@
 const Portal = (sequelize, DataTypes) => {
     return sequelize.define("Portal", {
         name: DataTypes.STRING,
-        top: DataTypes.INT,
-        left: DataTypes.INT,
-        width: DataTypes.INT,
-        height: DataTypes.INT,
-        transitionSpeed: DataTypes.INT,
+        top: DataTypes.INTEGER,
+        left: DataTypes.INTEGER,
+        width: DataTypes.INTEGER,
+        height: DataTypes.INTEGER,
+        transitionSpeed: DataTypes.INTEGER,
         customCSS: DataTypes.JSON
     });
 }
 
-export default Portal;
+module.exports = Portal;

@@ -6,4 +6,4 @@ const Display = (sequelize, DataTypes) => {
     });
 }
 
-export default Display;
+module.exports = Display;

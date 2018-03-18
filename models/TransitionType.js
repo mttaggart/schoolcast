@@ -4,4 +4,4 @@ const TransitionType = (sequelize, DataTypes) => {
     });
 }
 
-export default TransitionType;
+module.exports = TransitionType;

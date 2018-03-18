@@ -5,4 +5,4 @@ const Feed = (sequelize, DataTypes) => {
     });
 }
 
-export default Feed;
+module.exports = Feed;

@@ -5,4 +5,4 @@ const Item = (sequelize, DataTypes) => {
     });
 }
 
-export default Item;
+module.exports = Item;

@@ -4,4 +4,4 @@ const PortalType = (sequelize, DataTypes) => {
     });
 }
 
-export default PortalType;
+module.exports = PortalType;
