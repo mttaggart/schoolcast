@@ -12,8 +12,8 @@ describe("PortalType", () => {
     describe("Create new", () => {
         it("should create a new portalType", done => {
             models.PortalType.create({name: "test"})
-            .then((tt) => {
-                assert.equal(tt.get("name"), "test");
+            .then((pt) => {
+                assert.equal(pt.get("name"), "test");
                 done();
             })
             .catch(err => {
@@ -22,8 +22,8 @@ describe("PortalType", () => {
         });
         it("should prevent null names", done => {
             models.PortalType.create({name:null})
-            .then( tt => {
-                done(tt.get("name"));
+            .then( pt => {
+                done(pt.get("name"));
             })
             .catch( err => {
                 assert.exists(err);
@@ -35,14 +35,14 @@ describe("PortalType", () => {
         const testName = "Twitter"
         before( done => {
             models.PortalType.create({name: testName})
-            .then( tt => {
+            .then( pt => {
                 done();
             });
         });
-        it("should find the starwipe tt", done => {
+        it("should find the starwipe pt", done => {
             models.PortalType.findOne({where: {name: testName}})
-            .then( tt => {
-                assert.equal(tt.get("name"),testName);
+            .then( pt => {
+                assert.equal(pt.get("name"),testName);
                 done();
             })
             .catch( err => {
