@@ -2,16 +2,16 @@ const assert = require("chai").assert;
 process.env.NODE_ENV = "test";
 const models = require("../../models");
 
-describe("TransitionType", () => {
+describe("PortalType", () => {
     before(done => {
-        models.TransitionType.sync({force: true})
+        models.PortalType.sync({force: true})
         .then(() => {
             done();
         });
     });
     describe("Create new", () => {
-        it("should create a new transitionType", done => {
-            models.TransitionType.create({name: "test"})
+        it("should create a new portalType", done => {
+            models.PortalType.create({name: "test"})
             .then((tt) => {
                 assert.equal(tt.get("name"), "test");
                 done();
@@ -21,7 +21,7 @@ describe("TransitionType", () => {
             });
         });
         it("should prevent null names", done => {
-            models.TransitionType.create({name:null})
+            models.PortalType.create({name:null})
             .then( tt => {
                 done(tt.get("name"));
             })
@@ -32,15 +32,15 @@ describe("TransitionType", () => {
         });
     });
     describe("Find", () => {
-        const testName = "StarWipe"
+        const testName = "Twitter"
         before( done => {
-            models.TransitionType.create({name: testName})
+            models.PortalType.create({name: testName})
             .then( tt => {
                 done();
             });
         });
         it("should find the starwipe tt", done => {
-            models.TransitionType.findOne({where: {name: testName}})
+            models.PortalType.findOne({where: {name: testName}})
             .then( tt => {
                 assert.equal(tt.get("name"),testName);
                 done();
