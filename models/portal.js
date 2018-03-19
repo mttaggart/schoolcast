@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
   Portal.associate = function(models) {
     // associations can be defined here
     models.Portal.belongsTo(models.Display);
+    models.Portal.belongsTo(models.TransitionType);
+    models.Portal.belongsTo(models.PortalType);
   };
   return Portal;
 };
