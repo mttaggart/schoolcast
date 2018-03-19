@@ -51,4 +51,12 @@ describe("TransitionType", () => {
             });
         });
     });
+    after( done => {
+        models.TransitionType.destroy({
+            where: {},
+            truncate: true
+        }).then(() => {
+            done();
+        });
+    });
 });

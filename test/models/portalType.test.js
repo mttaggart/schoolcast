@@ -51,4 +51,12 @@ describe("PortalType", () => {
             });
         });
     });
+    after( done => {
+        models.PortalType.destroy({
+            where: {},
+            truncate: true
+        }).then(() => {
+            done();
+        });
+    });
 });

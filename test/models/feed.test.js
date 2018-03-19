@@ -51,4 +51,12 @@ describe("Feed", () => {
             });
         });
     });
+    after( done => {
+        models.Feed.destroy({
+            where: {},
+            truncate: true
+        }).then(() => {
+            done();
+        });
+    });
 });

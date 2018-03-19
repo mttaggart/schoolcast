@@ -65,4 +65,12 @@ describe("Display", () => {
             });
         });
     });
+    after( done => {
+        models.Display.destroy({
+            where: {},
+            truncate: true
+        }).then(() => {
+            done();
+        });
+    });
 });

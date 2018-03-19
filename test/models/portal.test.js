@@ -129,4 +129,13 @@ describe("Portal", () => {
             });
         });
     });
+    after( done => {
+        models.Display.destroy({
+            where: {},
+            truncate: true,
+            cascade: true
+        }).then(() => {
+            done();
+        });
+    });
 });

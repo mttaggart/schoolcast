@@ -77,4 +77,13 @@ describe("Item", () => {
             });
         });
     });
+    after( done => {
+        models.Item.destroy({
+            where: {},
+            truncate: true,
+            cascade: true
+        }).then(() => {
+            done();
+        });
+    });
 });
