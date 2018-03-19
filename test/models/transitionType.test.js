@@ -4,7 +4,7 @@ const models = require("../../models");
 
 describe("TransitionType", () => {
     before(done => {
-        models.TransitionType.sync({force: true})
+        models.TransitionType.sync()
         .then(() => {
             done();
         });

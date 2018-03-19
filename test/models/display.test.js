@@ -4,7 +4,7 @@ const models = require("../../models");
 
 describe("Display", () => {
     before(done => {
-        models.Display.sync({force: true})
+        models.Display.sync()
         .then(() => {
             done();
         });
