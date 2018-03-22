@@ -14,7 +14,7 @@ router.route("/")
   res.sendFile(path.resolve(__dirname,"public","index.html"));
 });
 
-router.route("/users")
+router.route("/api/users")
 .get((req, res) => {
   models.User.findAll()
   .then(users => {
@@ -28,7 +28,7 @@ router.route("/users")
   });
 });
 
-router.route("/users/:id")
+router.route("/api/users/:id")
 .get((req, res) => {
   models.User.findAll()
   .then(users => {
