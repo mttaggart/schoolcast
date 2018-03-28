@@ -17,12 +17,6 @@ const testAdminData = {
 }
 
 describe("User", () => {
-    before(done => {
-        models.User.sync()
-        .then(() => {
-            done();
-        });
-    });
     describe("Create new", () => {
         it("should create a new User", done => {
             models.User.create(testUserData)
@@ -103,13 +97,4 @@ describe("User", () => {
             });
         })
     })
-    after( done => {
-        models.User.destroy({
-            where: {},
-            truncate: true
-        })
-        .then( () => {
-            done();
-        });
-    });
 });

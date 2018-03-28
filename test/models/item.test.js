@@ -5,13 +5,10 @@ var testFeed;
 
 describe("Item", () => {
     before(done => {
-        models.Item.sync({force: true})
-        .then(() => {
-            models.Feed.create({name: "TestFeed"})
-            .then( (f) => {
-                testFeed = f;
-                done();
-            })
+        models.Feed.create({name: "TestFeed"})
+        .then( (f) => {
+            testFeed = f;
+            done();
         });
     });
     before( done => {
@@ -74,15 +71,6 @@ describe("Item", () => {
                 assert.exists(err);
                 done(err);
             });
-        });
-    });
-    after( done => {
-        models.Item.destroy({
-            where: {},
-            truncate: true,
-            cascade: true
-        }).then(() => {
-            done();
         });
     });
 });

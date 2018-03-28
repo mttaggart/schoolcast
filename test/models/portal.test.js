@@ -7,13 +7,10 @@ var testDisplay;
 
 describe("Portal", () => {
     before(done => {
-        models.Portal.sync({force: true})
-        .then(() => {
-            models.PortalType.create({name: "TestPortalType"})
-            .then( (pt) => {
-                testPortalType = pt;
-                done();
-            })
+        models.PortalType.create({name: "TestPortalType"})
+        .then( (pt) => {
+            testPortalType = pt;
+            done();
         });
     });
     before(done => {
@@ -126,15 +123,6 @@ describe("Portal", () => {
                 assert.exists(err);
                 done(err);
             });
-        });
-    });
-    after( done => {
-        models.Display.destroy({
-            where: {},
-            truncate: true,
-            cascade: true
-        }).then(() => {
-            done();
         });
     });
 });

@@ -2,12 +2,6 @@ const assert = require("chai").assert;
 const models = require("../../models");
 
 describe("TransitionType", () => {
-    before(done => {
-        models.TransitionType.sync()
-        .then(() => {
-            done();
-        });
-    });
     describe("Create new", () => {
         it("should create a new transitionType", done => {
             models.TransitionType.create({name: "test"})
@@ -48,14 +42,6 @@ describe("TransitionType", () => {
                 assert.exists(err);
                 done(err);
             });
-        });
-    });
-    after( done => {
-        models.TransitionType.destroy({
-            where: {},
-            truncate: true
-        }).then(() => {
-            done();
         });
     });
 });

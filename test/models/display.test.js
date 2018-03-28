@@ -2,12 +2,6 @@ const assert = require("chai").assert;
 const models = require("../../models");
 
 describe("Display", () => {
-    before(done => {
-        models.Display.sync()
-        .then(() => {
-            done();
-        });
-    });
     describe("Create new", () => {
         it("should create a new Display", done => {
             models.Display.create({name: "test"})
@@ -62,14 +56,6 @@ describe("Display", () => {
                 assert.exists(err);
                 done(err);
             });
-        });
-    });
-    after( done => {
-        models.Display.destroy({
-            where: {},
-            truncate: true
-        }).then(() => {
-            done();
         });
     });
 });

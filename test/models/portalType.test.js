@@ -2,12 +2,6 @@ const assert = require("chai").assert;
 const models = require("../../models");
 
 describe("PortalType", () => {
-    before(done => {
-        models.PortalType.sync({force: true})
-        .then(() => {
-            done();
-        });
-    });
     describe("Create new", () => {
         it("should create a new portalType", done => {
             models.PortalType.create({name: "test"})
@@ -48,14 +42,6 @@ describe("PortalType", () => {
                 assert.exists(err);
                 done(err);
             });
-        });
-    });
-    after( done => {
-        models.PortalType.destroy({
-            where: {},
-            truncate: true
-        }).then(() => {
-            done();
         });
     });
 });

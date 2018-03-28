@@ -2,12 +2,6 @@ const assert = require("chai").assert;
 const models = require("../../models");
 
 describe("Feed", () => {
-    before(done => {
-        models.Feed.sync({force: true})
-        .then(() => {
-            done();
-        });
-    });
     describe("Create new", () => {
         it("should create a new Feed", done => {
             models.Feed.create({name: "test"})
@@ -48,14 +42,6 @@ describe("Feed", () => {
                 assert.exists(err);
                 done(err);
             });
-        });
-    });
-    after( done => {
-        models.Feed.destroy({
-            where: {},
-            truncate: true
-        }).then(() => {
-            done();
         });
     });
 });
