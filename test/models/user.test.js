@@ -9,6 +9,14 @@ const testUserData = {
     password: "mypassword"
 }
 
+const testAdminData = {
+    firstName: "Jane",
+    lastName: "Adminson",
+    email: "jane@bob.com",
+    password: "mypassword",
+    isAdmin: true
+}
+
 describe("User", () => {
     before(done => {
         models.User.sync()
@@ -27,6 +35,16 @@ describe("User", () => {
                 done(err);
             });
         });
+        // it("should create a new Admin", done => {
+        //     models.User.create(testAdminData)
+        //     .then( u => {
+        //         assert.isTrue(u.isAdmin);
+        //         done();
+        //     })
+        //     .catch(err => {
+        //         done(err);
+        //     });
+        // });
         it("should prevent null names", done => {
             models.User.create({firstName:null})
             .then( u => {
