@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     models.Portal.belongsTo(models.Display);
     models.Portal.belongsTo(models.TransitionType);
     models.Portal.belongsTo(models.PortalType);
+    models.Portal.belongsTo(models.Feed);
   };
   return Portal;
 };

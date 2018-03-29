@@ -4,6 +4,7 @@ const models = require("../../models");
 var testTransitionType;
 var testPortalType;
 var testDisplay;
+var testFeed;
 const testPortalData = {
     name: "test",
     top: 10,
@@ -36,6 +37,16 @@ describe("Portal", () => {
         })
         .then( (d) => {
             testDisplay = d;
+            done();
+        });
+    });
+    before(done => {
+        models.Feed.create({
+            name: "TestFeed", 
+            description: "test feed"
+        })
+        .then( f => {
+            testFeed = f;
             done();
         });
     });
@@ -98,6 +109,22 @@ describe("Portal", () => {
                 p.setDisplay(testDisplay)
                 .then( p => {
                     assert.equal(p.get("DisplayId"),testDisplay.id);
+                    done();
+                })
+                .catch( err => {
+                    done(err);
+                });
+            })
+            .catch( err => {
+                done(err);
+            });
+        });
+        it("should be able to associate a feed", done => {
+            models.Portal.create(testPortalData)
+            .then( p => {
+                p.setFeed(testFeed)
+                .then( p => {
+                    assert.equal(p.get("FeedId"),testFeed.id);
                     done();
                 })
                 .catch( err => {
