@@ -17,10 +17,8 @@ router.route("/")
 router.route("/api/users")
 .get((req, res) => {
   models.User.findAll()
-  .then(users => {
-    users.forEach( user => {
-      console.log(user);
-    })
+  .then( users => {
+    res.status(200).send(users);
   })
   .catch( err => {
     console.log(err);
@@ -30,11 +28,9 @@ router.route("/api/users")
 
 router.route("/api/users/:id")
 .get((req, res) => {
-  models.User.findAll()
-  .then(users => {
-    users.forEach( user => {
-      console.log(user);
-    })
+  models.User.findOne({id:req.params.id})
+  .then( user => {
+    res.status(200).send(user);
   })
   .catch( err => {
     console.log(err);
