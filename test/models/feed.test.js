@@ -4,7 +4,10 @@ const models = require("../../models");
 describe("Feed", () => {
     describe("Create new", () => {
         it("should create a new Feed", done => {
-            models.Feed.create({name: "test"})
+            models.Feed.create({
+                name: "test",
+                description: "test feed"
+            })
             .then( f => {
                 assert.equal(f.get("name"), "test");
                 done();
@@ -27,7 +30,10 @@ describe("Feed", () => {
     describe("Find", () => {
         const testName = "Test Feed"
         before( done => {
-            models.Feed.create({name: testName})
+            models.Feed.create({
+                name: testName,
+                description: "test description"
+            })
             .then( f => {
                 done();
             });

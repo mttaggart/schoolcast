@@ -4,7 +4,7 @@ const models = require("../../models");
 describe("Display", () => {
     describe("Create new", () => {
         it("should create a new Display", done => {
-            models.Display.create({name: "test"})
+            models.Display.create({name: "test", description: "test display"})
             .then((d) => {
                 assert.equal(d.get("name"), "test");
                 done();
@@ -14,7 +14,10 @@ describe("Display", () => {
             });
         });
         it("should prevent null names", done => {
-            models.Display.create({name:null})
+            models.Display.create({
+                name:null,
+                description:"some description"
+            })
             .then( d => {
                 done(d.get("name"));
             })
@@ -23,11 +26,28 @@ describe("Display", () => {
                 done();
             });
         });
+        it("should prevent null descriptions", done => {
+            models.Display.create({
+                name:"some name",
+                description: null
+            })
+            .then( d => {
+                done(d.get("description"));
+            })
+            .catch( err => {
+                assert.exists(err);
+                done();
+            });
+        });
         it("should save custom css", done => {
             const customCSS = {
-                "width": "50px"
+                width: "50px"
             };
-            models.Display.create({name:"WideDisplay",customCSS})
+            models.Display.create({
+                name:"WideDisplay",
+                description:"test display",
+                customCSS
+            })
             .then( d => {
                 const css = d.get("customCSS");
                 assert.equal(css.width, "50px");
@@ -41,7 +61,10 @@ describe("Display", () => {
     describe("Find", () => {
         const testName = "Test Display"
         before( done => {
-            models.Display.create({name: testName})
+            models.Display.create({
+                name: testName, 
+                description: "Test display"
+            })
             .then( d => {
                 done();
             });

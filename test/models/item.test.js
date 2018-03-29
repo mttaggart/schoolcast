@@ -5,19 +5,21 @@ var testFeed;
 
 describe("Item", () => {
     before(done => {
-        models.Feed.create({name: "TestFeed"})
-        .then( (f) => {
+        models.Feed.create({
+            name: "TestFeed",
+            description: "Here is a test feed"
+        })
+        .then( f => {
             testFeed = f;
             done();
         });
     });
-    before( done => {
-        models.Feed.sync();
-        done();
-    })
     describe("Create new", () => {
         it("should create a new Item", done => {
-            models.Item.create({name: "test"})
+            models.Item.create({
+                name: "test",
+                content: "Here is a test item"
+            })
             .then( i => {
                 assert.equal(i.get("name"), "test");
                 done();
@@ -27,7 +29,10 @@ describe("Item", () => {
             });
         });
         it("should prevent null names", done => {
-            models.Item.create({name:null})
+            models.Item.create({
+                name:null,
+                content: "a test item"
+            })
             .then( i => {
                 done(i.get("name"));
             })
@@ -36,8 +41,24 @@ describe("Item", () => {
                 done();
             });
         });
+        it("should prevent null content", done => {
+            models.Item.create({
+                name:"Test Item",
+                content: null
+            })
+            .then( i => {
+                done(i.get("content"));
+            })
+            .catch( err => {
+                assert.exists(err);
+                done();
+            });
+        });
         it("should be able to associate a feed", done => {
-            models.Item.create({name:null})
+            models.Item.create({
+                name:"Test Item",
+                content: "A test content!"
+            })
             .then( i => {
                 i.setFeed(testFeed)
                 .then( i => {
@@ -56,7 +77,10 @@ describe("Item", () => {
     describe("Find", () => {
         const testName = "Test Item"
         before( done => {
-            models.Item.create({name: testName})
+            models.Item.create({
+                name: testName,
+                content: "Here is another test item"
+            })
             .then( i => {
                 done();
             });

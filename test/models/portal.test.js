@@ -4,6 +4,15 @@ const models = require("../../models");
 var testTransitionType;
 var testPortalType;
 var testDisplay;
+const testPortalData = {
+    name: "test",
+    top: 10,
+    left: 10,
+    height: 300,
+    width: 300,
+    transitionSpeed: 300,
+    customCSS: {background: "black"}
+}
 
 describe("Portal", () => {
     before(done => {
@@ -21,7 +30,10 @@ describe("Portal", () => {
         });
     });
     before(done => {
-        models.Display.create({name: "TestDisplay"})
+        models.Display.create({
+            name: "TestDisplay", 
+            description: "test display"
+        })
         .then( (d) => {
             testDisplay = d;
             done();
@@ -29,17 +41,9 @@ describe("Portal", () => {
     });
     describe("Create new", () => {
         it("should create a new Portal", done => {
-            models.Portal.create({
-                name: "test",
-                top: 10,
-                left: 10,
-                height: 300,
-                width: 300,
-                transitionSpeed: 300,
-                customCSS: {background: "black"}
-            })
+            models.Portal.create(testPortalData)
             .then( p => {
-                assert.equal(p.get("name"), "test");
+                assert.equal(p.get("name"), testPortalData.name);
                 done();
             })
             .catch(err => {
@@ -47,7 +51,7 @@ describe("Portal", () => {
             });
         });
         it("should prevent null names", done => {
-            models.Portal.create({name:null})
+            models.Portal.create({name: null})
             .then( p => {
                 done(p.get("name"));
             })
@@ -57,7 +61,7 @@ describe("Portal", () => {
             });
         });
         it("should be able to associate a transitionType", done => {
-            models.Portal.create({name:null})
+            models.Portal.create(testPortalData)
             .then( p => {
                 p.setTransitionType(testTransitionType)
                 .then( p => {
@@ -73,7 +77,7 @@ describe("Portal", () => {
             });
         });
         it("should be able to associate a portalType", done => {
-            models.Portal.create({name:null})
+            models.Portal.create(testPortalData)
             .then( p => {
                 p.setPortalType(testPortalType)
                 .then( p => {
@@ -89,7 +93,7 @@ describe("Portal", () => {
             });
         });
         it("should be able to associate a display", done => {
-            models.Portal.create({name:null})
+            models.Portal.create(testPortalData)
             .then( p => {
                 p.setDisplay(testDisplay)
                 .then( p => {
@@ -106,17 +110,10 @@ describe("Portal", () => {
         });
     });
     describe("Find", () => {
-        const testName = "Test Portal"
-        before( done => {
-            models.Portal.create({name: testName})
-            .then( p => {
-                done();
-            });
-        });
         it("should find the test Portal", done => {
-            models.Portal.findOne({where: {name: testName}})
+            models.Portal.findOne({where: {name: testPortalData.name}})
             .then( p => {
-                assert.equal(p.get("name"),testName);
+                assert.equal(p.get("name"),testPortalData.name);
                 done();
             })
             .catch( err => {
