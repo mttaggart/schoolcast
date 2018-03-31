@@ -1,5 +1,7 @@
 'use strict';
 
+const models = require("../models");
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -12,21 +14,27 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Users', [{
+    return models.User.bulkCreate([{
       firstName: "Joe",
       lastName: "testUser",
       email: "joe@testdomain.com",
       password: "mypassword",
-      isAdmin: false
+      isAdmin: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       firstName: "Schoolcast",
       lastName: "Admin",
       email: "admin@testdomain.com",
       password: "adminpassword",
-      isAdmin: true
-    }],{
-      logging: (sql) => {console.log(sql)},
+      isAdmin: true,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }],
+    {
+      logging: console.log,
+      hooks: true,
       individualHooks: true
     });
   },
@@ -39,6 +47,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
-   return queryInterface.bulkDelete("Users",{});
+    return queryInterface.bulkDelete("Users",{});
   }
 };
