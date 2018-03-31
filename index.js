@@ -18,6 +18,9 @@ app.use(routes.public);
 // USERS
 app.use(routes.users);
 
+// USERS
+app.use(routes.auth);
+
 // PORTALTYPES
 app.use(routes.portalTypes);
 
