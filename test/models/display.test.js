@@ -81,4 +81,13 @@ describe("Display", () => {
             });
         });
     });
+    after( done => {
+        models.Display.destroy({
+            where: {name: ["WideDisplay","Test Display", "test"]}
+        })
+        .then( rows => {
+            console.log(`Deleted ${rows} rows`);
+            done();
+        });
+    });
 });

@@ -96,5 +96,12 @@ describe("User", () => {
                 done(err);
             });
         })
-    })
+    });
+    after( done => {
+        models.User.destroy({where: {}})
+        .then (rows => {
+            console.log(`Deleted ${rows} records`);
+            done();
+        });
+    });
 });

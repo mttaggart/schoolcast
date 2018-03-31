@@ -50,4 +50,13 @@ describe("Feed", () => {
             });
         });
     });
+    after( done => {
+        models.Feed.destroy({
+            where: {name: ["test","Test Feed"]}
+        })
+        .then( rows => {
+            console.log(`Deleted ${rows} rows`);
+            done();
+        });
+    });
 });

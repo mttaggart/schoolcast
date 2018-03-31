@@ -44,4 +44,13 @@ describe("TransitionType", () => {
             });
         });
     });
+    after( done => {
+        models.TransitionType.destroy({
+            where: {name: ["StarWipe","test"]},
+        })
+        .then( rows => {
+            console.log(`Deleted ${rows} rows`);
+            done();
+        });
+    });
 });

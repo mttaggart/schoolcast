@@ -97,4 +97,13 @@ describe("Item", () => {
             });
         });
     });
+    after( done => {
+        models.Item.destroy({
+            where: {name: ["Test Item", "test"]}
+        })
+        .then( rows => {
+            console.log(`Deleted ${rows} rows`);
+            done();
+        });
+    })
 });

@@ -149,4 +149,11 @@ describe("Portal", () => {
             });
         });
     });
+    after( done => {
+        models.Portal.destroy({where: {}, cascade: true})
+        .then (rows => {
+            console.log(`Deleted ${rows} records`);
+            done();
+        });
+    });
 });

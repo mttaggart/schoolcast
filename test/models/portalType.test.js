@@ -44,4 +44,13 @@ describe("PortalType", () => {
             });
         });
     });
+    after( done => {
+        models.PortalType.destroy({
+            where: {name: ["test","Twitter"]}
+        })
+        .then( rows => {
+            console.log(`Deleted ${rows} rows`);
+            done();
+        });
+    });
 });
