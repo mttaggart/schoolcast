@@ -25,6 +25,7 @@ router.route("/api/auth/login")
     });
   })
   .catch( err => {
+    console.log(err);
     res.status(500).send("No such user");
   });
 });
