@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const models = require("../models");
+const verifyToken = require("./verifyToken");
+
+router.use("/api/feeds*", verifyToken);
 
 router.route("/api/feeds")
 .get((req, res) => {
