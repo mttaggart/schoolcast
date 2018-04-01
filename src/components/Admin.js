@@ -23,7 +23,10 @@ const Admin = ({auth}) => {
             <Route path="/admin/portals" component={Portals} /> 
             <Route path="/admin/feeds" component={Feeds} /> 
             <Route path="/admin/items" component={Items} /> 
-            <Route path="/admin/users" component={Users} />                 
+            <Route 
+                path="/admin/users" 
+                render={({props}) => <Users {...props} auth={auth} />} 
+            />                 
         </div>
     );
 }
