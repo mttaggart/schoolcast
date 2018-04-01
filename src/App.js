@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
+import Admin from "./components/Admin";
 
 class App extends Component {
 
@@ -43,6 +44,7 @@ class App extends Component {
           </nav>
           <Route exact path="/" component={Home} />
           <Route path="/login" render={(props) => <Login  {...props} authHandler={this.authHandler.bind(this)} auth={this.state.auth}/>} />
+          <Route path="/admin" component={Admin} />
         </div>
       </Router>
     );
