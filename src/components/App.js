@@ -28,7 +28,7 @@ const App = ({login,logout,authenticated,requested,error,user,token}) => {
         </nav>
         <Route exact path="/" component={Home} />
         <Route path="/login" render={ props => <Login {...props} login={login} error={error} authenticated={authenticated}/>} />
-        <Route path="/admin" component={Admin} />
+        <Route path="/admin" render={ props => <Admin {...props} authenticated={authenticated} token={token}/>} />
       </div>
     </Router>
   );

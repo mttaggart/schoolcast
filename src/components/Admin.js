@@ -4,9 +4,9 @@ import Displays from "./Displays";
 import Portals from "./Portals";
 import Feeds from "./Feeds";
 import Items from "./Items";
-import Users from "./Users";
+import UsersContainer from "../containers/UsersContainer";
 
-const Admin = ({auth}) => {
+const Admin = ({authenticated, token}) => {
     return (
         <div>
             <h2>Admin</h2>
@@ -25,7 +25,13 @@ const Admin = ({auth}) => {
             <Route path="/admin/items" component={Items} /> 
             <Route 
                 path="/admin/users" 
-                render={({props}) => <Users {...props} auth={auth} />} 
+                render={({props}) => 
+                    <UsersContainer 
+                        {...props} 
+                        authenticated={authenticated} 
+                        token={token} 
+                    />
+                } 
             />                 
         </div>
     );

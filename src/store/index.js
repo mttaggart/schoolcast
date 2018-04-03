@@ -10,7 +10,11 @@ const initialState = {
         user: null,
         error: null
     },
-    users: [],
+    users: {
+        users: [],
+        requested: false,
+        error: null
+    },
     displays: [],
     feeds: [],
     items: [],
