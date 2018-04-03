@@ -8,7 +8,7 @@ import Login from "../components/Login";
 import Home from "./Home";
 import Admin from "./Admin";
 
-const App = ({login,authenticated,requested,error,user,token}) => {
+const App = ({login,logout,authenticated,requested,error,user,token}) => {
   return (
     <Router>
       <div>
@@ -18,7 +18,11 @@ const App = ({login,authenticated,requested,error,user,token}) => {
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/login">Login</Link></li>
+            {
+              authenticated ? 
+                <li><button type="button" onClick={logout}>Logout</button></li> : <li><Link to="/login">Login</Link></li>
+            }
+            
             {user && user.isAdmin ? <li><Link to="/admin">Admin</Link></li> : null }
           </ul>
         </nav>

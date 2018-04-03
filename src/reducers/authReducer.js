@@ -17,24 +17,21 @@ export default function auth(state={
           error: action.data
         });
       case actionTypes.LOGIN_ACCEPTED:
-        const newState = Object.assign({}, state, {
+        return Object.assign({}, state, {
           authenticated: action.data.authenticated,
           user: action.data.user,
           token: action.data.token
         });
-        return newState;
       case actionTypes.LOGOUT_ATTEMPTED:
-        const newState = Object.assign({}, state, {
+        return Object.assign({}, state, {
           requested: false
         });
-        return newState;
-      case actionTypes.LOGOUT_ATTEMPTED:
-        const newState = Object.assign({}, state, {
+      case actionTypes.LOGOUT_SUCCESSFUL:
+        return Object.assign({}, state, {
           authenticated: false,
           user: null,
           token: null
         });
-        return newState;
       default:
         return state;   
     }

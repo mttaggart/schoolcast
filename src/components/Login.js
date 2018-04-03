@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
     constructor(props) {
@@ -23,13 +24,19 @@ class Login extends React.Component {
         this.setState({password: e.target.value})
     }
 
-    componentDidMount() {
-        if (this.props.authenticated) {
-            this.props.history.push("/");
-        }
-    }
+    // componentDidMount() {
+    //     if (this.props.authenticated) {
+    //         this.props.history.push("/");
+    //     }
+    // }
 
     render() {
+
+        if(this.props.authenticated) {
+            return (
+                <Redirect to="/" from="/login" />
+            );
+        }
        
         return (
             <div>
