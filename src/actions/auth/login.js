@@ -1,16 +1,11 @@
-const apiEndoint = "/api/auth/login";
+import actionTypes from "./actionTypes";
+const apiEndpoint = "/api/auth/login";
 
-export const actionTypes = {
-    LOGIN_ATTEMPTED: "LOGIN_ATTEMPTED",
-    LOGIN_ACCEPTED: "LOGIN_ACCEPTED",
-    LOGIN_REJECTED: "LOGIN_REJECTED"
-}
-
-export function login(email, password, history) {
+export default function login(email, password) {
     return (dispatch) => {
         dispatch(loginAttemped());
         const loginRequest = new Request(
-            apiEndoint,
+            apiEndpoint,
             {
                 method: "POST",
                 body: JSON.stringify({email, password}),
