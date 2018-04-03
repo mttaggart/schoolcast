@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import authActions  from "../actions/users";
-import Users from "../components/Users";
+import Users from "../components/Admin/Users";
 
 const mapStateToProps = (state) => {
     return Object.assign({},state.users);

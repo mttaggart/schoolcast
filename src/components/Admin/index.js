@@ -4,7 +4,7 @@ import Displays from "./Displays";
 import Portals from "./Portals";
 import Feeds from "./Feeds";
 import Items from "./Items";
-import UsersContainer from "../containers/UsersContainer";
+import UsersContainer from "../../containers/UsersContainer";
 
 const Admin = ({authenticated, token}) => {
     return (
