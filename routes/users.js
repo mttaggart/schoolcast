@@ -43,7 +43,10 @@ router.route("/api/users/:id")
   const userData = req.body;
   models.User.update(userData,{where: {id: req.params.id}})
   .then( rows => {
-    res.status(201).send(rows);
+    models.User.findAll()
+    .then( users => {
+      res.status(200).send(users);
+    })
   })
   .catch( err => {
     res.status(500).send("Could not update");
@@ -53,7 +56,10 @@ router.route("/api/users/:id")
   const userId = req.params.id;
   models.User.destroy({where: {id: userId}})
   .then ( rows => {
-    res.status(200).send("User deleted");
+    models.User.findAll()
+    .then( users => {
+      res.status(200).send(users);
+    });
   })
   .catch( err => {
     res.status(500).send("Could not delete user");
