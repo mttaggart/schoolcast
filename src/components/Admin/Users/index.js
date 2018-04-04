@@ -13,6 +13,10 @@ class Users extends React.Component {
         this.props.getUsers(this.props.token);
     }
 
+    deleteHandler(id) {
+        this.props.deleteUser(this.props.token, id);
+    }
+
     render() {
 
         if(!this.props.authenticated) {
@@ -29,9 +33,10 @@ class Users extends React.Component {
                         this.props.users.map( (user, idx) => {
                             return (
                                 <UserListItem 
+                                    key={idx}
                                     user={user}
                                     editHandler={()=>{console.log("EDIT")}}
-                                    deleteHander={this.props.deleteUser}
+                                    deleteHandler={this.deleteHandler.bind(this)}
                                 />
                             );
                         })

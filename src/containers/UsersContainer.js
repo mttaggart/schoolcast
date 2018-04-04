@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: token => dispatch(userActions.getUsers(token)),
-        addUser: (token, user) => dispatch(userActions.addUser(token, user))
+        addUser: (token, user) => dispatch(userActions.addUser(token, user)),
+        deleteUser: (token, id) => dispatch(userActions.deleteUser(token,id))
     }
 }
 

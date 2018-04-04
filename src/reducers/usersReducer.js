@@ -28,6 +28,19 @@ export default function users(
                     users:state.users.concat([action.data])
                 }
             );
+        case actionTypes.DELETE_USER_ATTEMPTED:
+            return state;
+        case actionTypes.DELETE_USER_REJECTED:
+            return Object.assign({},state,{error: action.data});
+        case actionTypes.DELETE_USER_SUCCEEDED:
+            return Object.assign(
+                {},
+                state,
+                {
+                    requested: false,
+                    users: action.data
+                }
+            );
         default:
             return state;
     }
