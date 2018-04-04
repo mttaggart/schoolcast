@@ -24,12 +24,6 @@ class Login extends React.Component {
         this.setState({password: e.target.value})
     }
 
-    // componentDidMount() {
-    //     if (this.props.authenticated) {
-    //         this.props.history.push("/");
-    //     }
-    // }
-
     render() {
 
         if(this.props.authenticated) {
@@ -42,7 +36,7 @@ class Login extends React.Component {
             <div>
                 <h2>Login</h2>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    {this.props.error ? <div>{this.props.error}</div> : null}
+                    {/* {this.props.error ? <div>{this.props.error}</div> : null} */}
                     <label>email</label>
                     <input onChange={this.emailHandler.bind(this)} id="email" type="email" />
                     <label>password</label>

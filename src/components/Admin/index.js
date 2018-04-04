@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Link} from "react-router-dom";
+import {Route, Link, Redirect} from "react-router-dom";
 import Displays from "./Displays";
 import Portals from "./Portals";
 import Feeds from "./Feeds";
@@ -7,6 +7,13 @@ import Items from "./Items";
 import UsersContainer from "../../containers/UsersContainer";
 
 const Admin = ({authenticated, token}) => {
+
+    if(!authenticated) {
+        return (
+            <Redirect to="/login" from="/admin/users" />
+        );
+    }
+
     return (
         <div>
             <h2>Admin</h2>

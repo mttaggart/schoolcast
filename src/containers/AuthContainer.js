@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         login: (username, password) => dispatch(authActions.login(username,password)),
-        logout: token => dispatch(authActions.logout(token))
+        logout: token => dispatch(authActions.logout(token)),
+        authorize: token => dispatch(authActions.authorize(token))
     }
 }
 

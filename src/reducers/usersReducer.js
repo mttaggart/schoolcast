@@ -15,6 +15,19 @@ export default function users(
             return Object.assign({}, state, {error: action.data});
         case actionTypes.GET_USERS_SUCCEEDED:
             return Object.assign({}, state, {users: action.data});
+        case actionTypes.ADD_USER_ATTEMPTED:
+            return state;
+        case actionTypes.ADD_USER_REJECTED:
+            return Object.assign({},state,{error: action.data});
+        case actionTypes.ADD_USER_SUCCEEDED:
+            return Object.assign(
+                {},
+                state,
+                {
+                    requested: false,
+                    users:state.users.concat([action.data])
+                }
+            );
         default:
             return state;
     }

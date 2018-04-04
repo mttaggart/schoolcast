@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import authActions  from "../actions/users";
+import userActions  from "../actions/users";
 import Users from "../components/Admin/Users";
 
 const mapStateToProps = (state) => {
@@ -8,7 +8,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUsers: token => dispatch(authActions.getUsers(token))
+        getUsers: token => dispatch(userActions.getUsers(token)),
+        addUser: (token, user) => dispatch(userActions.addUser(token, user))
     }
 }
 

@@ -22,6 +22,20 @@ export default function auth(state={
           user: action.data.user,
           token: action.data.token
         });
+      case actionTypes.AUTHORIZE_ATTEMPTED:
+        return Object.assign({}, state, {
+          requested: true
+        });
+      case actionTypes.AUTHORIZE_REJECTED:
+        return Object.assign({}, state, {
+          error: action.data
+        });
+      case actionTypes.AUTHORIZE_ACCEPTED:
+        return Object.assign({}, state, {
+          authenticated: action.data.authenticated,
+          user: action.data.user,
+          token: action.data.token
+        });
       case actionTypes.LOGOUT_ATTEMPTED:
         return Object.assign({}, state, {
           requested: false

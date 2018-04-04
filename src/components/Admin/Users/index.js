@@ -1,4 +1,6 @@
 import React from "react";
+import UserForm from "./UserForm";
+import { Redirect } from "react-router-dom";
 
 class Users extends React.Component {
 
@@ -7,13 +9,17 @@ class Users extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
-        if(this.props.authenticated && !this.props.requested) {
-            this.props.getUsers(this.props.token);
-        }
+        this.props.getUsers(this.props.token);
     }
 
     render() {
+
+        if(!this.props.authenticated) {
+            return (
+                <Redirect to="/login" from="/admin/users" />
+            );
+        }
+
         return (
             <div>
                 <h3>Users</h3>    
@@ -23,7 +29,8 @@ class Users extends React.Component {
                             return (<li key={idx}>{user.email}</li>)
                         })
                     }
-                </ul>        
+                </ul> 
+                <UserForm getUsers={this.props.getUsers} addUser={this.props.addUser} token={this.props.token} />
             </div>
         );
     }

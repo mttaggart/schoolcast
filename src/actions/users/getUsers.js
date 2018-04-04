@@ -3,6 +3,7 @@ const apiEndPoint = "/api/users";
 
 export default function getUsers(token) {
     return (dispatch) => {
+        console.log("Getting users");
         dispatch(getUsersAttempted());
         const usersRequest = new Request(
             apiEndPoint,

@@ -43,6 +43,7 @@ function loginRejected(data) {
 }
 
 function loginAccepted(data) {
+    window.sessionStorage.setItem("token",data.token);
     return {
         type: actionTypes.LOGIN_ACCEPTED,
         data
