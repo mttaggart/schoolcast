@@ -36,10 +36,8 @@ function addUserRejected(err) {
 }
 
 function addUserSucceeded(token, data) {
-    return (dispatch) => {
-        return {
-            type: actionTypes.ADD_USER_SUCCEEDED,
-            data
-        }
+    return {
+        type: actionTypes.ADD_USER_SUCCEEDED,
+        data
     }
 }

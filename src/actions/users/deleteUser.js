@@ -35,10 +35,8 @@ function deleteUserRejected(err) {
 }
 
 function deleteUserSucceeded(token, data) {
-    return (dispatch) => {
-        return {
-            type: actionTypes.DELETE_USER_SUCCEEDED,
-            data
-        }
+    return {
+        type: actionTypes.DELETE_USER_SUCCEEDED,
+        data
     }
 }
