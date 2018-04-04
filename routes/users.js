@@ -19,7 +19,7 @@ router.route("/api/users")
   const userData = req.body;
   models.User.create(userData)
   .then( user => {
-    res.status(201).send(`${user.lastName}, ${user.firstName} created`);
+    res.status(201).send(user);
   })
   .catch ( err => {
     res.status(500).send("Could not create user");
