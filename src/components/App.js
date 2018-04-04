@@ -13,11 +13,8 @@ class App extends React.Component {
   componentDidMount() {
     const token = window.sessionStorage.getItem("token")
     if(token) {
-      console.log("TOKEN BABY");
       this.props.authorize(token);
-    } else {
-      console.log("BOO");
-    }
+    } 
   }
 
   render() {
