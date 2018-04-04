@@ -29,7 +29,7 @@ class App extends React.Component {
               <li><Link to="/">Home</Link></li>
               {
                 this.props.authenticated ? 
-                  <li><button type="button" onClick={this.props.logout}>Logout</button></li> : <li><Link to="/login">Login</Link></li>
+                  <li>{this.props.user.email} <button type="button" onClick={this.props.logout}>Logout</button></li> : <li><Link to="/login">Login</Link></li>
               }
               
               {this.props.user && this.props.user.isAdmin ? <li><Link to="/admin">Admin</Link></li> : null }
