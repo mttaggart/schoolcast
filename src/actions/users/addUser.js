@@ -1,12 +1,11 @@
 import actionTypes from "./actionTypes";
-const apiEndPoint = "/api/users";
+const apiEndpoint = "/api/users";
 
 export default function addUser(token, user) {
     return (dispatch) => {
         dispatch(addUserAttempted());
-        console.log(user);
         const usersRequest = new Request(
-            apiEndPoint,
+            apiEndpoint,
             {
                 method: "POST",
                 body: JSON.stringify(user),
