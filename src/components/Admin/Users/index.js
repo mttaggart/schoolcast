@@ -1,6 +1,7 @@
 import React from "react";
-import UserForm from "./UserForm";
 import { Redirect } from "react-router-dom";
+import UserForm from "./UserForm";
+import UserListItem from "./UserListItem";
 
 class Users extends React.Component {
 
@@ -26,11 +27,21 @@ class Users extends React.Component {
                 <ul>
                     {
                         this.props.users.map( (user, idx) => {
-                            return (<li key={idx}>{user.email}</li>)
+                            return (
+                                <UserListItem 
+                                    user={user}
+                                    editHandler={()=>{console.log("EDIT")}}
+                                    deleteHander={this.props.deleteUser}
+                                />
+                            );
                         })
                     }
                 </ul> 
-                <UserForm getUsers={this.props.getUsers} addUser={this.props.addUser} token={this.props.token} />
+                <UserForm 
+                    getUsers={this.props.getUsers} 
+                    addUser={this.props.addUser} 
+                    token={this.props.token} 
+                />
             </div>
         );
     }
