@@ -8,7 +8,7 @@ router.route("/api/portals")
 .get((req, res) => {
   models.Portal.findAll({
     where: {},
-    include: [models.TransitionType, models.PortalType]
+    include: [models.TransitionType, models.PortalType, models.Display, models.Feed]
   })
   .then( portals => {
     res.status(200).send(portals);
