@@ -1,9 +1,9 @@
 import React from "react";
 import {Route, Link, Redirect} from "react-router-dom";
 import Displays from "./Displays";
-import Portals from "./Portals";
 import Feeds from "./Feeds";
 import Items from "./Items";
+import PortalsContainer from "../../containers/PortalsContainer";
 import UsersContainer from "../../containers/UsersContainer";
 
 const Admin = ({authenticated, token}) => {
@@ -27,9 +27,18 @@ const Admin = ({authenticated, token}) => {
                 </ul>
             </nav>
             <Route path="/admin/displays" component={Displays} />
-            <Route path="/admin/portals" component={Portals} /> 
             <Route path="/admin/feeds" component={Feeds} /> 
             <Route path="/admin/items" component={Items} /> 
+            <Route 
+                path="/admin/portals" 
+                render={({props}) => 
+                    <PortalsContainer
+                        {...props}
+                        authenticated={authenticated}
+                        token={token}
+                    />
+                } 
+            /> 
             <Route 
                 path="/admin/users" 
                 render={({props}) => 
