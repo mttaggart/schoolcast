@@ -41,7 +41,10 @@ router.route("/api/users/:id")
 })
 .put((req, res) => {
   const userData = req.body;
-  models.User.update(userData,{where: {id: req.params.id}})
+  models.User.update(
+    userData,
+    {where: {id: req.params.id}, individualHooks: true}
+  )
   .then( rows => {
     return models.User.findAll()
     .then( users => {
