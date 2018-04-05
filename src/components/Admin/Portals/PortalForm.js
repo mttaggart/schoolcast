@@ -27,12 +27,7 @@ class PortalForm extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.password === this.state.passwordConfirm) {
-            this.props.submitHandler(this.props.token, this.state);
-            this.setState(PortalForm.defaultPortal);
-        } else {
-            alert("Passwords do not match");
-        } 
+        this.props.submitHandler(this.props.token, this.state);
     }
 
     changeHandler(e) {
