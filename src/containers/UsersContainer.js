@@ -10,7 +10,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: token => dispatch(userActions.getUsers(token)),
         addUser: (token, user) => dispatch(userActions.addUser(token, user)),
-        deleteUser: (token, id) => dispatch(userActions.deleteUser(token,id))
+        deleteUser: (token, id) => dispatch(userActions.deleteUser(token, id)),
+        updateUser: (token, user) => dispatch(userActions.updateUser(token, user))
     }
 }
 
