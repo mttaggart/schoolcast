@@ -15,10 +15,26 @@ const initialState = {
         requested: false,
         error: null
     },
-    displays: [],
-    feeds: [],
-    items: [],
-    portals: []
+    displays: {
+        displays: [],
+        requested: false,
+        error: null
+    },
+    feeds: {
+        feeds: [],
+        requested: false,
+        error: null
+    },
+    items: {
+        items: [],
+        requested: false,
+        error: null
+    },
+    portals: {
+        portals: [],
+        requested: false,
+        error: null
+    }
 };
 
 const middleware = [ ReduxThunk ];
