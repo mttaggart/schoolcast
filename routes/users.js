@@ -43,9 +43,9 @@ router.route("/api/users/:id")
   const userData = req.body;
   models.User.update(userData,{where: {id: req.params.id}})
   .then( rows => {
-    models.User.findAll()
+    return models.User.findAll()
     .then( users => {
-      res.status(200).send(users);
+      return res.status(200).send(users);
     })
   })
   .catch( err => {
@@ -56,9 +56,9 @@ router.route("/api/users/:id")
   const userId = req.params.id;
   models.User.destroy({where: {id: userId}})
   .then ( rows => {
-    models.User.findAll()
+    return models.User.findAll()
     .then( users => {
-      res.status(200).send(users);
+      return res.status(200).send(users);
     })
     .catch( err => {
       console.log(err);

@@ -21,6 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     });
   });
 
+  User.beforeUpdate((user, options) => {
+    return bcrypt.hash(user.password, 10)
+    .then( hash => {
+      user.password = hash;
+    });
+  })
+
   User.prototype.authenticate = function(password) {
     return bcrypt.compare(password, this.password)
     .then( res => {
