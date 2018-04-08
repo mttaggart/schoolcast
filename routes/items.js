@@ -6,7 +6,10 @@ router.use("/api/items*", verifyToken);
 
 router.route("/api/items")
 .get((req, res) => {
-  models.Item.findAll()
+  models.Item.findAll({
+    where: {},
+    include: [models.Feed]
+  })
   .then( items => {
     res.status(200).send(items);
   })
