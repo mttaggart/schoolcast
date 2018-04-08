@@ -23,6 +23,7 @@ class PortalForm extends React.Component {
         if (nextProps.portal) {
             return nextProps.portal;
         }
+        return PortalForm.defaultPortal;
     }
 
     onSubmit(e) {

@@ -19,6 +19,7 @@ class UserForm extends React.Component {
         if (nextProps.user) {
             return nextProps.user;
         }
+        return nextProps.defaultUser;
     }
 
     onSubmit(e) {
