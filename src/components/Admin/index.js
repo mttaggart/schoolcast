@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Link, Redirect} from "react-router-dom";
-import Displays from "./Displays";
-import Feeds from "./Feeds";
+import DisplaysContainer from "../../containers/DisplaysContainer";
+import FeedsContainer from "../../containers/FeedsContainer";
 import ItemsContainer from "../../containers/ItemsContainer";
 import PortalsContainer from "../../containers/PortalsContainer";
 import UsersContainer from "../../containers/UsersContainer";
@@ -26,8 +26,26 @@ const Admin = ({authenticated, token}) => {
                     <li><Link to="/admin/users">Users</Link></li>
                 </ul>
             </nav>
-            <Route path="/admin/displays" component={Displays} />
-            <Route path="/admin/feeds" component={Feeds} /> 
+            <Route 
+                path="/admin/displays" 
+                render={({props}) => 
+                    <DisplaysContainer 
+                        {...props} 
+                        authenticated={authenticated} 
+                        token={token} 
+                    />
+                } 
+            /> 
+            <Route 
+                path="/admin/feeds" 
+                render={({props}) => 
+                    <FeedsContainer 
+                        {...props} 
+                        authenticated={authenticated} 
+                        token={token} 
+                    />
+                } 
+            /> 
             <Route 
                 path="/admin/items" 
                 render={({props}) => 
