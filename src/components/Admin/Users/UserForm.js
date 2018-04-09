@@ -19,7 +19,7 @@ class UserForm extends React.Component {
         if (nextProps.user) {
             return nextProps.user;
         }
-        return nextProps.defaultUser;
+        return UserForm.defaultUser;
     }
 
     onSubmit(e) {
@@ -33,10 +33,10 @@ class UserForm extends React.Component {
     }
 
     changeHandler(e) {
-        const id = e.target.id;
+        const className = e.target.className;
         const val = e.target.value;
 
-        switch(id) {
+        switch(className) {
             case "first-name":
                 this.setState({firstName: val});
                 break;
@@ -65,17 +65,17 @@ class UserForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>First Name</label>
-                    <input type="text" id="first-name" value={this.state.firstName} onChange={this.changeHandler.bind(this)}/>
+                    <input type="text" className="first-name" value={this.state.firstName} onChange={this.changeHandler.bind(this)}/>
                     <label>Last Name</label>
-                    <input type="text" id="last-name" value={this.state.lastName} onChange={this.changeHandler.bind(this)} />
+                    <input type="text" className="last-name" value={this.state.lastName} onChange={this.changeHandler.bind(this)} />
                     <label>Email</label>
-                    <input type="email" id="email" value={this.state.email} onChange={this.changeHandler.bind(this)}/>
+                    <input type="email" className="email" value={this.state.email} onChange={this.changeHandler.bind(this)}/>
                     <label>Password</label>
-                    <input type="password" id="password" value={this.state.password} onChange={this.changeHandler.bind(this)} />
+                    <input type="password" className="password" value={this.state.password} onChange={this.changeHandler.bind(this)} />
                     <label>Password Confirm</label>
-                    <input type="password" id="password-confirm" value={this.state.passwordConfirm} onChange={this.changeHandler.bind(this)} />
+                    <input type="password" className="password-confirm" value={this.state.passwordConfirm} onChange={this.changeHandler.bind(this)} />
                     <label>Admin?</label>
-                    <input type="checkbox" id="is-admin" checked={this.state.isAdmin} onChange={this.changeHandler.bind(this)} />
+                    <input type="checkbox" className="is-admin" checked={this.state.isAdmin} onChange={this.changeHandler.bind(this)} />
                     <button type="submit">Submit</button>
                 </form>
             </div>

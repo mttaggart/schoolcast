@@ -10,7 +10,7 @@ const DisplayListItem = ({display, deleteHandler, editHandler}) => {
                 <button type="button" onClick={() => deleteHandler(display.id)}>Delete</button>
             </p>
         </li>
-    )
+    )   
 }
 
 export default DisplayListItem;

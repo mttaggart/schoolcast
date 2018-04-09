@@ -24,10 +24,10 @@ class ItemForm extends React.Component {
     }
 
     changeHandler(e) {
-        const id = e.target.id;
+        const className = e.target.className;
         const val = e.target.value;
 
-        switch(id) {
+        switch(className) {
             case "item-name":
                 this.setState({name: val});
                 break;
@@ -43,9 +43,9 @@ class ItemForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Item Name</label>
-                    <input type="text" id="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <input type="text" className="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <label>Item Content</label>
-                    <textarea id="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <textarea className="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
                 </form>
             </div>

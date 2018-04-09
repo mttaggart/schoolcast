@@ -24,10 +24,10 @@ class FeedForm extends React.Component {
     }
 
     changeHandler(e) {
-        const id = e.target.id;
+        const className = e.target.className;
         const val = e.target.value;
 
-        switch(id) {
+        switch(className) {
             case "feed-name":
                 this.setState({name: val});
                 break;
@@ -43,9 +43,9 @@ class FeedForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Feed Name</label>
-                    <input type="text" id="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <input type="text" className="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <label>Feed Content</label>
-                    <textarea id="feed-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <textarea className="feed-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
                 </form>
             </div>

@@ -24,10 +24,10 @@ class DisplayForm extends React.Component {
     }
 
     changeHandler(e) {
-        const id = e.target.id;
+        const className = e.target.className;
         const val = e.target.value;
 
-        switch(id) {
+        switch(className) {
             case "display-name":
                 this.setState({name: val});
                 break;
@@ -43,9 +43,9 @@ class DisplayForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Display Name</label>
-                    <input type="text" id="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <input type="text" className="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <label>Display Content</label>
-                    <textarea id="display-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <textarea className="display-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
                 </form>
             </div>
