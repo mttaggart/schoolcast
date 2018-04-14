@@ -38,7 +38,7 @@ const Admin = ({authenticated, token}) => {
             /> 
             <Route 
                 path="/admin/feeds" 
-                render={({props}) => 
+                render={({...props}) => 
                     <FeedsContainer 
                         {...props} 
                         authenticated={authenticated} 
@@ -48,7 +48,7 @@ const Admin = ({authenticated, token}) => {
             /> 
             <Route 
                 path="/admin/items" 
-                render={({props}) => 
+                render={({...props}) => 
                     <ItemsContainer 
                         {...props} 
                         authenticated={authenticated} 
@@ -58,7 +58,7 @@ const Admin = ({authenticated, token}) => {
             /> 
             <Route 
                 path="/admin/portals" 
-                render={({props}) => 
+                render={({...props}) => 
                     <PortalsContainer
                         {...props}
                         authenticated={authenticated}
@@ -68,7 +68,7 @@ const Admin = ({authenticated, token}) => {
             /> 
             <Route 
                 path="/admin/users" 
-                render={({props}) => 
+                render={({...props}) => 
                     <UsersContainer 
                         {...props} 
                         authenticated={authenticated} 
