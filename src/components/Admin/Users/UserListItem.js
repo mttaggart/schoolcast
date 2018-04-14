@@ -1,13 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const UserListItem = ({user, deleteHandler, editHandler}) => {
+const UserListItem = ({user, match}) => {
     return (
         <li>
-            <p>{user.lastName}, {user.firstName} ({user.email})</p>
-            <p>
-                <button type="button" onClick={() => editHandler(user)}>Edit</button>
-                <button type="button" onClick={() => deleteHandler(user.id)}>Delete</button>
-            </p>
+            <Link to={"/admin/users/edit/" + user.id}>
+                {user.lastName}, {user.firstName} ({user.email})
+            </Link>
         </li>
     )
 }

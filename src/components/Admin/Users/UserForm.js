@@ -60,6 +60,7 @@ class UserForm extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div>
                 <h4>{this.props.title}</h4>

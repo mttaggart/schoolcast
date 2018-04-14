@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Route, Link } from "react-router-dom";
 import UserForm from "./UserForm";
 import UserListItem from "./UserListItem";
 
@@ -51,24 +51,33 @@ class Users extends React.Component {
                                     key={idx}
                                     user={user}
                                     editHandler={this.editHandler.bind(this)}
-                                    deleteHandler={this.deleteHandler.bind(this)}
+                                    deleteHandler={this.deleteHandler.bind(this)
+                                    }
                                 />
                             );
                         })
                     }
+                    <Link to="/admin/users/new">Add User</Link>
                 </ul> 
-                <UserForm
-                    title="Add User" 
-                    submitHandler={this.props.addUser} 
-                    token={this.props.token} 
+                <Route 
+                    path={`${this.props.match.path}/edit/:userId`}
+                    render={props => <UserForm 
+                        {...props}
+                        submitHandler={this.props.editHandler}
+                        token={this.props.token}
+                        title="Edit User"
+                    />} 
                 />
-                <UserForm 
-                    title="Edit User"
-                    submitHandler={this.updateHandler.bind(this)}
-                    token={this.props.token}
-                    user={this.state.editUser}
+                <Route 
+                    path={`${this.props.match.path}/new`} 
+                    render={props => <UserForm 
+                        {...props}
+                        submitHandler={this.props.addUser}
+                        token={this.props.token}
+                        title="Add User"
+                    />} 
                 />
-            </div>
+           </div>
         );
     }
 }
