@@ -6,7 +6,11 @@ router.use("/api/users*",verifyToken);
 
 router.route("/api/users")
 .get((req, res) => {
-  models.User.findAll()
+  models.User.findAll({
+    attributes: {
+      exclude: ["password"]
+    }
+  })
   .then( users => {
     res.status(200).send(users);
   })
@@ -29,7 +33,10 @@ router.route("/api/users")
 router.route("/api/users/:id")
 .get((req, res) => {
   models.User.findOne({
-    where:{id:req.params.id}
+    where:{id:req.params.id},
+    attributes: {
+      exclude:["password"]
+    }
   })
   .then( user => {
     res.status(201).send(user);
