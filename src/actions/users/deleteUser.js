@@ -34,7 +34,7 @@ function deleteUserRejected(err) {
     }
 }
 
-function deleteUserSucceeded(token, data) {
+function deleteUserSucceeded(data) {
     return {
         type: actionTypes.DELETE_USER_SUCCEEDED,
         data
