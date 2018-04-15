@@ -20,9 +20,9 @@ const Admin = ({authenticated, token}) => {
             <nav>
                 <ul>
                     <li><Link to="/admin/displays">Displays</Link></li>
-                    <li><Link to="/admin/portals">Portals</Link></li>
                     <li><Link to="/admin/feeds">Feeds</Link></li>
                     <li><Link to="/admin/items">Items</Link></li>
+                    <li><Link to="/admin/portals">Portals</Link></li>
                     <li><Link to="/admin/users">Users</Link></li>
                 </ul>
             </nav>
