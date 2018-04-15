@@ -66,6 +66,7 @@ class Users extends React.Component {
                         submitHandler={this.props.editHandler}
                         token={this.props.token}
                         title="Edit User"
+                        users={this.props.users}
                     />} 
                 />
                 <Route 
