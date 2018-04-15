@@ -18,8 +18,8 @@ class UserForm extends React.Component {
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.match.params.userId) {
             const  id = parseInt(nextProps.match.params.userId);
-            const user =  nextProps.users.find(u => {
-                return u.id == id;
+            const user =  nextProps.users.find(user => {
+                return user.id == id;
             });
             return user ? user : UserForm.defaultUser;
         }
@@ -31,9 +31,19 @@ class UserForm extends React.Component {
         if (this.state.password === this.state.passwordConfirm) {
             this.props.submitHandler(this.props.token, this.state);
             this.setState(UserForm.defaultUser);
+            this.props.history.goBack();
         } else {
             alert("Passwords do not match");
         } 
+    }
+
+    deleteHandler() {
+        const confirm = window.confirm(`Are you sure you want to delete ${this.state.firstName} ${this.state.lastName}?`);
+        if (confirm) {
+            this.props.deleteHandler(this.props.token, this.state.id);
+            this.setState(UserForm.defaultUser);
+            this.props.history.goBack();
+        }
     }
 
     changeHandler(e) {
@@ -81,6 +91,15 @@ class UserForm extends React.Component {
                     <label>Admin?</label>
                     <input type="checkbox" className="is-admin" checked={this.state.isAdmin} onChange={this.changeHandler.bind(this)} />
                     <button type="submit">Submit</button>
+                    { this.props.match.params.userId ? 
+                        <button 
+                            type="button"
+                            onClick={this.deleteHandler.bind(this)} 
+                        >
+                            Delete
+                        </button>
+                        : null
+                    }
                 </form>
             </div>
         )
