@@ -28,7 +28,7 @@ const Admin = ({authenticated, token}) => {
             </nav>
             <Route 
                 path="/admin/displays" 
-                render={({props}) => 
+                render={({...props}) => 
                     <DisplaysContainer 
                         {...props} 
                         authenticated={authenticated} 

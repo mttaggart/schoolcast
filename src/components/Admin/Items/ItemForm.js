@@ -12,8 +12,12 @@ class ItemForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.item) {
-            return nextProps.item;
+        if (nextProps.match.params.itemId) {
+            const  id = parseInt(nextProps.match.params.itemId);
+            const item =  nextProps.assets.find(asset => {
+                return asset.id == id;
+            });
+            return item ? item : ItemForm.defaultItem;
         }
         return ItemForm.defaultItem;
     }
@@ -21,6 +25,15 @@ class ItemForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.submitHandler(this.props.token, this.state);
+    }
+
+    deleteHandler() {
+        const confirm = window.confirm(`Are you sure you want to delete ${this.state.name}?`);
+        if (confirm) {
+            this.props.deleteHandler(this.props.token, this.state.id);
+            this.setState(ItemForm.defaultItem);
+            this.props.history.goBack();
+        }
     }
 
     changeHandler(e) {
@@ -47,6 +60,15 @@ class ItemForm extends React.Component {
                     <label>Item Content</label>
                     <textarea className="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
+                    { this.props.match.params.itemId ? 
+                        <button 
+                            type="button"
+                            onClick={this.deleteHandler.bind(this)} 
+                        >
+                            Delete
+                        </button>
+                        : null
+                    }
                 </form>
             </div>
         )

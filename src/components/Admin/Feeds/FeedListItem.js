@@ -1,14 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const FeedListItem = ({feed, deleteHandler, editHandler}) => {
+const FeedListItem = ({asset}) => {
     return (
         <li>
-            <h4>{feed.name}</h4>
-            <p>{feed.description}</p>
-            <p>
-                <button type="button" onClick={() => editHandler(feed)}>Edit</button>
-                <button type="button" onClick={() => deleteHandler(feed.id)}>Delete</button>
-            </p>
+            <Link to={`/admin/items/edit/` + asset.id}>
+                {asset.name}
+            </Link>
         </li>
     )
 }

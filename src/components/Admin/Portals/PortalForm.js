@@ -20,8 +20,12 @@ class PortalForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.portal) {
-            return nextProps.portal;
+        if (nextProps.match.params.portalId) {
+            const  id = parseInt(nextProps.match.params.portalId);
+            const portal =  nextProps.assets.find(asset => {
+                return asset.id == id;
+            });
+            return portal ? portal : PortalForm.defaultPortal;
         }
         return PortalForm.defaultPortal;
     }
@@ -29,30 +33,41 @@ class PortalForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.submitHandler(this.props.token, this.state);
+        this.setState(PortalForm.defaultPortal);
+        this.props.history.goBack();
+    }
+
+    deleteHandler() {
+        const confirm = window.confirm(`Are you sure you want to delete ${this.state.name}?`);
+        if (confirm) {
+            this.props.deleteHandler(this.props.token, this.state.id);
+            this.setState(PortalForm.defaultPortal);
+            this.props.history.goBack();
+        }
     }
 
     changeHandler(e) {
-        const className = e.target.className;
+        const id = e.target.id;
         const val = e.target.value;
 
-        switch(className) {
-            case "first-name":
-                this.setState({firstName: val});
+        switch(id) {
+            case "portal-name":
+                this.setState({name: val});
                 break;
-            case "last-name":
-                this.setState({lastName: val});
+            case "top":
+                this.setState({top: val});
                 break;
-            case "email":
-                this.setState({email: val});
+            case "left":
+                this.setState({left: val});
                 break;
-            case "password":
-                this.setState({password: val});
+            case "height":
+                this.setState({height: val});
                 break;
-            case "password-confirm":
-                this.setState({passwordConfirm: val});
+            case "width":
+                this.setState({width: val});
                 break;
-            case "is-admin":
-                this.setState({isAdmin: e.target.checked});
+            case "custom-css":
+                this.setState({customCSS: val});
                 break;
 
         }
@@ -64,20 +79,29 @@ class PortalForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Portal Name</label>
-                    <input type="text" className="portal-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <input type="text" id="portal-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <label>Top</label>
-                    <input type="number" className="top" value={this.state.top} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="top" value={this.state.top} onChange={this.changeHandler.bind(this)}/>
                     <label>Left</label>
-                    <input type="number" className="left" value={this.state.left} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="left" value={this.state.left} onChange={this.changeHandler.bind(this)}/>
                     <label>Height</label>
-                    <input type="range" className="height" min="0" max="100" value={this.state.height} onChange={this.changeHandler.bind(this)}/>
-                    <label>WclassNameth</label>
-                    <input type="range" className="wclassNameth" min="0" max="100" value={this.state.wclassNameth} onChange={this.changeHandler.bind(this)}/>
+                    <input type="range" id="height" min="0" max="100" value={this.state.height} onChange={this.changeHandler.bind(this)}/>
+                    <label>Width</label>
+                    <input type="range" id="width" min="0" max="100" value={this.state.width} onChange={this.changeHandler.bind(this)}/>
                     <label>Transition Speed</label>
-                    <input type="number" className="wclassNameth" min="0" max="5000" value={this.state.transiionSpeed} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="width" min="0" max="5000" value={this.state.transiionSpeed} onChange={this.changeHandler.bind(this)}/>
                     <label>Custom CSS</label>
-                    <textarea value={this.state.customCSS} onChange={this.changeHandler.bind(this)}></textarea>
+                    <textarea id="custom-css" value={this.state.customCSS} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
+                    { this.props.match.params.portalId ? 
+                        <button 
+                            type="button"
+                            onClick={this.deleteHandler.bind(this)} 
+                        >
+                            Delete
+                        </button>
+                        : null
+                    }
                 </form>
             </div>
         )

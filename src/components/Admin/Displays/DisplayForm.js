@@ -12,8 +12,12 @@ class DisplayForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.display) {
-            return nextProps.display;
+        if (nextProps.match.params.displayId) {
+            const  id = parseInt(nextProps.match.params.displayId);
+            const display =  nextProps.assets.find(asset => {
+                return asset.id == id;
+            });
+            return display ? display : DisplayForm.defaultDisplay;
         }
         return DisplayForm.defaultDisplay;
     }
@@ -21,6 +25,15 @@ class DisplayForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.submitHandler(this.props.token, this.state);
+    }
+
+    deleteHandler() {
+        const confirm = window.confirm(`Are you sure you want to delete ${this.state.name}?`);
+        if (confirm) {
+            this.props.deleteHandler(this.props.token, this.state.id);
+            this.setState(DisplayForm.defaultDisplay);
+            this.props.history.goBack();
+        }
     }
 
     changeHandler(e) {
@@ -47,6 +60,15 @@ class DisplayForm extends React.Component {
                     <label>Display Content</label>
                     <textarea className="display-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
+                    { this.props.match.params.userId ? 
+                        <button 
+                            type="button"
+                            onClick={this.deleteHandler.bind(this)} 
+                        >
+                            Delete
+                        </button>
+                        : null
+                    }
                 </form>
             </div>
         )

@@ -1,14 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const DisplayListItem = ({display, deleteHandler, editHandler}) => {
+const DisplayListItem = ({asset}) => {
     return (
         <li>
-            <h4>{display.name}</h4>
-            <p>{display.description}</p>
-            <p>
-                <button type="button" onClick={() => editHandler(display)}>Edit</button>
-                <button type="button" onClick={() => deleteHandler(display.id)}>Delete</button>
-            </p>
+            <Link to={`/admin/displays/edit/` + asset.id}>
+                {asset.name}
+            </Link>
         </li>
     )   
 }

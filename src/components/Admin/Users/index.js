@@ -1,72 +1,47 @@
 import React from "react";
-import { Redirect, Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
+import AdminSection from "../AdminSection";
 import UserForm from "./UserForm";
 import UserListItem from "./UserListItem";
 
-class Users extends React.Component {
+const Users = ({authenticated, token, match, getUsers, addUser, updateUser, deleteUser, users}) => {
 
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        this.props.getUsers(this.props.token);
-    }
-
-    render() {
-
-        if(!this.props.authenticated) {
-            return (
-                <Redirect to="/login" from="/admin/users" />
-            );
-        }
-
-        return (
-            <div>
-                <h3>Users</h3>    
-                <ul>
-                    {
-                        this.props.users ? 
-                        this.props.users.map( (user, idx) => {
-                            return (
-                                <UserListItem 
-                                    key={idx}
-                                    user={user}
-                                />
-                            );
-                        })
-                        : null
-                    }
-                    <Link to={`${this.props.match.path}/new`}>Add User</Link>
-                </ul> 
-                <Route 
-                    path={`${this.props.match.path}/edit/:userId`}
-                    render={props => <UserForm 
-                        {...props}
-                        submitHandler={this.props.updateUser}
-                        deleteHandler={this.props.deleteUser}
-                        getUsers={this.props.getUsers}
-                        token={this.props.token}
-                        title="Edit User"
-                        users={this.props.users}
-                    />} 
-                />
-                <Route 
-                    path={`${this.props.match.path}/new`} 
-                    render={props => <UserForm 
-                        {...props}
-                        submitHandler={this.props.addUser}
-                        token={this.props.token}
-                        title="Add User"
-                        getUsers={this.props.getUsers}
-                    />} 
-                />
-           </div>
-        );
-    }
-}
-
+    return (
+        <AdminSection 
+            path="users"
+            heading="Users"
+            authenticated={authenticated}
+            assets={users}
+            getAssets={getUsers}
+            token={token}
+            match={match}
+            listItem = {(key, asset) => <UserListItem key={key} asset={asset} />}
+        >
+            
+            <Route 
+                path={`${match.path}/edit/:userId`}
+                render={props => <UserForm 
+                    {...props}
+                    submitHandler={updateUser}
+                    deleteHandler={deleteUser}
+                    token={token}
+                    title="Edit User"
+                    assets={users}
+                />} 
+            />
+            <Route 
+                path={`${match.path}/new`} 
+                render={props => <UserForm 
+                    {...props}
+                    submitHandler={addUser}
+                    token={token}
+                    title="Add User"
+                />} 
+            />
+        </AdminSection>
+            
+    );
     
+} 
     
-
 export default Users;

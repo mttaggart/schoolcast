@@ -18,8 +18,8 @@ class UserForm extends React.Component {
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.match.params.userId) {
             const  id = parseInt(nextProps.match.params.userId);
-            const user =  nextProps.users.find(user => {
-                return user.id == id;
+            const user =  nextProps.assets.find(asset => {
+                return asset.id == id;
             });
             return user ? user : UserForm.defaultUser;
         }

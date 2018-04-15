@@ -12,8 +12,12 @@ class FeedForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.feed) {
-            return nextProps.feed;
+        if (nextProps.match.params.feedId) {
+            const  id = parseInt(nextProps.match.params.feedId);
+            const feed =  nextProps.assets.find(asset => {
+                return asset.id == id;
+            });
+            return feed ? feed : FeedForm.defaultFeed;
         }
         return FeedForm.defaultFeed;
     }
@@ -21,6 +25,15 @@ class FeedForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.submitHandler(this.props.token, this.state);
+    }
+
+    deleteHandler() {
+        const confirm = window.confirm(`Are you sure you want to delete ${this.state.name}?`);
+        if (confirm) {
+            this.props.deleteHandler(this.props.token, this.state.id);
+            this.setState(FeedForm.defaultFeed);
+            this.props.history.goBack();
+        }
     }
 
     changeHandler(e) {
@@ -47,6 +60,15 @@ class FeedForm extends React.Component {
                     <label>Feed Content</label>
                     <textarea className="feed-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
+                    { this.props.match.params.itemId ? 
+                        <button 
+                            type="button"
+                            onClick={this.deleteHandler.bind(this)} 
+                        >
+                            Delete
+                        </button>
+                        : null
+                    }
                 </form>
             </div>
         )

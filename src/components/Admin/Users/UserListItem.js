@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UserListItem = ({user, match}) => {
+const UserListItem = ({asset}) => {
     return (
         <li>
-            <Link to={`/admin/users/edit/` + user.id}>
-                {user.lastName}, {user.firstName} ({user.email})
+            <Link to={`/admin/users/edit/` + asset.id}>
+                {asset.lastName}, {asset.firstName} ({asset.email})
             </Link>
         </li>
     )
