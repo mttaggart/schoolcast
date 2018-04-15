@@ -8,7 +8,8 @@ class DisplayForm extends React.Component {
 
     static defaultDisplay = {
         name: "",
-        content: ""
+        description: "",
+        customCSS: ""
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -37,15 +38,18 @@ class DisplayForm extends React.Component {
     }
 
     changeHandler(e) {
-        const className = e.target.className;
+        const id = e.target.id;
         const val = e.target.value;
 
-        switch(className) {
+        switch(id) {
             case "display-name":
                 this.setState({name: val});
                 break;
-            case "display-content":
-                this.setState({content: val});
+            case "display-description":
+                this.setState({description: val});
+                break;
+            case "display-custom-css":
+                this.setState({customCSS: val});
                 break;
         }
     }
@@ -56,11 +60,13 @@ class DisplayForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Display Name</label>
-                    <input type="text" className="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <label>Display Content</label>
-                    <textarea className="display-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <input type="text" id="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <label>Display Description</label>
+                    <input type="text" id="display-description" value={this.state.description} onChange={this.changeHandler.bind(this)}/>
+                    <label>Custom CSS</label>
+                    <textarea id="display-custom-css" value={this.state.customCSS} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
-                    { this.props.match.params.userId ? 
+                    { this.props.match.params.displayId ? 
                         <button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 
