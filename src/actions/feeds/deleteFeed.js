@@ -34,7 +34,7 @@ function deleteFeedRejected(err) {
     }
 }
 
-function deleteFeedSucceeded(token, data) {
+function deleteFeedSucceeded(data) {
     return {
         type: actionTypes.DELETE_FEED_SUCCEEDED,
         data

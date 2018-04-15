@@ -34,7 +34,7 @@ function deleteDisplayRejected(err) {
     }
 }
 
-function deleteDisplaySucceeded(token, data) {
+function deleteDisplaySucceeded(data) {
     return {
         type: actionTypes.DELETE_DISPLAY_SUCCEEDED,
         data

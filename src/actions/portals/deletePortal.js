@@ -34,7 +34,7 @@ function deletePortalRejected(err) {
     }
 }
 
-function deletePortalSucceeded(token, data) {
+function deletePortalSucceeded(data) {
     return {
         type: actionTypes.DELETE_PORTAL_SUCCEEDED,
         data

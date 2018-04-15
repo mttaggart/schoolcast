@@ -34,7 +34,7 @@ function deleteItemRejected(err) {
     }
 }
 
-function deleteItemSucceeded(token, data) {
+function deleteItemSucceeded(data) {
     return {
         type: actionTypes.DELETE_ITEM_SUCCEEDED,
         data
