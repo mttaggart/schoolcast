@@ -2,10 +2,7 @@ const router = require("express").Router();
 const models = require("../models");
 const verifyToken = require("./verifyToken");
 
-router.use("/api/users*",verifyToken);
-
-router.route("/api/users")
-.get((req, res) => {
+function getAndSendUsers(res) {
   models.User.findAll({
     attributes: {
       exclude: ["password"]
@@ -18,12 +15,19 @@ router.route("/api/users")
     console.log(err);
     res.status(500).send("No users available");
   });
+}
+
+router.use("/api/users*",verifyToken);
+
+router.route("/api/users")
+.get((req, res) => {
+  getAndSendUsers(res);
 })
 .post((req, res) => {
   const userData = req.body;
   models.User.create(userData)
   .then( user => {
-    res.status(201).send(user);
+    getAndSendUsers(res);
   })
   .catch ( err => {
     res.status(500).send("Could not create user");
@@ -53,14 +57,7 @@ router.route("/api/users/:id")
     {where: {id: req.params.id}, individualHooks: true}
   )
   .then( rows => {
-    return models.User.findAll({
-      attributes: {
-        exclude: ["password"]
-      }
-    })
-    .then( users => {
-      return res.status(200).send(users);
-    })
+    getAndSendUsers(res);
   })
   .catch( err => {
     res.status(500).send("Could not update");
@@ -70,18 +67,7 @@ router.route("/api/users/:id")
   const userId = req.params.id;
   models.User.destroy({where: {id: userId}})
   .then ( rows => {
-    return models.User.findAll({
-      attributes: {
-        exclude: ["password"]
-      }
-    })
-    .then( users => {
-      return res.status(200).send(users);
-    })
-    .catch( err => {
-      console.log(err);
-      res.status(500).send("No users available");
-    });
+    getAndSendUsers(res);
   })
   .catch( err => {
     res.status(500).send("Could not delete user");

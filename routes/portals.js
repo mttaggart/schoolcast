@@ -2,10 +2,7 @@ const router = require("express").Router();
 const models = require("../models");
 const verifyToken = require("./verifyToken");
 
-router.use("/api/portals*", verifyToken);
-
-router.route("/api/portals")
-.get((req, res) => {
+function getAndSendPortals(res) {
   models.Portal.findAll({
     where: {},
     include: [models.TransitionType, models.PortalType, models.Display, models.Feed]
@@ -17,12 +14,19 @@ router.route("/api/portals")
     console.log(err);
     res.status(500).send("No portals available");
   });
+}
+
+router.use("/api/portals*", verifyToken);
+
+router.route("/api/portals")
+.get((req, res) => {
+  getAndSendPortals(res);
 })
 .post((req, res) => {
   const data = req.body;
   models.Portal.create(data)
   .then( p => {
-    res.status(201).send(`portal ${p.name} created`);
+    getAndSendPortals(res);
   })
   .catch ( err => {
     res.status(500).send("Could not create portal");
@@ -47,7 +51,7 @@ router.route("/api/portals/:id")
   const data = req.body;
   models.Portal.update(data,{where: {id: req.params.id}})
   .then( rows => {
-    res.status(201).send(rows);
+    getAndSendPortals(res);
   })
   .catch( err => {
     res.status(500).send("Could not update");
@@ -57,7 +61,7 @@ router.route("/api/portals/:id")
   const id = req.params.id;
   models.Portal.destroy({where: {id}})
   .then ( rows => {
-    res.status(200).send("Portal deleted");
+    getAndSendPortals(res);
   })
   .catch( err => {
     res.status(500).send("Could not delete Portal");

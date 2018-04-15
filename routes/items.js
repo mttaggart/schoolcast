@@ -2,10 +2,7 @@ const router = require("express").Router();
 const models = require("../models");
 const verifyToken = require("./verifyToken");
 
-router.use("/api/items*", verifyToken);
-
-router.route("/api/items")
-.get((req, res) => {
+function getAndSendItems(res) {
   models.Item.findAll({
     where: {},
     include: [models.Feed]
@@ -17,12 +14,19 @@ router.route("/api/items")
     console.log(err);
     res.status(500).send("No items available");
   });
+}
+
+router.use("/api/items*", verifyToken);
+
+router.route("/api/items")
+.get((req, res) => {
+  getAndSendItems(res);
 })
 .post((req, res) => {
   const data = req.body;
   models.Item.create(data)
   .then( i => {
-    res.status(201).send(`item ${i.name} created`);
+    getAndSendItems(res);
   })
   .catch ( err => {
     res.status(500).send("Could not create item");
@@ -46,7 +50,7 @@ router.route("/api/items/:id")
   const data = req.body;
   models.Item.update(data,{where: {id: req.params.id}})
   .then( rows => {
-    res.status(201).send(rows);
+    getAndSendItems(res);
   })
   .catch( err => {
     res.status(500).send("Could not update");
@@ -56,7 +60,7 @@ router.route("/api/items/:id")
   const id = req.params.id;
   models.Item.destroy({where: {id}})
   .then ( rows => {
-    res.status(200).send("item deleted");
+    getAndSendItems(res);
   })
   .catch( err => {
     res.status(500).send("Could not delete item");
