@@ -19,11 +19,9 @@ class UserForm extends React.Component {
         if (nextProps.match.params.userId) {
             const  id = parseInt(nextProps.match.params.userId);
             const user =  nextProps.users.find(u => {
-                console.log(u);
                 return u.id == id;
             });
-            if (user) return user;
-            return UserForm.defaultUser;
+            return user ? user : UserForm.defaultUser;
         }
         return UserForm.defaultUser;
     }
@@ -66,7 +64,6 @@ class UserForm extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <h4>{this.props.title}</h4>
