@@ -53,7 +53,11 @@ router.route("/api/users/:id")
     {where: {id: req.params.id}, individualHooks: true}
   )
   .then( rows => {
-    return models.User.findAll()
+    return models.User.findAll({
+      attributes: {
+        exclude: ["password"]
+      }
+    })
     .then( users => {
       return res.status(200).send(users);
     })
@@ -66,7 +70,11 @@ router.route("/api/users/:id")
   const userId = req.params.id;
   models.User.destroy({where: {id: userId}})
   .then ( rows => {
-    return models.User.findAll()
+    return models.User.findAll({
+      attributes: {
+        exclude: ["password"]
+      }
+    })
     .then( users => {
       return res.status(200).send(users);
     })
