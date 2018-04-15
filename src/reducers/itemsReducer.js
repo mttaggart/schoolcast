@@ -25,7 +25,7 @@ export default function items(
                 state,
                 {
                     requested: false,
-                    items:state.items.concat([action.data])
+                    items: action.data
                 }
             );
         case actionTypes.UPDATE_ITEM_ATTEMPTED:

@@ -25,7 +25,7 @@ export default function displays(
                 state,
                 {
                     requested: false,
-                    displays:state.displays.concat([action.data])
+                    displays:action.data
                 }
             );
         case actionTypes.UPDATE_DISPLAY_ATTEMPTED:

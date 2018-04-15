@@ -25,7 +25,7 @@ export default function feeds(
                 state,
                 {
                     requested: false,
-                    feeds:state.feeds.concat([action.data])
+                    feeds: action.data
                 }
             );
         case actionTypes.UPDATE_FEED_ATTEMPTED:

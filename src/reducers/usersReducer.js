@@ -25,7 +25,7 @@ export default function users(
                 state,
                 {
                     requested: false,
-                    users:state.users.concat([action.data])
+                    users: action.data
                 }
             );
         case actionTypes.UPDATE_USER_ATTEMPTED:

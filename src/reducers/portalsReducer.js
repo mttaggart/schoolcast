@@ -25,7 +25,7 @@ export default function portals(
                 state,
                 {
                     requested: false,
-                    portals:state.portals.concat([action.data])
+                    portals: action.data
                 }
             );
         case actionTypes.UPDATE_PORTAL_ATTEMPTED:
