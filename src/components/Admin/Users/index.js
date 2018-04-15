@@ -7,29 +7,10 @@ class Users extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            editUser: null
-        }
     }
 
     componentDidMount() {
         this.props.getUsers(this.props.token);
-    }
-
-    deleteHandler(id) {
-        const deleteConfirm = window.confirm("Are you sure you want to delete this user?");
-        if(deleteConfirm) {
-            this.props.deleteUser(this.props.token, id);
-        }
-    }
-
-    editHandler(user) {
-        this.setState({editUser: user});
-    }
-
-    updateHandler(token, user) {
-        this.props.updateUser(this.props.token, user);
-        this.setState({editUser: null});
     }
 
     render() {
@@ -50,9 +31,6 @@ class Users extends React.Component {
                                 <UserListItem 
                                     key={idx}
                                     user={user}
-                                    editHandler={this.editHandler.bind(this)}
-                                    deleteHandler={this.deleteHandler.bind(this)
-                                    }
                                 />
                             );
                         })
@@ -63,7 +41,7 @@ class Users extends React.Component {
                     path={`${this.props.match.path}/edit/:userId`}
                     render={props => <UserForm 
                         {...props}
-                        submitHandler={this.props.editHandler}
+                        submitHandler={this.props.updateUser}
                         token={this.props.token}
                         title="Edit User"
                         users={this.props.users}
