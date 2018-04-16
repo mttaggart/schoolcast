@@ -1,9 +1,13 @@
 const router = require("express").Router();
 const models = require("../models");
+const verifyToken = require("./verifyToken");
 
-router.route("/api/users")
-.get((req, res) => {
-  models.User.findAll()
+function getAndSendUsers(res) {
+  models.User.findAll({
+    attributes: {
+      exclude: ["password"]
+    }
+  })
   .then( users => {
     res.status(200).send(users);
   })
@@ -11,12 +15,19 @@ router.route("/api/users")
     console.log(err);
     res.status(500).send("No users available");
   });
+}
+
+router.use("/api/users*",verifyToken);
+
+router.route("/api/users")
+.get((req, res) => {
+  getAndSendUsers(res);
 })
 .post((req, res) => {
   const userData = req.body;
   models.User.create(userData)
   .then( user => {
-    res.status(201).send(`${user.lastName}, ${user.firstName} created`);
+    getAndSendUsers(res);
   })
   .catch ( err => {
     res.status(500).send("Could not create user");
@@ -26,7 +37,10 @@ router.route("/api/users")
 router.route("/api/users/:id")
 .get((req, res) => {
   models.User.findOne({
-    where:{id:req.params.id}
+    where:{id:req.params.id},
+    attributes: {
+      exclude:["password"]
+    }
   })
   .then( user => {
     res.status(201).send(user);
@@ -38,9 +52,12 @@ router.route("/api/users/:id")
 })
 .put((req, res) => {
   const userData = req.body;
-  models.User.update(userData,{where: {id: req.params.id}})
+  models.User.update(
+    userData,
+    {where: {id: req.params.id}, individualHooks: true}
+  )
   .then( rows => {
-    res.status(201).send(rows);
+    getAndSendUsers(res);
   })
   .catch( err => {
     res.status(500).send("Could not update");
@@ -50,7 +67,7 @@ router.route("/api/users/:id")
   const userId = req.params.id;
   models.User.destroy({where: {id: userId}})
   .then ( rows => {
-    res.status(200).send("User deleted");
+    getAndSendUsers(res);
   })
   .catch( err => {
     res.status(500).send("Could not delete user");

@@ -2,11 +2,10 @@ const router = require("express").Router();
 const models = require("../models");
 const verifyToken = require("./verifyToken");
 
-router.use("/api/feeds*", verifyToken);
-
-router.route("/api/feeds")
-.get((req, res) => {
-  models.Feed.findAll()
+function getAndSendFeeds(res) {
+  models.Feed.findAll({
+    where: {}
+  })
   .then( feeds => {
     res.status(200).send(feeds);
   })
@@ -14,14 +13,22 @@ router.route("/api/feeds")
     console.log(err);
     res.status(500).send("No feeds available");
   });
+}
+
+router.use("/api/feeds*", verifyToken);
+
+router.route("/api/feeds")
+.get((req, res) => {
+  getAndSendFeeds(res);
 })
 .post((req, res) => {
   const data = req.body;
   models.Feed.create(data)
   .then( f => {
-    res.status(201).send(`feed ${f.name} created`);
+    getAndSendFeeds(res);
   })
   .catch ( err => {
+    console.log(err);
     res.status(500).send("Could not create feed");
   });
 });
@@ -43,7 +50,7 @@ router.route("/api/feeds/:id")
   const data = req.body;
   models.Feed.update(data,{where: {id: req.params.id}})
   .then( rows => {
-    res.status(201).send(rows);
+    getAndSendFeeds(res);
   })
   .catch( err => {
     res.status(500).send("Could not update");
@@ -53,7 +60,7 @@ router.route("/api/feeds/:id")
   const id = req.params.id;
   models.Feed.destroy({where: {id}})
   .then ( rows => {
-    res.status(200).send("Feed deleted");
+    getAndSendFeeds(res);
   })
   .catch( err => {
     res.status(500).send("Could not delete Feed");

@@ -1,8 +1,7 @@
 const router = require("express").Router();
 const models = require("../models");
 
-router.route("/api/displays")
-.get((req, res) => {
+function getAndSendDisplays(res) {
   models.Display.findAll()
   .then( displays => {
     res.status(200).send(displays);
@@ -11,12 +10,17 @@ router.route("/api/displays")
     console.log(err);
     res.status(500).send("No displays available");
   });
+}
+
+router.route("/api/displays")
+.get((req, res) => {
+  getAndSendDisplays(res)
 })
 .post((req, res) => {
   const data = req.body;
   models.Display.create(data)
   .then( d => {
-    res.status(201).send(`display ${d.name} created`);
+    getAndSendDisplays(res);
   })
   .catch ( err => {
     res.status(500).send("Could not create display");
@@ -40,7 +44,7 @@ router.route("/api/displays/:id")
   const data = req.body;
   models.Display.update(data,{where: {id: req.params.id}})
   .then( rows => {
-    res.status(201).send(rows);
+    getAndSendDisplays(res);
   })
   .catch( err => {
     res.status(500).send("Could not update");
@@ -50,7 +54,7 @@ router.route("/api/displays/:id")
   const id = req.params.id;
   models.Display.destroy({where: {id}})
   .then ( rows => {
-    res.status(200).send("Display deleted");
+    getAndSendDisplays(res);
   })
   .catch( err => {
     res.status(500).send("Could not delete Display");
