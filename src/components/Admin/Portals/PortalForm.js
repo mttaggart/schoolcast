@@ -10,12 +10,12 @@ class PortalForm extends React.Component {
         name: "",
         top: 0,
         left: 0,
-        with: 0,
+        width: 0,
         height: 0,
-        portalTypeId: null,
-        transitionTypeId: null,
+        PortalTypeId: undefined,
+        TransitionTypeId: undefined,
         transitionSpeed: 300,
-        feedId: null,
+        FeedId: undefined,
         customCSS: ""
     }
 
@@ -54,6 +54,9 @@ class PortalForm extends React.Component {
             case "portal-name":
                 this.setState({name: val});
                 break;
+            case "portal-type":
+                this.setState({PortalTypeId: val});
+                break;
             case "top":
                 this.setState({top: val});
                 break;
@@ -82,6 +85,12 @@ class PortalForm extends React.Component {
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Portal Name</label>
                     <input type="text" id="portal-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <label>Portal Type</label>
+                    <select id="portal-type" value={this.state.PortalTypeId} onChange={this.changeHandler.bind(this)}>
+                        {this.props.portalTypes.map( (portalType, idx) => {
+                            return <option key={idx} value={portalType.id}>{portalType.name}</option>
+                        })}
+                    </select>
                     <label>Top</label>
                     <input type="number" id="top" value={this.state.top} onChange={this.changeHandler.bind(this)}/>
                     <label>Left</label>

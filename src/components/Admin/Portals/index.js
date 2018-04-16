@@ -6,8 +6,6 @@ import PortalListItem from "./PortalListItem";
 
 const Portals = ({authenticated, token, match, getPortals, getPortalTypes, addPortal, updatePortal, deletePortal, portals, portalTypes}) => {
 
-    console.log(portalTypes);
-
     return (
         <AdminSection 
             path="portals"
@@ -26,6 +24,7 @@ const Portals = ({authenticated, token, match, getPortals, getPortalTypes, addPo
                     {...props}
                     submitHandler={updatePortal}
                     deleteHandler={deletePortal}
+                    portalTypes={portalTypes}
                     token={token}
                     title="Edit Portal"
                     assets={portals}
@@ -36,6 +35,7 @@ const Portals = ({authenticated, token, match, getPortals, getPortalTypes, addPo
                 render={props => <PortalForm 
                     {...props}
                     submitHandler={addPortal}
+                    portalTypes={portalTypes}
                     token={token}
                     title="Add Portal"
                 />} 
