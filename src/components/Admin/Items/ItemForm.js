@@ -8,7 +8,8 @@ class ItemForm extends React.Component {
 
     static defaultItem = {
         name: "",
-        content: ""
+        content: "",
+        FeedId: undefined,
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -47,6 +48,9 @@ class ItemForm extends React.Component {
             case "item-content":
                 this.setState({content: val});
                 break;
+            case "feed":
+                this.setState({FeedId: val});
+                break;
         }
     }
 
@@ -57,6 +61,11 @@ class ItemForm extends React.Component {
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Item Name</label>
                     <input type="text" className="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
+                        {this.props.feeds.map( (feed, idx) => {
+                            return <option key={idx} value={feed.id}>{feed.name}</option>
+                        })}
+                    </select>
                     <label>Item Content</label>
                     <textarea className="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>

@@ -4,7 +4,7 @@ import AdminSection from "../AdminSection";
 import ItemForm from "./ItemForm";
 import ItemListItem from "./ItemListItem";
 
-const Items = ({authenticated, token, match, getItems, addItem, updateItem, deleteItem, items}) => {
+const Items = ({authenticated, token, match, getItems, getFeeds, addItem, updateItem, deleteItem, items, feeds}) => {
 
     return (
         <AdminSection 
@@ -12,7 +12,7 @@ const Items = ({authenticated, token, match, getItems, addItem, updateItem, dele
             heading="Items"
             authenticated={authenticated}
             assets={items}
-            getAssets={getItems}
+            getAssets={(token) => {getItems(token); getFeeds(token);}}
             token={token}
             match={match}
             listItem = {(key, asset) => <ItemListItem key={key} asset={asset} />}
@@ -27,6 +27,7 @@ const Items = ({authenticated, token, match, getItems, addItem, updateItem, dele
                     token={token}
                     title="Edit Item"
                     assets={items}
+                    feeds={feeds}
                 />} 
             />
             <Route 
@@ -36,6 +37,7 @@ const Items = ({authenticated, token, match, getItems, addItem, updateItem, dele
                     submitHandler={addItem}
                     token={token}
                     title="Add Item"
+                    feeds={feeds}
                 />} 
             />
         </AdminSection>
