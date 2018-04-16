@@ -14,9 +14,9 @@ class DisplayForm extends React.Component {
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.match.params.displayId) {
-            const  id = parseInt(nextProps.match.params.displayId);
+            const  id = parseInt(nextProps.match.params.displayId,10);
             const display =  nextProps.assets.find(asset => {
-                return asset.id == id;
+                return asset.id === id;
             });
             return display ? display : DisplayForm.defaultDisplay;
         }

@@ -21,9 +21,9 @@ class PortalForm extends React.Component {
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.match.params.portalId) {
-            const  id = parseInt(nextProps.match.params.portalId);
+            const  id = parseInt(nextProps.match.params.portalId,10);
             const portal =  nextProps.assets.find(asset => {
-                return asset.id == id;
+                return asset.id === id;
             });
             return portal ? portal : PortalForm.defaultPortal;
         }

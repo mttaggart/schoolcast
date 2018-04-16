@@ -13,9 +13,9 @@ class ItemForm extends React.Component {
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.match.params.itemId) {
-            const  id = parseInt(nextProps.match.params.itemId);
+            const  id = parseInt(nextProps.match.params.itemId,10);
             const item =  nextProps.assets.find(asset => {
-                return asset.id == id;
+                return asset.id === id;
             });
             return item ? item : ItemForm.defaultItem;
         }
