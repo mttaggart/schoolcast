@@ -14,7 +14,7 @@ class PortalForm extends React.Component {
         height: 0,
         portalTypeId: null,
         transitionTypeId: null,
-        transiionSpeed: 300,
+        transitionSpeed: 300,
         feedId: null,
         customCSS: ""
     }
@@ -89,7 +89,7 @@ class PortalForm extends React.Component {
                     <label>Width</label>
                     <input type="range" id="width" min="0" max="100" value={this.state.width} onChange={this.changeHandler.bind(this)}/>
                     <label>Transition Speed</label>
-                    <input type="number" id="width" min="0" max="5000" value={this.state.transiionSpeed} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="width" min="0" max="5000" value={this.state.transitionSpeed} onChange={this.changeHandler.bind(this)}/>
                     <label>Custom CSS</label>
                     <textarea id="custom-css" value={this.state.customCSS} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
