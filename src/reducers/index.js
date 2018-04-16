@@ -5,6 +5,7 @@ import feedsReducer from "./feedsReducer";
 import itemsReducer from "./itemsReducer";
 import portalsReducer from "./portalsReducer";
 import portalTypesReducer from "./portalTypesReducer";
+import transitionTypesReducer from "./transitionTypesReducer";
 import usersReducer from "./usersReducer";
 
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
     items: itemsReducer,
     portals: portalsReducer,
     portalTypes: portalTypesReducer,
+    transitionTypes: transitionTypesReducer,
     users: usersReducer
 });
 

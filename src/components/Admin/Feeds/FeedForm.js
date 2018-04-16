@@ -8,7 +8,7 @@ class FeedForm extends React.Component {
 
     static defaultFeed = {
         name: "",
-        content: ""
+        description: ""
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -37,17 +37,17 @@ class FeedForm extends React.Component {
     }
 
     changeHandler(e) {
-        const className = e.target.className;
+        const id = e.target.id;
         const val = e.target.value;
 
-        switch(className) {
+        switch(id) {
             case "feed-name":
                 this.setState({name: val});
                 break;
-            case "feed-content":
-                this.setState({content: val});
+            case "description":
+                this.setState({description: val});
                 break;
-        }
+        }   
     }
 
     render() {
@@ -56,9 +56,9 @@ class FeedForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Feed Name</label>
-                    <input type="text" className="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <label>Feed Content</label>
-                    <textarea className="feed-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <input type="text" id="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <label>Description</label>
+                    <textarea id="description" value={this.state.description} onChange={this.changeHandler.bind(this)}></textarea>
                     <button type="submit">Submit</button>
                     { this.props.match.params.itemId ? 
                         <button 

@@ -35,6 +35,11 @@ const initialState = {
         requested: false,
         error: null
     },
+    transitionTypes: {
+        transitionTypes: [],
+        requested: false,
+        error: null
+    },
     users: {
         users: [],
         requested: false,

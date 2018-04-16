@@ -4,7 +4,7 @@ const apiEndPoint = "/api/portaltypes";
 export default function getPortalTypes(token) {
     return (dispatch) => {
         dispatch(getPortalTypesAttempted())   ;
-        const portalsRequest = new Request(
+        const portalTypesRequest = new Request(
             apiEndPoint,
             {
                 method: "GET",
@@ -13,7 +13,7 @@ export default function getPortalTypes(token) {
                 }
             }
         );
-        fetch(portalsRequest)
+        fetch(portalTypesRequest)
         .then( res => res.json())
         .then( json => dispatch(getPortalTypesSucceeded(json)))
         .catch( err => dispatch(getPortalTypesRejected(err)));

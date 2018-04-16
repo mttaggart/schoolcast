@@ -57,6 +57,9 @@ class PortalForm extends React.Component {
             case "portal-type":
                 this.setState({PortalTypeId: val});
                 break;
+            case "feed":
+                this.setState({FeedId: val});
+                break;
             case "top":
                 this.setState({top: val});
                 break;
@@ -71,6 +74,12 @@ class PortalForm extends React.Component {
                 break;
             case "custom-css":
                 this.setState({customCSS: val});
+                break;
+            case "transition-type":
+                this.setState({TransitionTypeId: val});
+                break;
+            case "feed":
+                this.setState({FeedId: val});
                 break;
             case "transition-speed":
                 this.setState({transitionSpeed: val});
@@ -89,6 +98,18 @@ class PortalForm extends React.Component {
                     <select id="portal-type" value={this.state.PortalTypeId} onChange={this.changeHandler.bind(this)}>
                         {this.props.portalTypes.map( (portalType, idx) => {
                             return <option key={idx} value={portalType.id}>{portalType.name}</option>
+                        })}
+                    </select>
+                    <label>Transition Type</label>
+                    <select id="transition-type" value={this.state.TransitionTypeId} onChange={this.changeHandler.bind(this)}>
+                        {this.props.transitionTypes.map( (transitionType, idx) => {
+                            return <option key={idx} value={transitionType.id}>{transitionType.name}</option>
+                        })}
+                    </select>
+                    <label>Feed</label>
+                    <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
+                        {this.props.feeds.map( (feed, idx) => {
+                            return <option key={idx} value={feed.id}>{feed.name}</option>
                         })}
                     </select>
                     <label>Top</label>
