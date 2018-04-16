@@ -10,11 +10,6 @@ const initialState = {
         user: null,
         error: null
     },
-    users: {
-        users: [],
-        requested: false,
-        error: null
-    },
     displays: {
         displays: [],
         requested: false,
@@ -32,6 +27,16 @@ const initialState = {
     },
     portals: {
         portals: [],
+        requested: false,
+        error: null
+    },
+    portalTypes: {
+        portalTypes: [],
+        requested: false,
+        error: null
+    },
+    users: {
+        users: [],
         requested: false,
         error: null
     }
