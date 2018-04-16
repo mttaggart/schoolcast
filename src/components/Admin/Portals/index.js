@@ -4,7 +4,9 @@ import AdminSection from "../AdminSection";
 import PortalForm from "./PortalForm";
 import PortalListItem from "./PortalListItem";
 
-const Portals = ({authenticated, token, match, getPortals, addPortal, updatePortal, deletePortal, portals}) => {
+const Portals = ({authenticated, token, match, getPortals, getPortalTypes, addPortal, updatePortal, deletePortal, portals, portalTypes}) => {
+
+    console.log(portalTypes);
 
     return (
         <AdminSection 
@@ -12,7 +14,7 @@ const Portals = ({authenticated, token, match, getPortals, addPortal, updatePort
             heading="Portals"
             authenticated={authenticated}
             assets={portals}
-            getAssets={getPortals}
+            getAssets={() => {getPortals(token); getPortalTypes(token);}}
             token={token}
             match={match}
             listItem = {(key, asset) => <PortalListItem key={key} asset={asset} />}
