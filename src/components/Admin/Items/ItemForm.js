@@ -9,6 +9,7 @@ class ItemForm extends React.Component {
     static defaultItem = {
         name: "",
         content: "",
+        duration: 5000,
         FeedId: undefined,
     }
 
@@ -51,6 +52,9 @@ class ItemForm extends React.Component {
             case "feed":
                 this.setState({FeedId: val});
                 break;
+            case "duration":
+                this.setState({duration: val});
+                break;
         }
     }
 
@@ -68,6 +72,8 @@ class ItemForm extends React.Component {
                     </select>
                     <label>Item Content</label>
                     <textarea className="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <label>Duration</label>
+                    <input type="number" id="duration" min="0" max="3600000" value={this.state.transitionSpeed} onChange={this.changeHandler.bind(this)}/>
                     <button type="submit">Submit</button>
                     { this.props.match.params.itemId ? 
                         <button 
