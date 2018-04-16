@@ -3,7 +3,9 @@ const models = require("../models");
 const verifyToken = require("./verifyToken");
 
 function getAndSendFeeds(res) {
-  models.Feed.findAll()
+  models.Feed.findAll({
+    where: {}
+  })
   .then( feeds => {
     res.status(200).send(feeds);
   })
@@ -26,6 +28,7 @@ router.route("/api/feeds")
     getAndSendFeeds(res);
   })
   .catch ( err => {
+    console.log(err);
     res.status(500).send("Could not create feed");
   });
 });
