@@ -3,6 +3,7 @@ import actionTypes from "../actions/displays/actionTypes";
 export default function displays(
     state={
         displays: [],
+        displayPortals: [],
         error: null,
         requested: false
     }, 
@@ -15,6 +16,12 @@ export default function displays(
             return Object.assign({}, state, {error: action.data});
         case actionTypes.GET_DISPLAYS_SUCCEEDED:
             return Object.assign({}, state, {displays: action.data});
+        case actionTypes.GET_DISPLAYPORTALS_ATTEMPTED:
+            return Object.assign({}, state, {requested: true});
+        case actionTypes.GET_DISPLAYPORTALS_REJECTED:
+            return Object.assign({}, state, {error: action.data});
+        case actionTypes.GET_DISPLAYPORTALS_SUCCEEDED:
+            return Object.assign({}, state, {displayPortals: action.data});
         case actionTypes.ADD_DISPLAY_ATTEMPTED:
             return state;
         case actionTypes.ADD_DISPLAY_REJECTED:

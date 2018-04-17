@@ -123,13 +123,13 @@ class PortalForm extends React.Component {
                         })}
                     </select>
                     <label>Top</label>
-                    <input type="number" id="top" value={this.state.top} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="top" min="0" max="100" value={this.state.top} onChange={this.changeHandler.bind(this)}/>
                     <label>Left</label>
-                    <input type="number" id="left" value={this.state.left} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="left" min="0" max="100" value={this.state.left} onChange={this.changeHandler.bind(this)}/>
                     <label>Height</label>
-                    <input type="range" id="height" min="0" max="100" value={this.state.height} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="height" min="0" max="100" value={this.state.height} onChange={this.changeHandler.bind(this)}/>
                     <label>Width</label>
-                    <input type="range" id="width" min="0" max="100" value={this.state.width} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="width" min="0" max="100" value={this.state.width} onChange={this.changeHandler.bind(this)}/>
                     <label>Transition Speed</label>
                     <input type="number" id="transition-speed" min="0" max="5000" value={this.state.transitionSpeed} onChange={this.changeHandler.bind(this)}/>
                     <label>Custom CSS</label>

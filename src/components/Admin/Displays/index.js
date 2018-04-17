@@ -4,7 +4,19 @@ import AdminSection from "../AdminSection";
 import DisplayForm from "./DisplayForm";
 import ListItem from "../ListItem";
 
-const Displays = ({authenticated, token, match, getDisplays, addDisplay, updateDisplay, deleteDisplay, displays}) => {
+const Displays = ({
+    authenticated,
+    token, 
+    match, 
+    getDisplays, 
+    getDisplayPortals, 
+    addDisplay, 
+    updateDisplay, 
+    deleteDisplay, 
+    displays, 
+    portals, 
+    displayPortals
+}) => {
 
     return (
         <AdminSection 
@@ -28,6 +40,8 @@ const Displays = ({authenticated, token, match, getDisplays, addDisplay, updateD
                     {...props}
                     submitHandler={updateDisplay}
                     deleteHandler={deleteDisplay}
+                    getDisplayPortals={getDisplayPortals}
+                    displayPortals={displayPortals}
                     token={token}
                     title="Edit Display"
                     assets={displays}

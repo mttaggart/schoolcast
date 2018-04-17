@@ -1,4 +1,5 @@
 import React from "react";
+import DisplayPreview from "./DisplayPreview";
 
 class DisplayForm extends React.Component {
     constructor(props) {
@@ -76,6 +77,13 @@ class DisplayForm extends React.Component {
                         : null
                     }
                 </form>
+                <h4>Preview</h4>
+                <DisplayPreview 
+                    token={this.props.token} 
+                    display={this.state} 
+                    getDisplayPortals={this.props.getDisplayPortals}
+                    displayPortals={this.props.displayPortals}
+                />
             </div>
         )
     }

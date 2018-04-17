@@ -12,6 +12,7 @@ const initialState = {
     },
     displays: {
         displays: [],
+        displayPortals: [],
         requested: false,
         error: null
     },

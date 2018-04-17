@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getDisplays: token => dispatch(displayActions.getDisplays(token)),
+        getDisplayPortals: (token, id) => dispatch(displayActions.getDisplayPortals(token, id)),
         addDisplay: (token, display) => dispatch(displayActions.addDisplay(token, display)),
         deleteDisplay: (token, id) => dispatch(displayActions.deleteDisplay(token, id)),
         updateDisplay: (token, display) => dispatch(displayActions.updateDisplay(token, display))
