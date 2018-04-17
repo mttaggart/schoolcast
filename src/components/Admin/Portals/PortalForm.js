@@ -12,10 +12,11 @@ class PortalForm extends React.Component {
         left: 0,
         width: 0,
         height: 0,
+        DisplayId: undefined,
+        FeedId: undefined,
         PortalTypeId: undefined,
         TransitionTypeId: undefined,
         transitionSpeed: 300,
-        FeedId: undefined,
         customCSS: ""
     }
 
@@ -59,6 +60,9 @@ class PortalForm extends React.Component {
                 break;
             case "feed":
                 this.setState({FeedId: val});
+                break;
+            case "display":
+                this.setState({DisplayId: val});
                 break;
             case "top":
                 this.setState({top: val});
@@ -104,6 +108,12 @@ class PortalForm extends React.Component {
                     <select id="transition-type" value={this.state.TransitionTypeId} onChange={this.changeHandler.bind(this)}>
                         {this.props.transitionTypes.map( (transitionType, idx) => {
                             return <option key={idx} value={transitionType.id}>{transitionType.name}</option>
+                        })}
+                    </select>
+                    <label>Display</label>
+                    <select id="display" value={this.state.DisplayId} onChange={this.changeHandler.bind(this)}>
+                        {this.props.displays.map( (display, idx) => {
+                            return <option key={idx} value={display.id}>{display.name}</option>
                         })}
                     </select>
                     <label>Feed</label>

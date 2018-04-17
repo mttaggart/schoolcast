@@ -37,7 +37,12 @@ router.route("/api/portals/:id")
 .get((req, res) => {
   models.Portal.findOne({
     where:{id:req.params.id},
-    include: [models.TransitionType, models.PortalType]
+    include: [
+      models.TransitionType,
+      models.PortalType,
+      models.Feed,
+      models.Display
+    ]
   })
   .then( p => {
     res.status(201).send(p);

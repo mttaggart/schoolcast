@@ -4,7 +4,7 @@ import AdminSection from "../AdminSection";
 import PortalForm from "./PortalForm";
 import PortalListItem from "./PortalListItem";
 
-const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTransitionTypes, getFeeds, addPortal, updatePortal, deletePortal, portals, portalTypes, transitionTypes, feeds}) => {
+const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTransitionTypes, getDisplays, getFeeds, addPortal, updatePortal, deletePortal, displays, portals, portalTypes, transitionTypes, feeds}) => {
 
     return (
         <AdminSection 
@@ -12,7 +12,7 @@ const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTr
             heading="Portals"
             authenticated={authenticated}
             assets={portals}
-            getAssets={() => {getPortals(token); getPortalTypes(token); getTransitionTypes(token); getFeeds(token)}}
+            getAssets={() => {getPortals(token); getPortalTypes(token); getTransitionTypes(token); getFeeds(token); getDisplays(token);}}
             token={token}
             match={match}
             listItem = {(key, asset) => <PortalListItem key={key} asset={asset} />}
@@ -27,6 +27,7 @@ const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTr
                     portalTypes={portalTypes}
                     transitionTypes={transitionTypes}
                     feeds={feeds}
+                    displays={displays}
                     token={token}
                     title="Edit Portal"
                     assets={portals}
@@ -40,6 +41,7 @@ const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTr
                     portalTypes={portalTypes}
                     transitionTypes={transitionTypes}
                     feeds={feeds}
+                    displays={displays}
                     token={token}
                     title="Add Portal"
                 />} 
