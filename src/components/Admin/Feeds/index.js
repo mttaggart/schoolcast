@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import AdminSection from "../AdminSection";
 import FeedForm from "./FeedForm";
-import FeedListItem from "./FeedListItem";
+import ListItem from "../ListItem";
 
 const Feeds = ({authenticated, token, match, getFeeds, addFeed, updateFeed, deleteFeed, feeds}) => {
 
@@ -15,7 +15,11 @@ const Feeds = ({authenticated, token, match, getFeeds, addFeed, updateFeed, dele
             getAssets={getFeeds}
             token={token}
             match={match}
-            listItem = {(key, asset) => <FeedListItem key={key} asset={asset} />}
+            listItem = {(key, asset) => 
+                <ListItem key={key} path={match.path} asset={asset}>
+                    {asset.name}
+                </ListItem>
+            }
         >
             
             <Route 

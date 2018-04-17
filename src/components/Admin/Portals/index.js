@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import AdminSection from "../AdminSection";
 import PortalForm from "./PortalForm";
-import PortalListItem from "./PortalListItem";
+import ListItem from "../ListItem";
 
 const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTransitionTypes, getDisplays, getFeeds, addPortal, updatePortal, deletePortal, displays, portals, portalTypes, transitionTypes, feeds}) => {
 
@@ -15,7 +15,11 @@ const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTr
             getAssets={() => {getPortals(token); getPortalTypes(token); getTransitionTypes(token); getFeeds(token); getDisplays(token);}}
             token={token}
             match={match}
-            listItem = {(key, asset) => <PortalListItem key={key} asset={asset} />}
+            listItem = {(key, asset) => 
+                <ListItem key={key} path={match.path} asset={asset}>
+                    {asset.name}
+                </ListItem>
+            }
         >
             
             <Route 

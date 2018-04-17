@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import AdminSection from "../AdminSection";
 import ItemForm from "./ItemForm";
-import ItemListItem from "./ItemListItem";
+import ListItem from "../ListItem";
 
 const Items = ({authenticated, token, match, getItems, getFeeds, addItem, updateItem, deleteItem, items, feeds}) => {
 
@@ -15,7 +15,11 @@ const Items = ({authenticated, token, match, getItems, getFeeds, addItem, update
             getAssets={(token) => {getItems(token); getFeeds(token);}}
             token={token}
             match={match}
-            listItem = {(key, asset) => <ItemListItem key={key} asset={asset} />}
+            listItem = {(key, asset) => 
+                <ListItem key={key} path={match.path} asset={asset}>
+                    {asset.name}
+                </ListItem>
+            }
         >
             
             <Route 

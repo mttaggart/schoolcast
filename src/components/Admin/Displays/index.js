@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import AdminSection from "../AdminSection";
 import DisplayForm from "./DisplayForm";
-import DisplayListItem from "./DisplayListItem";
+import ListItem from "../ListItem";
 
 const Displays = ({authenticated, token, match, getDisplays, addDisplay, updateDisplay, deleteDisplay, displays}) => {
 
@@ -15,7 +15,11 @@ const Displays = ({authenticated, token, match, getDisplays, addDisplay, updateD
             getAssets={getDisplays}
             token={token}
             match={match}
-            listItem = {(key, asset) => <DisplayListItem key={key} asset={asset} />}
+            listItem = {(key, asset) => 
+                <ListItem key={key} path={match.path} asset={asset}>
+                    {asset.name}
+                </ListItem>
+            }
         >
             
             <Route 
