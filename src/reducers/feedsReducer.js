@@ -15,6 +15,12 @@ export default function feeds(
             return Object.assign({}, state, {error: action.data});
         case actionTypes.GET_FEEDS_SUCCEEDED:
             return Object.assign({}, state, {feeds: action.data});
+        case actionTypes.GET_FEEDITEMS_ATTEMPTED:
+            return Object.assign({}, state, {requested: true});
+        case actionTypes.GET_FEEDITEMS_REJECTED:
+            return Object.assign({}, state, {error: action.data});
+        case actionTypes.GET_FEEDITEMS_SUCCEEDED:
+            return Object.assign({}, state, {feedItems: action.data});
         case actionTypes.ADD_FEED_ATTEMPTED:
             return state;
         case actionTypes.ADD_FEED_REJECTED:

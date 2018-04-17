@@ -18,6 +18,7 @@ const initialState = {
     },
     feeds: {
         feeds: [],
+        feedItems: [],
         requested: false,
         error: null
     },
