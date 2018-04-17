@@ -7,6 +7,7 @@ import {
 import Login from "./Login";
 import Home from "./Home";
 import Admin from "./Admin";
+import Displays from "./Displays";
 
 class App extends React.Component {
 
@@ -33,10 +34,12 @@ class App extends React.Component {
               }
               
               {this.props.user && this.props.user.isAdmin ? <li><Link to="/admin">Admin</Link></li> : null }
+              <li><Link to="/displays">Displays</Link></li>
             </ul>
           </nav>
           <Route exact path="/" component={Home} />
           <Route path="/login" render={ props => <Login {...props} login={this.props.login} error={this.props.error} authenticated={this.props.authenticated}/>} />
+          <Route path="/displays" component={Displays} />
           <Route path="/admin" render={ props => <Admin {...props} authenticated={this.props.authenticated} token={this.props.token}/>} />
         </div>
       </Router>
