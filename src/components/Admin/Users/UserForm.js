@@ -69,6 +69,8 @@ class UserForm extends React.Component {
             case "is-admin":
                 this.setState({isAdmin: e.target.checked});
                 break;
+            default:
+                break;
 
         }
     }

@@ -47,6 +47,8 @@ class FeedForm extends React.Component {
             case "description":
                 this.setState({description: val});
                 break;
+            default:
+                break;
         }   
     }
 

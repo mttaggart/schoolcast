@@ -82,11 +82,10 @@ class PortalForm extends React.Component {
             case "transition-type":
                 this.setState({TransitionTypeId: val});
                 break;
-            case "feed":
-                this.setState({FeedId: val});
-                break;
             case "transition-speed":
                 this.setState({transitionSpeed: val});
+                break;
+            default:
                 break;
         }
     }

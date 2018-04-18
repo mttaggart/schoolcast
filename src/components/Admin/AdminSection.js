@@ -3,10 +3,6 @@ import { Redirect, Link } from "react-router-dom";
 
 class AdminSection extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.getAssets(this.props.token);
     }

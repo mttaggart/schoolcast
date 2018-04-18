@@ -2,10 +2,6 @@ import React from "react";
 
 class DisplayPreview extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         console.log(`Getting portals for ${this.props.display.name}`)
         this.props.getDisplayPortals(this.props.token, this.props.display.id);

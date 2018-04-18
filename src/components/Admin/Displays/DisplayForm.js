@@ -52,6 +52,8 @@ class DisplayForm extends React.Component {
             case "display-custom-css":
                 this.setState({customCSS: val});
                 break;
+            default:
+                break;
         }
     }
 

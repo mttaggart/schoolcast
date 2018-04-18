@@ -55,6 +55,8 @@ class ItemForm extends React.Component {
             case "duration":
                 this.setState({duration: val});
                 break;
+            default:
+                break;
         }
     }
 
