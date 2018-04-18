@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
 import displayActions  from "../actions/displays";
 import feedActions from "../actions/feeds";
-import Displays from "../components/Displays";
+import DisplaysView from "../components/DisplaysView";
 
 const mapStateToProps = (state) => {
     return Object.assign(
         {},
         state.displays,
-        {feedItems: state.feeds.feedItems}
+        {
+            feedItems: state.feeds.feedItems,
+        }
     );
 };
 
@@ -19,4 +21,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Displays);
+export default connect(mapStateToProps,mapDispatchToProps)(DisplaysView);
