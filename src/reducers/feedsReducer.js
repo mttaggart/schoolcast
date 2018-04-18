@@ -3,6 +3,7 @@ import actionTypes from "../actions/feeds/actionTypes";
 export default function feeds(
     state={
         feeds: [],
+        feedItems: [],
         error: null,
         requested: false
     }, 
