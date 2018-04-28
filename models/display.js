@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Display.associate = function(models) {
     // associations can be defined here
+    Display.hasMany(models.Portal);
   };
   return Display;
 };
