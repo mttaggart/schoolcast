@@ -12,13 +12,11 @@ const initialState = {
     },
     displays: {
         displays: [],
-        displayPortals: [],
         requested: false,
         error: null
     },
     feeds: {
         feeds: [],
-        feedItems: [],
         requested: false,
         error: null
     },

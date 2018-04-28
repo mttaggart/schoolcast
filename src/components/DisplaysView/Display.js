@@ -1,22 +1,39 @@
 import React from "react";
+import Portal from "./Portal";
 
-class Display extends React.Component {
+const Display = ({displays,items,match}) => {
 
-    componentDidMount() {
-        this.props.getDisplayPortals(
-            this.props.token, 
-            this.props.match.params.displayId
-        );
-    }
+    const display = displays.find(display => {
+        console.log(display);
+        return match.params.displayId === display.id;
+    });
 
-    render() {
-        return (
-            <div>
-                PORTALS GO HERE
-            </div>
-        );
-    }
+    console.log(display);
 
+    return (
+        <div>
+            {
+                display ?
+                display.Portals.map( (portal, idx) => {
+    
+                    const items = items.filter( item => { 
+                        return portal.FeedId === item.FeedId
+                    });
+    
+                    console.log(items);
+                    
+                    return (
+                        <Portal 
+                            key={idx}
+                            portal={portal}
+                            items={items}
+                        />
+                    );
+                })
+                : null
+            }
+        </div>
+    );
 
 }
 

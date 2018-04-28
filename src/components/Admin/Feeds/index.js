@@ -5,7 +5,7 @@ import FeedForm from "./FeedForm";
 import ListItem from "../ListItem";
 
 const Feeds = ({authenticated, token, match, getFeeds, addFeed, updateFeed, deleteFeed, feeds}) => {
-
+    console.log(feeds);
     return (
         <AdminSection 
             path="feeds"

@@ -7,10 +7,13 @@ class DisplaysView extends React.Component {
     componentDidMount() {
         if(this.props.token) {
             this.props.getDisplays(this.props.token);
+            this.props.getPortals(this.props.token);
+            this.props.getItems(this.props.token);
         }
     }
 
     render() {
+        console.log(this.props.displays);
 
         if(!this.props.authenticated) {
             return (
@@ -42,8 +45,8 @@ class DisplaysView extends React.Component {
                         <Display  
                             {...props}
                             token={this.props.token}
-                            getDisplayPortals={this.props.getDisplayPortals}
-                            displayPortals={this.props.displayPortals}
+                            items={this.props.items}
+                            displays={this.props.displays}
                         />
                     }
                 />
