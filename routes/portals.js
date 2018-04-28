@@ -10,11 +10,7 @@ function getAndSendPortals(res) {
       models.TransitionType, 
       models.PortalType,
       models.Display, 
-      models.Feed,
-      {
-        model: models.Item,
-        where: {FeedId: Sequelize.col("Portals.FeedId")},
-      }
+      models.Feed
     ]
   })
   .then( portals => {
