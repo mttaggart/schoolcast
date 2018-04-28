@@ -4,7 +4,10 @@ const verifyToken = require("./verifyToken");
 
 function getAndSendFeeds(res) {
   models.Feed.findAll({
-    where: {}
+    where: {},
+    include: [
+      models.Item
+    ]
   })
   .then( feeds => {
     res.status(200).send(feeds);
