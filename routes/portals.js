@@ -1,11 +1,21 @@
 const router = require("express").Router();
 const models = require("../models");
+const Sequelize = require("sequelize");
 const verifyToken = require("./verifyToken");
 
 function getAndSendPortals(res) {
   models.Portal.findAll({
     where: {},
-    include: [models.TransitionType, models.PortalType, models.Display, models.Feed]
+    include: [
+      models.TransitionType, 
+      models.PortalType,
+      models.Display, 
+      models.Feed,
+      {
+        model: models.Item,
+        where: {FeedId: Sequelize.col("Portals.FeedId")},
+      }
+    ]
   })
   .then( portals => {
     res.status(200).send(portals);
@@ -41,7 +51,11 @@ router.route("/api/portals/:id")
       models.TransitionType,
       models.PortalType,
       models.Feed,
-      models.Display
+      models.Display,
+      {
+        model: models.Item,
+        where: {FeedId: Sequelize.col("Portals.FeedId")}
+      }
     ]
   })
   .then( p => {
