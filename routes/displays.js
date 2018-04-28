@@ -2,7 +2,12 @@ const router = require("express").Router();
 const models = require("../models");
 
 function getAndSendDisplays(res) {
-  models.Display.findAll()
+  models.Display.findAll({
+    where: {},
+    include: [
+      models.Portal
+    ]
+  })
   .then( displays => {
     res.status(200).send(displays);
   })
