@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   TransitionType.associate = function(models) {
     // associations can be defined here
-    models.TransitionType.hasMany(models.Portal);
+    TransitionType.hasMany(models.Portal);
   };
   return TransitionType;
 };

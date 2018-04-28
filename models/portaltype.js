@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   PortalType.associate = function(models) {
     // associations can be defined here
+    PortalType.hasMany(models.Portal);
   };
   return PortalType;
 };
