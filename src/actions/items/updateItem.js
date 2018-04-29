@@ -2,6 +2,7 @@ import actionTypes from "./actionTypes";
 const apiEndpoint = "/api/items/";
 
 export default function updateItem(token, item) {
+    console.log(item);
     return (dispatch) => {
         dispatch(updateItemAttempted());
         const itemsRequest = new Request(

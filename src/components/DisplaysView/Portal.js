@@ -19,7 +19,6 @@ class Portal extends React.Component {
             },
             customCSS,
         );
-        console.log(this.props);
         return (
             <div style={styles}>
                 {portal.name}

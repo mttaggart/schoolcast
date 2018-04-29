@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment-timezone";
 
 class ItemForm extends React.Component {
     constructor(props) {
@@ -9,6 +10,8 @@ class ItemForm extends React.Component {
     static defaultItem = {
         name: "",
         content: "",
+        startDate: moment(Date.now()).tz("America/Los_Angeles").format("YYYY-MM-DD"),
+        endDate: moment(Date.now()).tz("America/Los_Angeles").format("YYYY-MM-DD"),
         duration: 5000,
         FeedId: undefined,
     }
@@ -39,12 +42,18 @@ class ItemForm extends React.Component {
     }
 
     changeHandler(e) {
-        const className = e.target.className;
+        const id = e.target.id;
         const val = e.target.value;
 
-        switch(className) {
+        switch(id) {
             case "item-name":
                 this.setState({name: val});
+                break;
+            case "item-start":
+                this.setState({startDate: val});
+                break;
+            case "item-end":
+                this.setState({endDate: val});
                 break;
             case "item-content":
                 this.setState({content: val});
@@ -66,16 +75,20 @@ class ItemForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label>Item Name</label>
-                    <input type="text" className="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <input type="text" id="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
                         {this.props.feeds.map( (feed, idx) => {
                             return <option key={idx} value={feed.id}>{feed.name}</option>
                         })}
                     </select>
                     <label>Item Content</label>
-                    <textarea className="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <textarea id="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
+                    <label>Item Start Date</label>
+                    <input type="date" id="item-start" value={this.state.startDate} onChange={this.changeHandler.bind(this)} />
+                    <label>Item End Date</label>
+                    <input type="date" id="item-end" value={this.state.endDate} onChange={this.changeHandler.bind(this)} />
                     <label>Duration</label>
-                    <input type="number" id="duration" min="0" max="3600000" value={this.state.transitionSpeed} onChange={this.changeHandler.bind(this)}/>
+                    <input type="number" id="duration" min="0" max="3600000" value={this.state.duration} onChange={this.changeHandler.bind(this)}/>
                     <button type="submit">Submit</button>
                     { this.props.match.params.itemId ? 
                         <button 

@@ -1,14 +1,14 @@
 import React from "react";
 import Portal from "./Portal";
+import moment from "moment-timezone";
 
 const Display = ({displays,items,match}) => {
+
+    const now = moment().tz("America/Los_Angeles");
 
     const display = displays.find(display => {
         return parseInt(match.params.displayId) === display.id;
     });
-
-    console.log(items);
-
 
     return (
         <div>
@@ -17,11 +17,16 @@ const Display = ({displays,items,match}) => {
                 display.Portals.map( (portal, idx) => {
     
                     const filteredItems = items.filter( item => { 
-                        return portal.FeedId === item.FeedId
+                        const startDate = moment(item.startDate);
+                        const endDate = moment(item.endDate);
+                        console.log(now,startDate,endDate)
+                        return (
+                            portal.FeedId === item.FeedId && // Match items to feed
+                            now.isSameOrAfter(startDate) && // Date comparison
+                            now.isSameOrBefore(endDate)
+                        );
                     });
     
-                    console.log(filteredItems);
-                    
                     return (
                         <Portal 
                             key={idx}
