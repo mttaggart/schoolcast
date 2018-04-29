@@ -19,7 +19,6 @@ const Display = ({displays,items,match}) => {
                     const filteredItems = items.filter( item => { 
                         const startDate = moment(item.startDate);
                         const endDate = moment(item.endDate);
-                        console.log(now,startDate,endDate)
                         return (
                             portal.FeedId === item.FeedId && // Match items to feed
                             now.isSameOrAfter(startDate) && // Date comparison
