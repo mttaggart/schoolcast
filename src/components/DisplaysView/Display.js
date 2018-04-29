@@ -4,11 +4,11 @@ import Portal from "./Portal";
 const Display = ({displays,items,match}) => {
 
     const display = displays.find(display => {
-        console.log(display);
-        return match.params.displayId === display.id;
+        return parseInt(match.params.displayId) === display.id;
     });
 
-    console.log(display);
+    console.log(items);
+
 
     return (
         <div>
@@ -16,17 +16,17 @@ const Display = ({displays,items,match}) => {
                 display ?
                 display.Portals.map( (portal, idx) => {
     
-                    const items = items.filter( item => { 
+                    const filteredItems = items.filter( item => { 
                         return portal.FeedId === item.FeedId
                     });
     
-                    console.log(items);
+                    console.log(filteredItems);
                     
                     return (
                         <Portal 
                             key={idx}
                             portal={portal}
-                            items={items}
+                            items={filteredItems}
                         />
                     );
                 })

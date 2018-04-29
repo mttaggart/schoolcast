@@ -13,7 +13,7 @@ class DisplaysView extends React.Component {
     }
 
     render() {
-        console.log(this.props.displays);
+        console.log(this.props);
 
         if(!this.props.authenticated) {
             return (

@@ -23,6 +23,9 @@ class Portal extends React.Component {
         return (
             <div style={styles}>
                 {portal.name}
+                {this.props.items.map( (item, idx) => {
+                    return <p key={idx}>{item.content}</p>
+                })}
             </div>
         )
         
