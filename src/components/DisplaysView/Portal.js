@@ -2,7 +2,34 @@ import React from "react";
 
 class Portal extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentIdx: 0 // start with first item
+        }
+    }
+
+    updateItem() {
+        let nextIdx;
+        if (this.state.currentIdx === this.props.items.length - 1) {
+            nextIdx = 0;  // Reset to beginning
+        } else {
+            nextIdx = this.state.currentIdx + 1; // Advance by one
+        }
+        const timeout = this.props.items[this.state.currentIdx].duration;
+        setTimeout(() => this.setState({currentIdx: nextIdx}),timeout);
+    }
+
+    componentDidMount() {
+        this.updateItem();
+    }
+
+    componentDidUpdate() {
+        this.updateItem();
+    }
+
     render() {
+        const currentItem = this.props.items[this.state.currentIdx];
         const portal = this.props.portal;
         const customCSS = JSON.parse(portal.customCSS);
         const styles = Object.assign(
@@ -21,16 +48,12 @@ class Portal extends React.Component {
         );
         return (
             <div style={styles}>
-                {portal.name}
-                {this.props.items.map( (item, idx) => {
-                    return <p key={idx}>{item.content}</p>
-                })}
+                <p>{currentItem.content}</p>
             </div>
         )
         
     }
 
 }
-
 
 export default Portal;
