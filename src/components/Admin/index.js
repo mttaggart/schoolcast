@@ -16,16 +16,6 @@ const Admin = ({authenticated, token}) => {
 
     return (
         <div>
-            <h2>Admin</h2>
-            <nav>
-                <ul>
-                    <li><Link to="/admin/displays">Displays</Link></li>
-                    <li><Link to="/admin/feeds">Feeds</Link></li>
-                    <li><Link to="/admin/items">Items</Link></li>
-                    <li><Link to="/admin/portals">Portals</Link></li>
-                    <li><Link to="/admin/users">Users</Link></li>
-                </ul>
-            </nav>
             <Route 
                 path="/admin/displays" 
                 render={({...props}) => 
