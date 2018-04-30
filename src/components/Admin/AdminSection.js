@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
+import { Button, Intent } from "@blueprintjs/core";
 
 class AdminSection extends React.Component {
 
@@ -19,16 +20,20 @@ class AdminSection extends React.Component {
         return (
             <div>
                 <h3>{this.props.heading}</h3>    
-                <ul>
-                    {
-                        this.props.assets ? 
-                        this.props.assets.map( (asset, idx) => {
-                            return this.props.listItem(idx, asset);
-                        })
-                        : null
-                    }
-                    <Link to={`${this.props.match.path}/new`}>Add</Link>
-                </ul> 
+                {
+                    this.props.assets ? 
+                    this.props.assets.map( (asset, idx) => {
+                        return this.props.listItem(idx, asset);
+                    })
+                    : null
+                }
+                <Link to={`${this.props.match.path}/new`}>
+                    <Button 
+                        intent={Intent.PRIMARY} 
+                        text="Add"
+                        icon="add"
+                    />
+                </Link>
                 {this.props.children}
            </div>
         );
