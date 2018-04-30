@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Card, Elevation } from "@blueprintjs/core"
 
 const ListItem = ({asset,children,path}) => {
     return (
-        <li>
-            <Link to={`${path}/edit/` + asset.id}>
+        <Card>
+            <Link 
+                to={`${path}/edit/` + asset.id} 
+                elevation={Elevation.TWO}
+            >
                 {children}
             </Link>
-        </li>
+        </Card>
     )   
 }
 
