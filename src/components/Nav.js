@@ -21,11 +21,19 @@ const Nav = ({authenticated,logout,user,history}) => {
                 </Link>
                 {user && user.isAdmin ? 
                     <Popover content={<AdminMenu />}>
-                        <Button icon="settings" text="Admin"/>
+                        <Button 
+                            icon="settings" 
+                            text="Admin"
+                        />
                     </Popover> : 
                     null 
                 }
-                <Button icon="desktop"><Link to="/displays">Displays</Link></Button>
+                <Link to="/displays">
+                    <Button 
+                        icon="desktop"
+                        text="Displays"
+                    />
+                </Link>
                 {
                     authenticated ? 
                     <Button 
