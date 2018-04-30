@@ -2,18 +2,11 @@ import React from "react";
 
 class DisplayPreview extends React.Component {
 
-    componentDidMount() {
-        console.log(`Getting portals for ${this.props.display.name}`)
-        this.props.getDisplayPortals(this.props.token, this.props.display.id);
-    }
-
     render() {
-
-        if (!this.props.displayPortals) return null;
 
         return (
             <div style={{position: "relative", border: "1px solid black"}}>
-                {this.props.displayPortals.map( (portal, idx) => {
+                {this.props.display.Portals.map( (portal, idx) => {
 
                     const customCSS = JSON.parse(portal.customCSS);
 

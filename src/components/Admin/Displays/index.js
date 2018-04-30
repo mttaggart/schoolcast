@@ -9,13 +9,11 @@ const Displays = ({
     token, 
     match, 
     getDisplays, 
-    getDisplayPortals, 
     addDisplay, 
     updateDisplay, 
     deleteDisplay, 
     displays, 
     portals, 
-    displayPortals
 }) => {
 
     return (
@@ -40,8 +38,6 @@ const Displays = ({
                     {...props}
                     submitHandler={updateDisplay}
                     deleteHandler={deleteDisplay}
-                    getDisplayPortals={getDisplayPortals}
-                    displayPortals={displayPortals}
                     token={token}
                     title="Edit Display"
                     assets={displays}

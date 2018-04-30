@@ -1,5 +1,13 @@
 import React from "react";
 import moment from "moment-timezone";
+import { 
+    Label, 
+    TextArea, 
+    Button, 
+    ButtonGroup, 
+    Intent 
+} from "@blueprintjs/core";
+
 
 class ItemForm extends React.Component {
     constructor(props) {
@@ -74,31 +82,43 @@ class ItemForm extends React.Component {
             <div>
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <label>Item Name</label>
-                    <input type="text" id="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
-                        {this.props.feeds.map( (feed, idx) => {
-                            return <option key={idx} value={feed.id}>{feed.name}</option>
-                        })}
-                    </select>
-                    <label>Item Content</label>
-                    <textarea id="item-content" value={this.state.content} onChange={this.changeHandler.bind(this)}></textarea>
-                    <label>Item Start Date</label>
-                    <input type="date" id="item-start" value={this.state.startDate} onChange={this.changeHandler.bind(this)} />
-                    <label>Item End Date</label>
-                    <input type="date" id="item-end" value={this.state.endDate} onChange={this.changeHandler.bind(this)} />
-                    <label>Duration</label>
-                    <input type="number" id="duration" min="0" max="3600000" value={this.state.duration} onChange={this.changeHandler.bind(this)}/>
-                    <button type="submit">Submit</button>
-                    { this.props.match.params.itemId ? 
-                        <button 
+                    <Label>Item Name</Label>
+                    <input className="pt-input" type="text" id="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <div className="pt-select">
+                        <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
+                            {this.props.feeds.map( (feed, idx) => {
+                                return <option key={idx} value={feed.id}>{feed.name}</option>
+                            })}
+                        </select>
+                    </div>
+                    <Label>Item Content</Label>
+                    <TextArea 
+                        id="item-content" 
+                        value={this.state.content} 
+                        onChange={this.changeHandler.bind(this)} 
+                    />
+                    <Label>Item Start Date</Label>
+                    <input className="pt-input" type="date" id="item-start" value={this.state.startDate} onChange={this.changeHandler.bind(this)} />
+                    <Label>Item End Date</Label>
+                    <input className="pt-input" type="date" id="item-end" value={this.state.endDate} onChange={this.changeHandler.bind(this)} />
+                    <Label>Duration</Label>
+                    <input className="pt-input" type="number" id="duration" min="0" max="3600000" value={this.state.duration} onChange={this.changeHandler.bind(this)}/>
+                    <ButtonGroup>
+                        <Button 
+                            type="submit" 
+                            intent={Intent.SUCCESS}
+                            text="Submit"
+                        />
+                        { this.props.match.params.itemId ? 
+                            <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 
-                        >
-                            Delete
-                        </button>
-                        : null
-                    }
+                            text="Delete"
+                            intent={Intent.DANGER}
+                            />
+                            : null
+                        }
+                    </ButtonGroup>
                 </form>
             </div>
         )

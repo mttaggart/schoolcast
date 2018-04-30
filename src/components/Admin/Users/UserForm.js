@@ -1,4 +1,11 @@
 import React from "react";
+import { 
+    Label, 
+    Switch, 
+    Button, 
+    ButtonGroup, 
+    Intent 
+} from "@blueprintjs/core";
 
 class UserForm extends React.Component {
     constructor(props) {
@@ -47,10 +54,10 @@ class UserForm extends React.Component {
     }
 
     changeHandler(e) {
-        const className = e.target.className;
+        const id = e.target.id;
         const val = e.target.value;
 
-        switch(className) {
+        switch(id) {
             case "first-name":
                 this.setState({firstName: val});
                 break;
@@ -80,28 +87,38 @@ class UserForm extends React.Component {
             <div>
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <label>First Name</label>
-                    <input type="text" className="first-name" value={this.state.firstName} onChange={this.changeHandler.bind(this)}/>
-                    <label>Last Name</label>
-                    <input type="text" className="last-name" value={this.state.lastName} onChange={this.changeHandler.bind(this)} />
-                    <label>Email</label>
-                    <input type="email" className="email" value={this.state.email} onChange={this.changeHandler.bind(this)}/>
-                    <label>Password</label>
-                    <input type="password" className="password" value={this.state.password} onChange={this.changeHandler.bind(this)} />
-                    <label>Password Confirm</label>
-                    <input type="password" className="password-confirm" value={this.state.passwordConfirm} onChange={this.changeHandler.bind(this)} />
-                    <label>Admin?</label>
-                    <input type="checkbox" className="is-admin" checked={this.state.isAdmin} onChange={this.changeHandler.bind(this)} />
-                    <button type="submit">Submit</button>
-                    { this.props.match.params.userId ? 
-                        <button 
+                    <Label>First Name</Label>
+                    <input type="text" id="first-name" className="pt-input" value={this.state.firstName} onChange={this.changeHandler.bind(this)}/>
+                    <Label>Last Name</Label>
+                    <input type="text" id="last-name" className="pt-input" value={this.state.lastName} onChange={this.changeHandler.bind(this)} />
+                    <Label>Email</Label>
+                    <input type="email" id="email" className="pt-input" value={this.state.email} onChange={this.changeHandler.bind(this)}/>
+                    <Label>Password</Label>
+                    <input type="password" id="password" className="pt-input" value={this.state.password} onChange={this.changeHandler.bind(this)} />
+                    <Label>Password Confirm</Label>
+                    <input type="password" id="password-confirm" className="pt-input" value={this.state.passwordConfirm} onChange={this.changeHandler.bind(this)} />
+                    <Switch 
+                        id="is-admin" 
+                        checked={this.state.isAdmin} 
+                        onChange={this.changeHandler.bind(this)}
+                        label="Admin?" 
+                    />
+                    <ButtonGroup>
+                        <Button 
+                            type="submit" 
+                            intent={Intent.SUCCESS}
+                            text="Submit"
+                        />
+                        { this.props.match.params.userId ? 
+                            <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 
-                        >
-                            Delete
-                        </button>
-                        : null
-                    }
+                            text="Delete"
+                            intent={Intent.DANGER}
+                            />
+                            : null
+                        }
+                    </ButtonGroup>
                 </form>
             </div>
         )

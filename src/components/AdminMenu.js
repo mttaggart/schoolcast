@@ -28,11 +28,6 @@ const AdminMenu = ({history}) => {
                 onClick={() => history.push("/admin/portals")}
             />
             <MenuItem 
-                icon="desktop"
-                text="Displays"
-                onClick={() => history.push("/admin/displays")}
-            />
-            <MenuItem 
                 icon="people"
                 text="Users"
                 onClick={() => history.push("/admin/users")}
