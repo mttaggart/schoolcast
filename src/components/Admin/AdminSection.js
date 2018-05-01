@@ -2,6 +2,13 @@ import React from "react";
 import { Redirect, Link } from "react-router-dom";
 import { Button, Intent } from "@blueprintjs/core";
 
+const styles = {
+    classContainer: {
+        display: "flex",
+        justifyContent: "flex-start"
+    }
+}
+
 class AdminSection extends React.Component {
 
     componentDidMount() {
@@ -19,7 +26,8 @@ class AdminSection extends React.Component {
 
         return (
             <div>
-                <h3>{this.props.heading}</h3>    
+                <h3>{this.props.heading}</h3>
+                <div style={styles.classContainer}>
                 {
                     this.props.assets ? 
                     this.props.assets.map( (asset, idx) => {
@@ -27,6 +35,7 @@ class AdminSection extends React.Component {
                     })
                     : null
                 }
+                </div>    
                 <Link to={`${this.props.match.path}/new`}>
                     <Button 
                         intent={Intent.PRIMARY} 
