@@ -1,5 +1,12 @@
 import React from "react";
 import DisplayPreview from "./DisplayPreview";
+import { 
+    Label, 
+    TextArea, 
+    Button, 
+    ButtonGroup, 
+    Intent 
+} from "@blueprintjs/core";
 
 class DisplayForm extends React.Component {
     constructor(props) {
@@ -62,29 +69,38 @@ class DisplayForm extends React.Component {
             <div>
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <label>Display Name</label>
-                    <input type="text" id="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <label>Display Description</label>
-                    <input type="text" id="display-description" value={this.state.description} onChange={this.changeHandler.bind(this)}/>
-                    <label>Custom CSS</label>
-                    <textarea id="display-custom-css" value={this.state.customCSS} onChange={this.changeHandler.bind(this)}></textarea>
-                    <button type="submit">Submit</button>
-                    { this.props.match.params.displayId ? 
-                        <button 
+                    <Label>Display Name</Label>
+                    <input className="pt-input" type="text" id="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <Label>Display Description</Label>
+                    <input className="pt-input" type="text" id="display-description" value={this.state.description} onChange={this.changeHandler.bind(this)}/>
+                    <Label>Custom CSS</Label>
+                    <TextArea 
+                        className="pt-fill"
+                        id="display-custom-css" 
+                        value={this.state.customCSS} 
+                        onChange={this.changeHandler.bind(this)}
+                    />
+                    <ButtonGroup>
+                        <Button 
+                            type="submit" 
+                            intent={Intent.SUCCESS}
+                            text="Submit"
+                        />
+                        { this.props.match.params.displayId ? 
+                            <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 
-                        >
-                            Delete
-                        </button>
-                        : null
-                    }
+                            text="Delete"
+                            intent={Intent.DANGER}
+                            />
+                            : null
+                        }
+                    </ButtonGroup>
                 </form>
                 <h4>Preview</h4>
                 <DisplayPreview 
                     token={this.props.token} 
                     display={this.state} 
-                    getDisplayPortals={this.props.getDisplayPortals}
-                    displayPortals={this.props.displayPortals}
                 />
             </div>
         )

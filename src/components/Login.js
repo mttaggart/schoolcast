@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { Label, Button, Intent } from "@blueprintjs/core";
 
 class Login extends React.Component {
     constructor(props) {
@@ -37,11 +38,16 @@ class Login extends React.Component {
                 <h2>Login</h2>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     {/* {this.props.error ? <div>{this.props.error}</div> : null} */}
-                    <label>email</label>
-                    <input onChange={this.emailHandler.bind(this)} id="email" type="email" />
-                    <label>password</label>
-                    <input onChange={this.pwHandler.bind(this)} id="password" type="password" />
-                    <button type="submit">Login</button>
+                    <Label>email</Label>
+                    <input className="pt-input" onChange={this.emailHandler.bind(this)} id="email" type="email" />
+                    <Label>password</Label>
+                    <input className="pt-input" onChange={this.pwHandler.bind(this)} id="password" type="password" />
+                    <Button 
+                        type="submit"
+                        intent={Intent.PRIMARY}
+                        text="Log In"
+                        icon="login" 
+                    />
                 </form>
             </div>
         );

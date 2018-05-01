@@ -1,4 +1,11 @@
 import React from "react";
+import { 
+    Label, 
+    TextArea, 
+    Button, 
+    ButtonGroup, 
+    Intent 
+} from "@blueprintjs/core";
 
 class FeedForm extends React.Component {
     constructor(props) {
@@ -57,20 +64,30 @@ class FeedForm extends React.Component {
             <div>
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <label>Feed Name</label>
-                    <input type="text" id="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <label>Description</label>
-                    <textarea id="description" value={this.state.description} onChange={this.changeHandler.bind(this)}></textarea>
-                    <button type="submit">Submit</button>
-                    { this.props.match.params.itemId ? 
-                        <button 
+                    <Label>Feed Name</Label>
+                    <input className="pt-input" type="text" id="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <Label>Description</Label>
+                    <TextArea 
+                        id="description" 
+                        value={this.state.description} 
+                        onChange={this.changeHandler.bind(this)}
+                    />
+                    <ButtonGroup>
+                        <Button 
+                            type="submit" 
+                            intent={Intent.SUCCESS}
+                            text="Submit"
+                        />
+                        { this.props.match.params.feedId ? 
+                            <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 
-                        >
-                            Delete
-                        </button>
-                        : null
-                    }
+                            text="Delete"
+                            intent={Intent.DANGER}
+                            />
+                            : null
+                        }
+                    </ButtonGroup>
                 </form>
             </div>
         )
