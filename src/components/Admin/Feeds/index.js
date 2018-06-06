@@ -22,7 +22,7 @@ const Feeds = ({authenticated, token, match, getFeeds, addFeed, updateFeed, dele
         >
             
             <Route 
-                path={`${match.path}/edit/:feedId`}
+                path={`${match.path}/edit/:id`}
                 render={props => <FeedForm 
                     {...props}
                     submitHandler={updateFeed}

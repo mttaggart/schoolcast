@@ -7,7 +7,7 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
-
+import { deriveById } from "../../../lib/functions";
 
 class ItemForm extends React.Component {
     constructor(props) {
@@ -25,14 +25,7 @@ class ItemForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.itemId) {
-            const  id = parseInt(nextProps.match.params.itemId,10);
-            const item =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return item ? item : ItemForm.defaultItem;
-        }
-        return ItemForm.defaultItem;
+        return deriveById(nextProps, ItemForm.defaultItem);
     }
 
     onSubmit(e) {
@@ -83,9 +76,9 @@ class ItemForm extends React.Component {
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <Label>Item Name</Label>
-                    <input className="pt-input" type="text" id="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <input className="pt-input" type="text" id="item-name" defaultValue={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <div className="pt-select">
-                        <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
+                        <select id="feed" defaultValue={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
                             {this.props.feeds.map( (feed, idx) => {
                                 return <option key={idx} value={feed.id}>{feed.name}</option>
                             })}
@@ -94,15 +87,15 @@ class ItemForm extends React.Component {
                     <Label>Item Content</Label>
                     <TextArea 
                         id="item-content" 
-                        value={this.state.content} 
+                        defaultValue={this.state.content} 
                         onChange={this.changeHandler.bind(this)} 
                     />
                     <Label>Item Start Date</Label>
-                    <input className="pt-input" type="date" id="item-start" value={this.state.startDate} onChange={this.changeHandler.bind(this)} />
+                    <input className="pt-input" type="date" id="item-start" defaultValue={this.state.startDate} onChange={this.changeHandler.bind(this)} />
                     <Label>Item End Date</Label>
-                    <input className="pt-input" type="date" id="item-end" value={this.state.endDate} onChange={this.changeHandler.bind(this)} />
+                    <input className="pt-input" type="date" id="item-end" defaultValue={this.state.endDate} onChange={this.changeHandler.bind(this)} />
                     <Label>Duration</Label>
-                    <input className="pt-input" type="number" id="duration" min="0" max="3600000" value={this.state.duration} onChange={this.changeHandler.bind(this)}/>
+                    <input className="pt-input" type="number" id="duration" min="0" max="3600000" defaultValue={this.state.duration} onChange={this.changeHandler.bind(this)}/>
                     <ButtonGroup>
                         <Button 
                             type="submit" 

@@ -7,6 +7,7 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import { deriveById } from "../../../lib/functions";
 
 class PortalForm extends React.Component {
     constructor(props) {
@@ -29,14 +30,7 @@ class PortalForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.portalId) {
-            const  id = parseInt(nextProps.match.params.portalId,10);
-            const portal =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return portal ? portal : PortalForm.defaultPortal;
-        }
-        return PortalForm.defaultPortal;
+        return deriveById(nextProps, PortalForm.defaultPortal);
     }
 
     onSubmit(e) {

@@ -33,7 +33,7 @@ const Displays = ({
         >
             
             <Route 
-                path={`${match.path}/edit/:displayId`}
+                path={`${match.path}/edit/:id`}
                 render={props => <DisplayForm 
                     {...props}
                     submitHandler={updateDisplay}

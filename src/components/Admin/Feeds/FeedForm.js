@@ -6,6 +6,7 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import { deriveById } from "../../../lib/functions";
 
 class FeedForm extends React.Component {
     constructor(props) {
@@ -19,14 +20,7 @@ class FeedForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.feedId) {
-            const  id = parseInt(nextProps.match.params.feedId,10);
-            const feed =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return feed ? feed : FeedForm.defaultFeed;
-        }
-        return FeedForm.defaultFeed;
+        return deriveById(nextProps, FeedForm.defaultFeed);
     }
 
     onSubmit(e) {

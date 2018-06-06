@@ -23,7 +23,7 @@ const Users = ({authenticated, token, match, getUsers, addUser, updateUser, dele
         >
             
             <Route 
-                path={`${match.path}/edit/:userId`}
+                path={`${match.path}/edit/:id`}
                 render={props => <UserForm 
                     {...props}
                     submitHandler={updateUser}

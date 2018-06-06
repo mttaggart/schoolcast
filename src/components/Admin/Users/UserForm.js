@@ -6,6 +6,7 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import { deriveById } from "../../../lib/functions";
 
 class UserForm extends React.Component {
     constructor(props) {
@@ -23,14 +24,7 @@ class UserForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.userId) {
-            const  id = parseInt(nextProps.match.params.userId,10);
-            const user =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return user ? user : UserForm.defaultUser;
-        }
-        return UserForm.defaultUser;
+        return deriveById(nextProps, UserForm.defaultUser);
     }
 
     onSubmit(e) {
