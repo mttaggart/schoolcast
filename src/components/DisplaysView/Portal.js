@@ -33,7 +33,6 @@ class Portal extends React.Component {
         if(this.props.items.length === 0) return null;
 
         const currentItem = this.props.items[this.state.currentIdx];
-        console.log(this.props.items);
         const portal = this.props.portal;
         const customCSS = JSON.parse(portal.customCSS);
         const styles = Object.assign(
