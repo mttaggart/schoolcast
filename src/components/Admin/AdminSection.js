@@ -1,6 +1,8 @@
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
 import { Button, Intent } from "@blueprintjs/core";
+import ListItem from "./ListItem";
+import AddCard from "./AddCard";
 
 const styles = {
     classContainer: {
@@ -36,13 +38,8 @@ class AdminSection extends React.Component {
                     : null
                 }
                 </div>    
-                <Link to={`${this.props.match.path}/new`}>
-                    <Button 
-                        intent={Intent.PRIMARY} 
-                        text="Add"
-                        icon="add"
-                    />
-                </Link>
+                <AddCard path={this.props.path} />
+                
                 {this.props.children}
            </div>
         );

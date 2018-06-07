@@ -11,7 +11,7 @@ const ListItem = ({asset,children,path}) => {
     return (
         <Card elevation={Elevation.ONE} style={styles}>
             <Link 
-                to={`${path}/edit/` + asset.id} 
+                to={`${path}/edit/${asset.id}`} 
             >
                 {children}
             </Link>
