@@ -9,7 +9,11 @@ const styles = {
 
 const ListItem = ({asset,children,path}) => {
     return (
-        <Card elevation={Elevation.ONE} style={styles}>
+        <Card 
+            elevation={Elevation.ONE} 
+            style={styles}
+            interactive={true}
+        >
             <Link 
                 to={`${path}/edit/${asset.id}`} 
             >
