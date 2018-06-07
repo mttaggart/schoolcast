@@ -7,6 +7,7 @@ import {
     Intent 
 } from "@blueprintjs/core";
 import { deriveById } from "../../../lib/functions";
+import FormOverlay from "../FormOverlay";
 
 class FeedForm extends React.Component {
     constructor(props) {
@@ -55,7 +56,7 @@ class FeedForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <FormOverlay history={this.props.history}>
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <Label>Feed Name</Label>
@@ -83,7 +84,7 @@ class FeedForm extends React.Component {
                         }
                     </ButtonGroup>
                 </form>
-            </div>
+            </FormOverlay>
         )
     }
 

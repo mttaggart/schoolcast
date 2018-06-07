@@ -1,12 +1,13 @@
 import React from "react";
 import DisplayPreview from "./DisplayPreview";
-import { 
+import {
     Label, 
     TextArea, 
     Button, 
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import FormOverlay from "../FormOverlay";
 import { deriveById } from "../../../lib/functions";
 
 class DisplayForm extends React.Component {
@@ -59,8 +60,9 @@ class DisplayForm extends React.Component {
     }
 
     render() {
+        console.log(this.props.history);
         return (
-            <div>
+            <FormOverlay history={this.props.history}>
                 <h4>{this.props.title}</h4>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <Label>Display Name</Label>
@@ -96,7 +98,7 @@ class DisplayForm extends React.Component {
                     token={this.props.token} 
                     display={this.state} 
                 />
-            </div>
+            </FormOverlay>
         )
     }
 
