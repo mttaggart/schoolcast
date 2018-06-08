@@ -101,13 +101,13 @@ class UserForm extends React.Component {
                         onChange={this.changeHandler.bind(this)}
                         label="Admin?" 
                     />
-                    <ButtonGroup>
+                    <ButtonGroup large={true}>
                         <Button 
                             type="submit" 
                             intent={Intent.SUCCESS}
                             text="Submit"
                         />
-                        { this.props.match.params.userId ? 
+                        { this.props.match.params.id ? 
                             <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 

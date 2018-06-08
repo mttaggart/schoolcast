@@ -106,13 +106,13 @@ class ItemForm extends React.Component {
                     <input className="pt-input" type="date" id="item-end" value={this.state.endDate} onChange={this.changeHandler.bind(this)} />
                     <Label>Duration</Label>
                     <input className="pt-input" type="number" id="duration" min="0" max="3600000" value={this.state.duration} onChange={this.changeHandler.bind(this)}/>
-                    <ButtonGroup>
+                    <ButtonGroup large={true}>
                         <Button 
                             type="submit" 
                             intent={Intent.SUCCESS}
                             text="Submit"
                         />
-                        { this.props.match.params.itemId ? 
+                        { this.props.match.params.id ? 
                             <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 

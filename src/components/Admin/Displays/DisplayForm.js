@@ -79,13 +79,13 @@ class DisplayForm extends React.Component {
                         value={this.state.customCSS} 
                         onChange={this.changeHandler.bind(this)}
                     />
-                    <ButtonGroup>
+                    <ButtonGroup large={true}>
                         <Button 
                             type="submit" 
                             intent={Intent.SUCCESS}
                             text="Submit"
                         />
-                        { this.props.match.params.displayId ? 
+                        { this.props.match.params.id ? 
                             <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 

@@ -153,13 +153,13 @@ class PortalForm extends React.Component {
                         onChange={this.changeHandler.bind(this)}
                         className="pt-fill"
                     />
-                    <ButtonGroup>
+                    <ButtonGroup large={true}>
                         <Button 
                             type="submit" 
                             intent={Intent.SUCCESS}
                             text="Submit"
                         />
-                        { this.props.match.params.portalId ? 
+                        { this.props.match.params.id ? 
                             <Button 
                             type="button"
                             onClick={this.deleteHandler.bind(this)} 
