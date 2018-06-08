@@ -6,6 +6,9 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import { deriveById } from "../../../lib/functions";
+import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
 
 class UserForm extends React.Component {
     constructor(props) {
@@ -23,14 +26,7 @@ class UserForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.userId) {
-            const  id = parseInt(nextProps.match.params.userId,10);
-            const user =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return user ? user : UserForm.defaultUser;
-        }
-        return UserForm.defaultUser;
+        return deriveById(nextProps, UserForm.defaultUser);
     }
 
     onSubmit(e) {
@@ -84,9 +80,11 @@ class UserForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+            <FormOverlay history={this.props.history}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>First Name</Label>
                     <input type="text" id="first-name" className="pt-input" value={this.state.firstName} onChange={this.changeHandler.bind(this)}/>
                     <Label>Last Name</Label>
@@ -119,8 +117,8 @@ class UserForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
-            </div>
+                </AdminForm>
+            </FormOverlay>
         )
     }
 

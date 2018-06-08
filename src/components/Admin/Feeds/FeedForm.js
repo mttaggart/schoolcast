@@ -6,6 +6,9 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import { deriveById } from "../../../lib/functions";
+import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
 
 class FeedForm extends React.Component {
     constructor(props) {
@@ -19,14 +22,7 @@ class FeedForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.feedId) {
-            const  id = parseInt(nextProps.match.params.feedId,10);
-            const feed =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return feed ? feed : FeedForm.defaultFeed;
-        }
-        return FeedForm.defaultFeed;
+        return deriveById(nextProps, FeedForm.defaultFeed);
     }
 
     onSubmit(e) {
@@ -61,9 +57,11 @@ class FeedForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+            <FormOverlay history={this.props.history}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>Feed Name</Label>
                     <input className="pt-input" type="text" id="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <Label>Description</Label>
@@ -88,8 +86,8 @@ class FeedForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
-            </div>
+                </AdminForm>
+            </FormOverlay>
         )
     }
 

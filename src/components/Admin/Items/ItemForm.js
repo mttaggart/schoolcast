@@ -7,7 +7,9 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
-
+import { deriveById } from "../../../lib/functions";
+import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
 
 class ItemForm extends React.Component {
     constructor(props) {
@@ -25,14 +27,7 @@ class ItemForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.itemId) {
-            const  id = parseInt(nextProps.match.params.itemId,10);
-            const item =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return item ? item : ItemForm.defaultItem;
-        }
-        return ItemForm.defaultItem;
+        return deriveById(nextProps, prevState, ItemForm.defaultItem);
     }
 
     onSubmit(e) {
@@ -79,11 +74,19 @@ class ItemForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+            <FormOverlay history={this.props.history}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>Item Name</Label>
-                    <input className="pt-input" type="text" id="item-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
+                    <input 
+                        className="pt-input" 
+                        type="text" 
+                        id="item-name" 
+                        value={this.state.name} 
+                        onChange={this.changeHandler.bind(this)}
+                    />
                     <div className="pt-select">
                         <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
                             {this.props.feeds.map( (feed, idx) => {
@@ -119,8 +122,8 @@ class ItemForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
-            </div>
+                </AdminForm>
+            </FormOverlay>
         )
     }
 

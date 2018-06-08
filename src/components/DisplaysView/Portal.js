@@ -21,14 +21,17 @@ class Portal extends React.Component {
     }
 
     componentDidMount() {
-        this.updateItem();
+        if(this.props.items.length > 0) this.updateItem();
     }
 
     componentDidUpdate() {
-        this.updateItem();
+        if(this.props.items.length > 0) this.updateItem();
     }
 
     render() {
+
+        if(this.props.items.length === 0) return null;
+
         const currentItem = this.props.items[this.state.currentIdx];
         const portal = this.props.portal;
         const customCSS = JSON.parse(portal.customCSS);

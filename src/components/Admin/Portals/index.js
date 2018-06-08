@@ -23,7 +23,7 @@ const Portals = ({authenticated, token, match, getPortals, getPortalTypes, getTr
         >
             
             <Route 
-                path={`${match.path}/edit/:portalId`}
+                path={`${match.path}/edit/:id`}
                 render={props => <PortalForm 
                     {...props}
                     submitHandler={updatePortal}

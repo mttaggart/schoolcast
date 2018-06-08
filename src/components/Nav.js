@@ -8,11 +8,31 @@ import {
     NavbarDivider, 
     NavbarHeading 
 } from "@blueprintjs/core";
+import { StyleSheet, css } from "aphrodite";
 import AdminMenu from "./AdminMenu";
 
-const Nav = ({authenticated,logout,user,history}) => {
+const displayNavStyle = StyleSheet.create({
+    displayNav: {
+        opacity: 0,
+        transition: "opacity 0.3s",
+        ":hover": {
+            opacity: 1
+        }
+    }
+});
+
+// Make the NavBar transparent when actually viewing a display
+const viewingDisplay = (path) => {
+    const displayPath = /\/displays\/\d+/;
+    return displayPath.test(path);
+}
+
+const Nav = ({authenticated,logout,user}) => {
     return (
-        <Navbar>
+        <Navbar 
+            className={viewingDisplay(window.location.pathname) 
+            ? css(displayNavStyle.displayNav) : ""}
+        >
             <NavbarGroup>
             <NavbarHeading>SchoolCast</NavbarHeading>
             <NavbarDivider />

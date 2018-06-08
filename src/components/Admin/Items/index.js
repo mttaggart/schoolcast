@@ -23,7 +23,7 @@ const Items = ({authenticated, token, match, getItems, getFeeds, addItem, update
         >
             
             <Route 
-                path={`${match.path}/edit/:itemId`}
+                path={`${match.path}/edit/:id`}
                 render={props => <ItemForm 
                     {...props}
                     submitHandler={updateItem}

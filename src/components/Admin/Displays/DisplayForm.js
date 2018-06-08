@@ -1,12 +1,15 @@
 import React from "react";
 import DisplayPreview from "./DisplayPreview";
-import { 
+import {
     Label, 
     TextArea, 
     Button, 
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
+import { deriveById } from "../../../lib/functions";
 
 class DisplayForm extends React.Component {
     constructor(props) {
@@ -21,14 +24,7 @@ class DisplayForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.displayId) {
-            const  id = parseInt(nextProps.match.params.displayId,10);
-            const display =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return display ? display : DisplayForm.defaultDisplay;
-        }
-        return DisplayForm.defaultDisplay;
+        return deriveById(nextProps, DisplayForm.defaultDisplay);
     }
 
     onSubmit(e) {
@@ -65,10 +61,13 @@ class DisplayForm extends React.Component {
     }
 
     render() {
+        console.log(this.props.history);
         return (
-            <div>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+            <FormOverlay history={this.props.history}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>Display Name</Label>
                     <input className="pt-input" type="text" id="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <Label>Display Description</Label>
@@ -96,13 +95,13 @@ class DisplayForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
+                </AdminForm>
                 <h4>Preview</h4>
                 <DisplayPreview 
                     token={this.props.token} 
                     display={this.state} 
                 />
-            </div>
+            </FormOverlay>
         )
     }
 

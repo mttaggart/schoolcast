@@ -7,6 +7,9 @@ import {
     ButtonGroup, 
     Intent 
 } from "@blueprintjs/core";
+import { deriveById } from "../../../lib/functions";
+import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
 
 class PortalForm extends React.Component {
     constructor(props) {
@@ -29,14 +32,7 @@ class PortalForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.match.params.portalId) {
-            const  id = parseInt(nextProps.match.params.portalId,10);
-            const portal =  nextProps.assets.find(asset => {
-                return asset.id === id;
-            });
-            return portal ? portal : PortalForm.defaultPortal;
-        }
-        return PortalForm.defaultPortal;
+        return deriveById(nextProps, PortalForm.defaultPortal);
     }
 
     onSubmit(e) {
@@ -100,9 +96,11 @@ class PortalForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+            <FormOverlay history={this.props.history}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>Portal Name</Label>
                     <input className="pt-input" type="text" id="portal-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <Label>Portal Type</Label>
@@ -170,8 +168,8 @@ class PortalForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
-            </div>
+                </AdminForm>
+            </FormOverlay>
         )
     }
 
