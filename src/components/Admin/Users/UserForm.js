@@ -26,7 +26,7 @@ class UserForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        return deriveById(nextProps, UserForm.defaultUser);
+        return deriveById(nextProps, prevState, UserForm.defaultUser);
     }
 
     onSubmit(e) {

@@ -24,7 +24,7 @@ class DisplayForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        return deriveById(nextProps, DisplayForm.defaultDisplay);
+        return deriveById(nextProps, prevState, DisplayForm.defaultDisplay);
     }
 
     onSubmit(e) {

@@ -32,7 +32,7 @@ class PortalForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        return deriveById(nextProps, PortalForm.defaultPortal);
+        return deriveById(nextProps, prevState, PortalForm.defaultPortal);
     }
 
     onSubmit(e) {
