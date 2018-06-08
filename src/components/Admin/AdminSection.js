@@ -6,8 +6,9 @@ import AddCard from "./AddCard";
 
 const styles = {
     classContainer: {
-        display: "flex",
-        justifyContent: "flex-start"
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        marginBottom: "5px"
     }
 }
 

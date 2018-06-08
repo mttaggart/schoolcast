@@ -22,7 +22,7 @@ class FeedForm extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        return deriveById(nextProps, FeedForm.defaultFeed);
+        return deriveById(nextProps, prevState, FeedForm.defaultFeed);
     }
 
     onSubmit(e) {

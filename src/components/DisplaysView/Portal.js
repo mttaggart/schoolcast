@@ -1,4 +1,5 @@
 import React from "react";
+import { assignPortalCss } from "../../lib/functions";
 
 class Portal extends React.Component {
 
@@ -34,26 +35,45 @@ class Portal extends React.Component {
 
         const currentItem = this.props.items[this.state.currentIdx];
         const portal = this.props.portal;
-        const customCSS = JSON.parse(portal.customCSS);
-        const styles = Object.assign(
-            {
-                verticalAlign: "middle",
-                textAlign: "center",
-            },
-            {
-                position: "absolute",
-                top: `${window.innerHeight * (portal.top / 100)}px`,
-                left: `${window.innerWidth * (portal.left / 100)}px`,
-                width: `${window.innerWidth * (portal.width / 100)}px`,
-                height: `${window.innerHeight * (portal.height / 100)}px`,
-            },
-            customCSS,
-        );
-        return (
-            <div style={styles}>
-                <p>{currentItem.content}</p>
-            </div>
-        )
+        const styles = assignPortalCss(portal);
+
+        // Different things for different PortalTypes
+        switch(portal.PortalType.name) {
+            case "Text":
+                return (
+                    <div style={styles}>
+                        <p>{currentItem.content}</p>
+                    </div>
+                );
+            case "Image":
+            return (
+                <div style={styles}>
+                    <img width="100%" src={currentItem.content} />
+                </div>
+            );
+            case "Embed":
+            return (
+                <iframe style={styles} src={currentItem.content} />
+            );
+            case "Video":
+            return (
+
+                <iframe 
+                    style={styles}
+                    src={`${currentItem.content}&autoplay=1`}
+                    allow="autoplay"
+                    frameBorder="0"
+                />
+            );
+            default:
+                return (
+                    <div style={styles}>
+                        <p>{currentItem.content}</p>
+                    </div>
+                );
+        }
+
+        
         
     }
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, Elevation } from "@blueprintjs/core";
 
 const styles = {
-    width: "20%",
+    width: "100%",
     textAlign: "center"
 }
 
