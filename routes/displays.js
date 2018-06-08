@@ -5,7 +5,10 @@ function getAndSendDisplays(res) {
   models.Display.findAll({
     where: {},
     include: [
-      models.Portal
+      {
+        model: models.Portal,
+        include: [models.PortalType]
+      }
     ]
   })
   .then( displays => {
