@@ -7,7 +7,10 @@ function getAndSendDisplays(res) {
     include: [
       {
         model: models.Portal,
-        include: [models.PortalType]
+        include: [
+          models.PortalType,
+          models.TransitionType
+        ]
       }
     ]
   })
