@@ -8,6 +8,7 @@ import {
     Intent 
 } from "@blueprintjs/core";
 import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
 import { deriveById } from "../../../lib/functions";
 
 class DisplayForm extends React.Component {
@@ -63,8 +64,10 @@ class DisplayForm extends React.Component {
         console.log(this.props.history);
         return (
             <FormOverlay history={this.props.history}>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>Display Name</Label>
                     <input className="pt-input" type="text" id="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <Label>Display Description</Label>
@@ -92,7 +95,7 @@ class DisplayForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
+                </AdminForm>
                 <h4>Preview</h4>
                 <DisplayPreview 
                     token={this.props.token} 

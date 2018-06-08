@@ -8,6 +8,7 @@ import {
 } from "@blueprintjs/core";
 import { deriveById } from "../../../lib/functions";
 import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
 
 class FeedForm extends React.Component {
     constructor(props) {
@@ -57,8 +58,10 @@ class FeedForm extends React.Component {
     render() {
         return (
             <FormOverlay history={this.props.history}>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>Feed Name</Label>
                     <input className="pt-input" type="text" id="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
                     <Label>Description</Label>
@@ -83,7 +86,7 @@ class FeedForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
+                </AdminForm>
             </FormOverlay>
         )
     }

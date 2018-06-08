@@ -9,6 +9,7 @@ import {
 } from "@blueprintjs/core";
 import { deriveById } from "../../../lib/functions";
 import FormOverlay from "../FormOverlay";
+import AdminForm from "../AdminForm";
 
 class ItemForm extends React.Component {
     constructor(props) {
@@ -74,8 +75,10 @@ class ItemForm extends React.Component {
     render() {
         return (
             <FormOverlay history={this.props.history}>
-                <h4>{this.props.title}</h4>
-                <form onSubmit={this.onSubmit.bind(this)}>
+                <AdminForm 
+                    onSubmit={this.onSubmit.bind(this)}
+                    title={this.props.title}
+                >
                     <Label>Item Name</Label>
                     <input 
                         className="pt-input" 
@@ -119,7 +122,7 @@ class ItemForm extends React.Component {
                             : null
                         }
                     </ButtonGroup>
-                </form>
+                </AdminForm>
             </FormOverlay>
         )
     }
