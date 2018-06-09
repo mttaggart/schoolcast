@@ -10,8 +10,22 @@ const Display = ({displays,items,match}) => {
         return parseInt(match.params.displayId) === display.id;
     });
 
+    const customCSS = display.customCSS ? JSON.parse(display.customCSS) : {};
+
+    const styles = Object.assign(
+        {},
+        customCSS,
+        {
+            width: "100vw", 
+            height: "100vh", 
+            position: "absolute",
+            top: 0,
+            left: 0
+        }
+    );
+
     return (
-        <div>
+        <div style={styles}>
             {
                 display ?
                 display.Portals.map( (portal, idx) => {
