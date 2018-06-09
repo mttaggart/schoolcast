@@ -8,7 +8,7 @@ const styles = {
     classContainer: {
         display: "grid",
         gridTemplateColumns: "1fr 1fr 1fr",
-        marginBottom: "5px"
+        margin: "5px 0px"
     }
 }
 
@@ -30,6 +30,7 @@ class AdminSection extends React.Component {
         return (
             <div>
                 <h3>{this.props.heading}</h3>
+                {this.props.callout}
                 <div style={styles.classContainer}>
                 {
                     this.props.assets ? 

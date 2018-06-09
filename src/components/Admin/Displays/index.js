@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { Callout } from "@blueprintjs/core";
 import AdminSection from "../AdminSection";
 import DisplayForm from "./DisplayForm";
 import ListItem from "../ListItem";
@@ -16,10 +17,19 @@ const Displays = ({
     portals, 
 }) => {
 
+    const callout = 
+        <Callout title="About Displays">
+            <p>
+                Displays are the composed products in SchoolCast. On them, you'll see <b>Items</b> appear inside <b>Portals</b>, pulling
+                data from their assigned <b>Feeds</b>.
+            </p>
+        </Callout>
+
     return (
         <AdminSection 
             path="displays"
             heading="Displays"
+            callout={callout}
             authenticated={authenticated}
             assets={displays}
             getAssets={getDisplays}

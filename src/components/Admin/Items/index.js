@@ -1,15 +1,26 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { Callout } from "@blueprintjs/core";
 import AdminSection from "../AdminSection";
 import ItemForm from "./ItemForm";
 import ListItem from "../ListItem";
 
 const Items = ({authenticated, token, match, getItems, getFeeds, addItem, updateItem, deleteItem, items, feeds}) => {
 
+    const callout = 
+        <Callout title="About Items">
+            <p>
+                Items are single objects to display inside of <b>Portals</b>, 
+                which live on parts of a <b>Display</b>. Items are connected 
+                to <b>Feeds</b>, indicating what kind of content they are.
+            </p>
+        </Callout>
+
     return (
         <AdminSection 
             path="items"
             heading="Items"
+            callout={callout}
             authenticated={authenticated}
             assets={items}
             getAssets={(token) => {getItems(token); getFeeds(token);}}

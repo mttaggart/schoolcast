@@ -1,15 +1,26 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import { Callout } from "@blueprintjs/core";
 import AdminSection from "../AdminSection";
 import UserForm from "./UserForm";
 import ListItem from "../ListItem";
 
 const Users = ({authenticated, token, match, getUsers, addUser, updateUser, deleteUser, users}) => {
 
+    const callout = 
+        <Callout title="About Users">
+            <p>
+                There are two types of users in SchoolCast: admins and 
+                non-admins. Non-admins can view displays, while admins can 
+                make changes to them.
+            </p>
+        </Callout>
+
     return (
         <AdminSection 
             path="users"
             heading="Users"
+            callout={callout}
             authenticated={authenticated}
             assets={users}
             getAssets={getUsers}
