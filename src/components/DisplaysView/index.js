@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect, Link, Route } from "react-router-dom";
+import { Card, Elevation } from "@blueprintjs/core";
 import Display from "./Display";
 
 class DisplaysView extends React.Component {
@@ -14,6 +15,17 @@ class DisplaysView extends React.Component {
 
     render() {
 
+        const styles = {
+            classContainer: {
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                marginBottom: "5px"
+            },
+            displayCard: {
+                textAlign: "center"
+            }
+        }
+
         if(!this.props.authenticated) {
             return (
                 <Redirect to="/" from="/displays" />
@@ -23,21 +35,26 @@ class DisplaysView extends React.Component {
         return (
             <div>
                 <h2>Displays</h2>
-                <ul>
+                <div style={styles.classContainer}>
                 {
                     this.props.displays ?
                     this.props.displays.map( (display, idx) => {
                         return (
-                            <li key={idx}>
+                            <Card 
+                                elevation={Elevation.ONE} 
+                                interactive={true}
+                                key={idx}
+                                style={styles.displayCard}
+                            >
                                 <Link to={`${this.props.match.path}/${display.id}`}>
                                     {display.name}
                                 </Link>
-                            </li>
+                            </Card>
                         )
                     })
                     : null
                 }
-                </ul>
+                </div>
                 <Route 
                     path={`${this.props.match.path}/:displayId`} 
                     render={ props =>
