@@ -1,73 +1,107 @@
 import React from "react";
 import { assignPortalCss } from "../../lib/functions";
+import PortalTypes from "./PortalTypes";
+import { getTransition } from "./TransitionTypes";
 
 class Portal extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            currentIdx: 0 // start with first item
+            currentIdx: 0, // start with first item,
+            entered: true
         }
     }
 
-    updateItem() {
+
+    transitionItem() {
         let nextIdx;
         if (this.state.currentIdx === this.props.items.length - 1) {
             nextIdx = 0;  // Reset to beginning
         } else {
             nextIdx = this.state.currentIdx + 1; // Advance by one
         }
-        const timeout = this.props.items[this.state.currentIdx].duration;
-        setTimeout(() => this.setState({currentIdx: nextIdx}),timeout);
-    }
-
-    componentDidMount() {
-        if(this.props.items.length > 0) this.updateItem();
-    }
-
-    componentDidUpdate() {
-        if(this.props.items.length > 0) this.updateItem();
+        this.setState({entered: false}, () => {
+            setTimeout(() =>    
+                this.setState({currentIdx: nextIdx, entered: true}),
+                this.props.portal.transitionSpeed
+            )
+        })
     }
 
     render() {
-
         if(this.props.items.length === 0) return null;
 
         const currentItem = this.props.items[this.state.currentIdx];
         const portal = this.props.portal;
-        const styles = assignPortalCss(portal);
+        const PortalTransition = getTransition(portal);
 
         // Different things for different PortalTypes
         switch(portal.PortalType.name) {
             case "Text":
                 return (
-                    <div style={styles}>
-                        <p>{currentItem.content}</p>
-                    </div>
+                    <PortalTransition 
+                        in={this.state.entered}
+                        duration={this.props.items[this.state.currentIdx].duration}
+                        transitionSpeed={portal.transitionSpeed}
+                        transitionTrigger={this.transitionItem.bind(this)}
+                        portal={portal}
+                    >
+                        <PortalTypes.TextPortal 
+                            portal={portal}
+                            item={currentItem}
+                        />
+                    </PortalTransition>
                 );
             case "Image":
             return (
-                <div style={styles}>
-                    <img width="100%" src={currentItem.content} />
-                </div>
+                <PortalTransition
+                    in={this.state.entered}
+                    duration={this.props.items[this.state.currentIdx].duration}
+                    transitionSpeed={portal.transitionSpeed}
+                    transitionTrigger={this.transitionItem.bind(this)}
+                    portal={portal}
+                >
+                    <PortalTypes.ImagePortal
+                        portal={portal}
+                        item={currentItem}
+                    />
+                </PortalTransition>
+
             );
             case "Embed":
             return (
-                <iframe style={styles} src={currentItem.content} />
+                <PortalTransition
+                    in={this.state.entered}
+                    duration={this.props.items[this.state.currentIdx].duration}
+                    transitionSpeed={portal.transitionSpeed}
+                    transitionTrigger={this.transitionItem.bind(this)}
+                    portal={portal}
+                >
+                    <PortalTypes.EmbedPortal 
+                        portal={portal}
+                        item={currentItem}
+                    />
+                </PortalTransition>
             );
             case "Video":
             return (
-
-                <iframe 
-                    style={styles}
-                    src={`${currentItem.content}&autoplay=1`}
-                    allow="autoplay"
-                    frameBorder="0"
-                />
+                <PortalTransition
+                    in={this.state.entered}
+                    duration={this.props.items[this.state.currentIdx].duration}
+                    transitionSpeed={portal.transitionSpeed}
+                    transitionTrigger={this.transitionItem.bind(this)}
+                    portal={portal}
+                >
+                    <PortalTypes.VideoPortal 
+                        portal={portal}
+                        item={currentItem}
+                    />
+                </PortalTransition>
             );
             default:
                 return (
-                    <div style={styles}>
+                    <div style={assignPortalCss(portal)}>
                         <p>{currentItem.content}</p>
                     </div>
                 );
