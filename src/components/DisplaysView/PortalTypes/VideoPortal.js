@@ -9,6 +9,7 @@ const VideoPortal = ({portal, item}) => {
             src={`${item.content}&autoplay=1`}
             allow="autoplay"
             frameBorder="0"
+            title="video-portal"
         />
     )
 }

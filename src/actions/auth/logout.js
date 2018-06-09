@@ -3,7 +3,7 @@ const apiEndpoint = "/api/auth/logout";
 
 export default function logout(token) {
     return (dispatch) => {
-        dispatch(logout)
+        dispatch(logoutAttempted())
         const logoutRequest = new Request(
             apiEndpoint,
             {

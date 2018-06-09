@@ -1,7 +1,5 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
-import { Button, Intent } from "@blueprintjs/core";
-import ListItem from "./ListItem";
+import { Redirect } from "react-router-dom";
 import AddCard from "./AddCard";
 
 const styles = {

@@ -3,7 +3,6 @@ import styles from "./App.css";
 import { 
   BrowserRouter as Router,
   Route,
-  Link
 } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 import Login from "./Login";
@@ -22,7 +21,7 @@ class App extends React.Component {
   }
 
   render() {
-    const history = createBrowserHistory()
+    const history = createBrowserHistory();
     return (
       <Router>
         <div style={styles}>

@@ -7,7 +7,7 @@ const Display = ({displays,items,match}) => {
     const now = moment().tz("America/Los_Angeles");
 
     const display = displays.find(display => {
-        return parseInt(match.params.displayId) === display.id;
+        return parseInt(match.params.displayId, 10) === display.id;
     });
 
     const customCSS = display.customCSS ? JSON.parse(display.customCSS) : {};

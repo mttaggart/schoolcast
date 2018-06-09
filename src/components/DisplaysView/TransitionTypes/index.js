@@ -13,7 +13,7 @@ export const getTransition = (portal) => {
         case "SlideUp":
             return SlideUp;
         case "SlideLeft":
-            return SlideUp;
+            return SlideLeft;
         case "SlideRight":
             return SlideRight;
         default:

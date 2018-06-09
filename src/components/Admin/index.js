@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Link, Redirect} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import DisplaysContainer from "../../containers/DisplaysContainer";
 import FeedsContainer from "../../containers/FeedsContainer";
 import ItemsContainer from "../../containers/ItemsContainer";

@@ -5,7 +5,7 @@ const ImagePortal = ({portal, item}) => {
     const styles = assignPortalCss(portal);
     return (
         <div style={styles}>
-            <img width="100%" src={item.content} />
+            <img alt={item.content} width="100%" src={item.content} />
         </div>
     )
 }

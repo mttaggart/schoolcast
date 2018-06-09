@@ -4,7 +4,7 @@ import { assignPortalCss } from "../../../lib/functions";
 const EmbedPortal = ({portal, item}) => {
     const styles = assignPortalCss(portal);
     return (
-        <iframe style={styles} src={item.content} />
+        <iframe title="embed-portal" style={styles} src={item.content} />
     )
 }
 
