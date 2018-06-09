@@ -10,7 +10,7 @@ const Feeds = ({authenticated, token, match, getFeeds, addFeed, updateFeed, dele
     const callout = 
         <Callout title="About Feeds">
             <p>
-                Feeds are channels of information. Each <b>Portal</b>
+                Feeds are channels of information. Each <b>Portal </b>
                 is attached to a single Feed, but you can make several
                 Portals connected to the same Feed.
             </p>
