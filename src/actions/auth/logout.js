@@ -26,6 +26,7 @@ function logoutAttempted() {
 }
 
 function logoutSuccessful() {
+    window.sessionStorage.removeItem("token");
     return {
         type: actionTypes.LOGOUT_SUCCESSFUL
     }

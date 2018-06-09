@@ -28,6 +28,7 @@ class App extends React.Component {
           <Nav 
             user={this.props.user} 
             login={this.props.login}
+            logout={this.props.logout}
             authenticated={this.props.authenticated}
           />
           <Route exact path="/" component={Home} />
