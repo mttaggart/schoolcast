@@ -45,6 +45,7 @@ class Portal extends React.Component {
                         duration={this.props.items[this.state.currentIdx].duration}
                         transitionSpeed={portal.transitionSpeed}
                         transitionTrigger={this.transitionItem.bind(this)}
+                        portal={portal}
                     >
                         <PortalTypes.TextPortal 
                             portal={portal}
@@ -59,6 +60,7 @@ class Portal extends React.Component {
                     duration={this.props.items[this.state.currentIdx].duration}
                     transitionSpeed={portal.transitionSpeed}
                     transitionTrigger={this.transitionItem.bind(this)}
+                    portal={portal}
                 >
                     <PortalTypes.ImagePortal
                         portal={portal}
@@ -74,6 +76,7 @@ class Portal extends React.Component {
                     duration={this.props.items[this.state.currentIdx].duration}
                     transitionSpeed={portal.transitionSpeed}
                     transitionTrigger={this.transitionItem.bind(this)}
+                    portal={portal}
                 >
                     <PortalTypes.EmbedPortal 
                         portal={portal}
@@ -88,6 +91,7 @@ class Portal extends React.Component {
                     duration={this.props.items[this.state.currentIdx].duration}
                     transitionSpeed={portal.transitionSpeed}
                     transitionTrigger={this.transitionItem.bind(this)}
+                    portal={portal}
                 >
                     <PortalTypes.VideoPortal 
                         portal={portal}
