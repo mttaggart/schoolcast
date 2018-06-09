@@ -13,7 +13,6 @@ class Portal extends React.Component {
         }
     }
 
-
     transitionItem() {
         let nextIdx;
         if (this.state.currentIdx === this.props.items.length - 1) {
