@@ -104,7 +104,7 @@ class DisplayForm extends React.Component {
                         }
                     </ButtonGroup>
                 </AdminForm>
-                <h4>Preview</h4>
+                <h4 style={{color: "white"}}>Preview</h4>
                 <DisplayPreview 
                     token={this.props.token} 
                     display={this.state} 
