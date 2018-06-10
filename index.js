@@ -41,5 +41,5 @@ app.use(routes.items);
 
 
 app.listen(app.get("port"), function() {
-  console.log("Broadcasting on " + app.get("port"));
+  console.log(`Broadcasting on  ${app.get("port")} in ${process.env.NODE_ENV}`);
 });
