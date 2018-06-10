@@ -1,7 +1,5 @@
 import React from "react";
 import { 
-    Label, 
-    TextArea, 
     Button, 
     ButtonGroup, 
     Intent 
@@ -9,6 +7,10 @@ import {
 import { deriveById } from "../../../lib/functions";
 import FormOverlay from "../FormOverlay";
 import AdminForm from "../AdminForm";
+import {
+    TextInput,
+    BigText,
+} from "../../FormControls";
 
 class FeedForm extends React.Component {
     constructor(props) {
@@ -58,17 +60,22 @@ class FeedForm extends React.Component {
     render() {
         return (
             <FormOverlay history={this.props.history}>
-                <AdminForm 
+                <AdminForm
                     onSubmit={this.onSubmit.bind(this)}
                     title={this.props.title}
                 >
-                    <Label>Feed Name</Label>
-                    <input className="pt-input" type="text" id="feed-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Description</Label>
-                    <TextArea 
-                        id="description" 
-                        value={this.state.description} 
-                        onChange={this.changeHandler.bind(this)}
+                    <TextInput 
+                        id="feed-name" 
+                        label="Feed Name"
+                        value={this.state.name}
+                        changeHandler={this.changeHandler.bind(this)}
+
+                    />
+                    <BigText 
+                        id="description"
+                        label="Description"
+                        value={this.state.description}
+                        changeHandler={this.changeHandler.bind(this)}
                     />
                     <ButtonGroup large={true}>
                         <Button 

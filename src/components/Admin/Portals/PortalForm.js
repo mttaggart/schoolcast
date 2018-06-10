@@ -1,7 +1,5 @@
 import React from "react";
 import { 
-    Label, 
-    TextArea, 
     Button, 
     ButtonGroup, 
     Intent 
@@ -9,6 +7,11 @@ import {
 import { deriveById } from "../../../lib/functions";
 import FormOverlay from "../FormOverlay";
 import AdminForm from "../AdminForm";
+import {
+    TextInput,
+    BigText,
+    Select
+} from "../../FormControls";
 
 class PortalForm extends React.Component {
     constructor(props) {
@@ -101,56 +104,90 @@ class PortalForm extends React.Component {
                     onSubmit={this.onSubmit.bind(this)}
                     title={this.props.title}
                 >
-                    <Label>Portal Name</Label>
-                    <input className="pt-input" type="text" id="portal-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Portal Type</Label>
-                    <div className="pt-select">
-                        <select id="portal-type" value={this.state.PortalTypeId} onChange={this.changeHandler.bind(this)}>
-                            {this.props.portalTypes.map( (portalType, idx) => {
-                                return <option key={idx} value={portalType.id}>{portalType.name}</option>
-                            })}
-                        </select>
-                    </div>
-                    <Label>Transition Type</Label>
-                    <div className="pt-select">
-                        <select id="transition-type" value={this.state.TransitionTypeId} onChange={this.changeHandler.bind(this)}>
-                            {this.props.transitionTypes.map( (transitionType, idx) => {
-                                return <option key={idx} value={transitionType.id}>{transitionType.name}</option>
-                            })}
-                        </select>
-                    </div>
-                    <Label>Display</Label>
-                    <div className="pt-select">
-                        <select id="display" value={this.state.DisplayId} onChange={this.changeHandler.bind(this)}>
-                            {this.props.displays.map( (display, idx) => {
-                                return <option key={idx} value={display.id}>{display.name}</option>
-                            })}
-                        </select>
-                    </div>
-                    <Label>Feed</Label>
-                    <div className="pt-select">
-                        <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
-                            {this.props.feeds.map( (feed, idx) => {
-                                return <option key={idx} value={feed.id}>{feed.name}</option>
-                            })}
-                        </select>
-                    </div>
-                    <Label>Top</Label>
-                    <input className="pt-input" type="number" id="top" min="0" max="100" value={this.state.top} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Left</Label>
-                    <input className="pt-input" type="number" id="left" min="0" max="100" value={this.state.left} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Height</Label>
-                    <input className="pt-input" type="number" id="height" min="0" max="100" value={this.state.height} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Width</Label>
-                    <input className="pt-input" type="number" id="width" min="0" max="100" value={this.state.width} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Transition Speed</Label>
-                    <input className="pt-input" type="number" id="transition-speed" min="0" max="5000" value={this.state.transitionSpeed} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Custom CSS</Label>
-                    <TextArea 
-                        id="custom-css" 
-                        value={this.state.customCSS} 
-                        onChange={this.changeHandler.bind(this)}
-                        className="pt-fill"
+                    <TextInput
+                        id="portal-name"
+                        label="Portal Name"
+                        value={this.state.name}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <Select 
+                        id="portal-type"
+                        label="Portal Type"
+                        value={this.state.PortalTypeId}
+                        changeHandler={this.changeHandler.bind(this)}
+                        options={this.props.portalTypes}
+                    />
+                    <Select 
+                        id="transition-type"
+                        label="Transition Type"
+                        value={this.state.TransitionTypeId}
+                        changeHandler={this.changeHandler.bind(this)}
+                        options={this.props.transitionTypes}
+                    />
+                    <Select 
+                        id="display"
+                        label="Display"
+                        value={this.state.DisplayId}
+                        changeHandler={this.changeHandler.bind(this)}
+                        options={this.props.displays}
+                    />
+                    <Select 
+                        id="feed"
+                        label="Feed"
+                        value={this.state.FeedId}
+                        changeHandler={this.changeHandler.bind(this)}
+                        options={this.props.feeds}
+                    />
+                    <TextInput
+                        type="number" 
+                        id="top"
+                        label="Top"
+                        min="0"
+                        max="100"
+                        value={this.state.top}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="number" 
+                        id="left"
+                        label="Left"
+                        min="0"
+                        max="100"
+                        value={this.state.left}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="number" 
+                        id="height"
+                        label="Height"
+                        min="0"
+                        max="100"
+                        value={this.state.height}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="number" 
+                        id="width"
+                        label="Width"
+                        min="0"
+                        max="100"
+                        value={this.state.width}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="number" 
+                        id="transition-speed"
+                        label="Width"
+                        min="0"
+                        max="5000"
+                        value={this.state.transitionSpeed}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <BigText 
+                        id="custom-css"
+                        label="Custom CSS"
+                        value={this.state.customCSS}
+                        changeHandler={this.changeHandler.bind(this)}
                     />
                     <ButtonGroup large={true}>
                         <Button 

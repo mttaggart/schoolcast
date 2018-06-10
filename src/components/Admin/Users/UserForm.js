@@ -1,6 +1,5 @@
 import React from "react";
 import { 
-    Label, 
     Switch, 
     Button, 
     ButtonGroup, 
@@ -9,6 +8,9 @@ import {
 import { deriveById } from "../../../lib/functions";
 import FormOverlay from "../FormOverlay";
 import AdminForm from "../AdminForm";
+import {
+    TextInput,
+} from "../../FormControls";
 
 class UserForm extends React.Component {
     constructor(props) {
@@ -85,16 +87,39 @@ class UserForm extends React.Component {
                     onSubmit={this.onSubmit.bind(this)}
                     title={this.props.title}
                 >
-                    <Label>First Name</Label>
-                    <input type="text" id="first-name" className="pt-input" value={this.state.firstName} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Last Name</Label>
-                    <input type="text" id="last-name" className="pt-input" value={this.state.lastName} onChange={this.changeHandler.bind(this)} />
-                    <Label>Email</Label>
-                    <input type="email" id="email" className="pt-input" value={this.state.email} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Password</Label>
-                    <input type="password" id="password" className="pt-input" value={this.state.password} onChange={this.changeHandler.bind(this)} />
-                    <Label>Password Confirm</Label>
-                    <input type="password" id="password-confirm" className="pt-input" value={this.state.passwordConfirm} onChange={this.changeHandler.bind(this)} />
+                    <TextInput
+                        id="first-name"
+                        label="First Name"
+                        value={this.state.firstName}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        id="last-name"
+                        label="Last Name"
+                        value={this.state.lastName}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="email"
+                        id="email"
+                        label="Email"
+                        value={this.state.email}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="password"
+                        id="password"
+                        label="Password"
+                        value={this.state.password}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="password"
+                        id="password-confirm"
+                        label="Password"
+                        value={this.state.passwordConfirm}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
                     <Switch 
                         id="is-admin" 
                         checked={this.state.isAdmin} 
