@@ -1,8 +1,6 @@
 import React from "react";
 import moment from "moment-timezone";
 import { 
-    Label, 
-    TextArea, 
     Button, 
     ButtonGroup, 
     Intent 
@@ -10,6 +8,11 @@ import {
 import { deriveById } from "../../../lib/functions";
 import FormOverlay from "../FormOverlay";
 import AdminForm from "../AdminForm";
+import {
+    TextInput,
+    BigText,
+    Select,
+} from "../../FormControls";
 
 class ItemForm extends React.Component {
     constructor(props) {
@@ -79,33 +82,48 @@ class ItemForm extends React.Component {
                     onSubmit={this.onSubmit.bind(this)}
                     title={this.props.title}
                 >
-                    <Label>Item Name</Label>
-                    <input 
-                        className="pt-input" 
-                        type="text" 
-                        id="item-name" 
-                        value={this.state.name} 
-                        onChange={this.changeHandler.bind(this)}
+                    <TextInput
+                        id="item-name"
+                        label="Item Name"
+                        value={this.state.name}
+                        changeHandler={this.changeHandler.bind(this)}
                     />
-                    <div className="pt-select">
-                        <select id="feed" value={this.state.FeedId} onChange={this.changeHandler.bind(this)}>
-                            {this.props.feeds.map( (feed, idx) => {
-                                return <option key={idx} value={feed.id}>{feed.name}</option>
-                            })}
-                        </select>
-                    </div>
-                    <Label>Item Content</Label>
-                    <TextArea 
-                        id="item-content" 
-                        value={this.state.content} 
-                        onChange={this.changeHandler.bind(this)} 
+                    <Select 
+                        id="feed"
+                        label="Feed"
+                        value={this.state.FeedId}
+                        changeHandler={this.changeHandler.bind(this)}
+                        options={this.props.feeds}
                     />
-                    <Label>Item Start Date</Label>
-                    <input className="pt-input" type="date" id="item-start" value={this.state.startDate} onChange={this.changeHandler.bind(this)} />
-                    <Label>Item End Date</Label>
-                    <input className="pt-input" type="date" id="item-end" value={this.state.endDate} onChange={this.changeHandler.bind(this)} />
-                    <Label>Duration</Label>
-                    <input className="pt-input" type="number" id="duration" min="0" max="3600000" value={this.state.duration} onChange={this.changeHandler.bind(this)}/>
+                    <BigText 
+                        id="item-content"
+                        label="Item Content"
+                        value={this.state.content}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="date"
+                        id="item-start"
+                        label="Item Start Date"
+                        value={this.state.startDate}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="date"
+                        id="item-end"
+                        label="Item End Date"
+                        value={this.state.endDate}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        type="number"
+                        id="duration"
+                        label="Duration"
+                        min="0"
+                        max="3600000"
+                        value={this.state.duration}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
                     <ButtonGroup large={true}>
                         <Button 
                             type="submit" 

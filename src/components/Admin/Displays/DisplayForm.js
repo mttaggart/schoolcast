@@ -1,8 +1,6 @@
 import React from "react";
 import DisplayPreview from "./DisplayPreview";
 import {
-    Label, 
-    TextArea, 
     Button, 
     ButtonGroup, 
     Intent 
@@ -10,6 +8,10 @@ import {
 import FormOverlay from "../FormOverlay";
 import AdminForm from "../AdminForm";
 import { deriveById } from "../../../lib/functions";
+import {
+    TextInput,
+    BigText,
+} from "../../FormControls";
 
 class DisplayForm extends React.Component {
     constructor(props) {
@@ -68,16 +70,23 @@ class DisplayForm extends React.Component {
                     onSubmit={this.onSubmit.bind(this)}
                     title={this.props.title}
                 >
-                    <Label>Display Name</Label>
-                    <input className="pt-input" type="text" id="display-name" value={this.state.name} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Display Description</Label>
-                    <input className="pt-input" type="text" id="display-description" value={this.state.description} onChange={this.changeHandler.bind(this)}/>
-                    <Label>Custom CSS</Label>
-                    <TextArea 
-                        className="pt-fill"
-                        id="display-custom-css" 
-                        value={this.state.customCSS} 
-                        onChange={this.changeHandler.bind(this)}
+                    <TextInput
+                        id="display-name"
+                        label="Display Name"
+                        value={this.state.name}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <TextInput
+                        id="display-description"
+                        label="Display Description"
+                        value={this.state.description}
+                        changeHandler={this.changeHandler.bind(this)}
+                    />
+                    <BigText 
+                        id="display-custom-css"
+                        label="Custom CSS"
+                        value={this.state.customCSS}
+                        changeHandler={this.changeHandler.bind(this)}
                     />
                     <ButtonGroup large={true}>
                         <Button 
