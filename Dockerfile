@@ -14,6 +14,7 @@ WORKDIR /schoolcast
 RUN chmod 755 ./install.sh 
 RUN chmod 755 ./run.sh 
 RUN rm -rf node_modules
+RUN rm *.sqlite
 
 RUN ./install.sh
 
