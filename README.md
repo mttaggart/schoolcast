@@ -10,6 +10,11 @@ Schoolcast is an all-in-one server for easy digital signage. This system allows 
         - [Linux/macOS Installation](#linuxmacos-installation)
             - [Optional (Linux): Create a systemd service](#optional-linux-create-a-systemd-service)
         - [Docker Installation](#docker-installation)
+        - [Using the app](#using-the-app)
+        - [Displays](#displays)
+        - [Portals](#portals)
+        - [Feeds](#feeds)
+        - [Items](#items)
 
 <!-- /TOC -->
 
@@ -101,3 +106,33 @@ $ sudo docker build -t "schoolcast" .
 ```bash
 $ sudo docker run -d -p $PORT:$PORT --restart=always --name=schoolcast schoolcast
 ```
+
+### Using the app
+
+The default admin account is `admin@testdomain.com`, with a password of `adminpassword`. Please delete this account on login and after creating new Admin credentials.
+
+Upon logging in, you'll be able to create Displays, Portals, Feeds, and Items.
+
+### Displays
+
+Displays are composites of multiple Portals. These are what actually comprise your signage. When editing displays, you'll see a preview of the Portal layout below the form.
+
+### Portals
+
+Portals are sections of a Display. Each Portal has a Portal Type, defining what type of media (Image, Video, Text, Embed) the Portal will display. Each Portal is also associated to a single Feed, from which it pulls its content.
+
+### Feeds
+
+Feeds are simply groups for content. They can contain any media types; the Portals will sort through those later. Feeds contain Items.
+
+### Items
+
+Your content. Items have a type, which matches a given Portal's Type. Items are connected to Feeds. 
+
+Depending on the Item Type, different types of information are expected in the `content` field. It goes:
+
+* Image/Video: URL to image (we don't host media)
+* Text: Plain text or HTML
+* Embed: URL to website. SchoolCast makes the `<iframe>` for you.
+
+Items have a start/end date, which is the only window during which they'll be visible on Displays.
