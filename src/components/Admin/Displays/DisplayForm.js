@@ -63,7 +63,6 @@ class DisplayForm extends React.Component {
     }
 
     render() {
-        console.log(this.props.history);
         return (
             <FormOverlay history={this.props.history}>
                 <AdminForm 

@@ -97,7 +97,6 @@ class PortalForm extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <FormOverlay history={this.props.history}>
                 <AdminForm 
