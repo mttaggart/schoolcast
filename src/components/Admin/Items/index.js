@@ -14,6 +14,11 @@ const Items = ({authenticated, token, match, getItems, getFeeds, addItem, update
                 which live on parts of a <b>Display</b>. Items are connected 
                 to <b>Feeds</b>, indicating what kind of content they are.
             </p>
+            <p>
+                For <b>Image</b> and <b>Video</b> items, the "content" field
+                 should only be URLs to media. Currently, Schoolcast does not 
+                 host media locally.
+            </p>
         </Callout>
 
     return (
