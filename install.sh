@@ -31,7 +31,7 @@ fi
 
 SQ_PATH=./node_modules/.bin/sequelize
 
-echo "Using $ENVIRONMENT environment for deployment."
+echo "Using $NODE_ENV environment for deployment."
 
 # Run Migrations
 echo "Running migrations"
