@@ -83,7 +83,8 @@ class DisplayForm extends React.Component {
                     />
                     <BigText 
                         id="display-custom-css"
-                        label="Custom CSS"
+                        label="Custom CSS (as JSON)"
+                        placeholder={`{"color": "blue"}`}
                         value={this.state.customCSS}
                         changeHandler={this.changeHandler.bind(this)}
                     />

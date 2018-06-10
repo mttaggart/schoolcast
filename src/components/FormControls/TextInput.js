@@ -4,7 +4,14 @@ import {
 } from "@blueprintjs/core";
 import styles from "./styles";
 
-const TextInput = ({label, id, value, type, changeHandler}) =>
+const TextInput = ({
+    label, 
+    id, 
+    value, 
+    type, 
+    placeholder, 
+    changeHandler
+}) =>
     <div>
         <Label style={styles.label}>{label}</Label>
         <input 

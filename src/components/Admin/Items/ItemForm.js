@@ -118,7 +118,7 @@ class ItemForm extends React.Component {
                     <TextInput
                         type="number"
                         id="duration"
-                        label="Duration"
+                        label="Duration (ms)"
                         min="0"
                         max="3600000"
                         value={this.state.duration}

@@ -175,7 +175,7 @@ class PortalForm extends React.Component {
                     />
                     <TextInput
                         type="number" 
-                        id="transition-speed"
+                        id="transition-speed (ms)"
                         label="Width"
                         min="0"
                         max="5000"
@@ -184,7 +184,8 @@ class PortalForm extends React.Component {
                     />
                     <BigText 
                         id="custom-css"
-                        label="Custom CSS"
+                        label="Custom CSS (as JSON)"
+                        placeholder={`{"color": "blue"}`}
                         value={this.state.customCSS}
                         changeHandler={this.changeHandler.bind(this)}
                     />
