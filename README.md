@@ -99,5 +99,5 @@ $ sudo docker build -t "schoolcast" .
 2. Run the container
 
 ```bash
-$ sudo docker run -d -p --restart=always $PORT:$PORT schoolcast
+$ sudo docker run -d -p $PORT:$PORT --restart=always --name=schoolcast schoolcast
 ```
