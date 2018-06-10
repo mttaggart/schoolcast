@@ -33,7 +33,9 @@ $ git clone https://github.com/mttaggart/schoolcast
 $ cd schoolcast
 ```
 
-3. Run the installer. This will use Yarn or NPM to install all requisite dependencies. **NOTE: IF `NODE_ENV` is already set to `production`, the build will fail!**
+3. **EDIT THE `schoolcast.conf` FILE WITH YOUR INFO.** The settings currently there are just examples and **MUST** be changed before deployment!
+
+4. Run the installer. This will use Yarn or NPM to install all requisite dependencies. **NOTE: IF `NODE_ENV` is already set to `production`, the build will fail!**
 
 ```bash
 $ chmod 755 install.sh
@@ -41,7 +43,7 @@ $ ./install.sh
 ```
 This may take some time to install all the dependencies and build the app into the `build/` directory.
 
-4. Run the app!
+5. Run the app!
 
 You now have a ready-to-go Node app.
 
