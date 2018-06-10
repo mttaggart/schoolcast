@@ -7,7 +7,7 @@ const app = express();
 app.set("port", (process.env.PORT || 3002));
 
 //Set up static routes
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/build"));
 
 // Set up JSON middleware
 app.use(bodyParser.json());
