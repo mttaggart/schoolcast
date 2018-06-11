@@ -18,6 +18,7 @@ module.exports = {
         name: "Starter Item",
         content: "This is your first Item!",
         FeedId: 1,
+        PortalTypeId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }
