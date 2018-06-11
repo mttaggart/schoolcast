@@ -5,7 +5,7 @@ import AdminSection from "../AdminSection";
 import ItemForm from "./ItemForm";
 import ListItem from "../ListItem";
 
-const Items = ({authenticated, token, match, getItems, getFeeds, addItem, updateItem, deleteItem, items, feeds}) => {
+const Items = ({authenticated, token, match, getItems, getFeeds, getPortalTypes, addItem, updateItem, deleteItem, items, feeds, portalTypes}) => {
 
     const callout = 
         <Callout title="About Items">
@@ -28,7 +28,11 @@ const Items = ({authenticated, token, match, getItems, getFeeds, addItem, update
             callout={callout}
             authenticated={authenticated}
             assets={items}
-            getAssets={(token) => {getItems(token); getFeeds(token);}}
+            getAssets={(token) => {
+                getItems(token); 
+                getFeeds(token);
+                getPortalTypes(token);
+            }}
             token={token}
             match={match}
             listItem = {(key, asset) => 
@@ -48,6 +52,7 @@ const Items = ({authenticated, token, match, getItems, getFeeds, addItem, update
                     title="Edit Item"
                     assets={items}
                     feeds={feeds}
+                    portalTypes={portalTypes}
                 />} 
             />
             <Route 
@@ -58,6 +63,7 @@ const Items = ({authenticated, token, match, getItems, getFeeds, addItem, update
                     token={token}
                     title="Add Item"
                     feeds={feeds}
+                    portalTypes={portalTypes}
                 />} 
             />
         </AdminSection>

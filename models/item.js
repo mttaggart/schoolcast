@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   Item.associate = function(models) {
     // associations can be defined here
     Item.belongsTo(models.Feed);
+    Item.belongsTo(models.PortalType);
   };
   return Item;
 };

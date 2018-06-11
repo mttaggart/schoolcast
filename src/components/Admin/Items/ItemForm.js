@@ -27,6 +27,7 @@ class ItemForm extends React.Component {
         endDate: moment(Date.now()).tz("America/Los_Angeles").format("YYYY-MM-DD"),
         duration: 5000,
         FeedId: undefined,
+        PortalTypeId: undefined
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -36,6 +37,8 @@ class ItemForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.submitHandler(this.props.token, this.state);
+        this.setState(ItemForm.defaultItem);
+        this.props.history.goBack();
     }
 
     deleteHandler() {
@@ -67,6 +70,9 @@ class ItemForm extends React.Component {
             case "feed":
                 this.setState({FeedId: val});
                 break;
+            case "item-type":
+                this.setState({PortalTypeId: val});
+                break;
             case "duration":
                 this.setState({duration: val});
                 break;
@@ -94,6 +100,13 @@ class ItemForm extends React.Component {
                         value={this.state.FeedId}
                         changeHandler={this.changeHandler.bind(this)}
                         options={this.props.feeds}
+                    />
+                    <Select 
+                        id="item-type"
+                        label="Item Type"
+                        value={this.state.PortalTypeId}
+                        changeHandler={this.changeHandler.bind(this)}
+                        options={this.props.portalTypes}
                     />
                     <BigText 
                         id="item-content"

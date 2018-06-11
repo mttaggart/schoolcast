@@ -5,7 +5,10 @@ const verifyToken = require("./verifyToken");
 function getAndSendItems(res) {
   models.Item.findAll({
     where: {},
-    include: [models.Feed]
+    include: [
+      models.Feed,
+      models.PortalType
+    ]
   })
   .then( items => {
     res.status(200).send(items);
