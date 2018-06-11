@@ -32,6 +32,8 @@ class DisplayForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.submitHandler(this.props.token, this.state);
+        this.setState(DisplayForm.defaultDisplay);
+        this.props.history.goBack();
     }
 
     deleteHandler() {

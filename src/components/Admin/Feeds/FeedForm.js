@@ -30,6 +30,8 @@ class FeedForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.submitHandler(this.props.token, this.state);
+        this.setState(FeedForm.defaultFeed);
+        this.props.history.goBack();
     }
 
     deleteHandler() {
