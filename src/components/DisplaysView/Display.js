@@ -35,6 +35,7 @@ const Display = ({displays,items,match}) => {
                         const endDate = moment(item.endDate);
                         return (
                             portal.FeedId === item.FeedId && // Match items to feed
+                            portal.PortalTypeId == item.PortalTypeId && // Only pull items of correct type
                             now.isSameOrAfter(startDate) && // Date comparison
                             now.isSameOrBefore(endDate)
                         );
